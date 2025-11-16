@@ -1,0 +1,109 @@
+/* styles.css — Docotela X master stylesheet
+   Cinematic, luxurious, glass menu, parallax X, gates animation
+*/
+
+/* reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:#070707;color:#e7e7e7;font-family:"Poppins",system-ui,-apple-system,"Cinzel",serif;overflow-x:hidden}
+
+/* global links */
+a{text-decoration:none;color:inherit}
+
+/* top-nav (centered) */
+.top-nav{
+  position:fixed;left:50%;top:20px;transform:translateX(-50%);
+  z-index:1200;display:flex;gap:36px;font-weight:600;pointer-events:auto;
+}
+.top-nav a{color:#fff;font-size:18px;letter-spacing:1px;opacity:.95}
+.top-nav a:hover{color:#e0b24a}
+
+/* hamburger (top-right) */
+.hamburger{
+  position:fixed;right:20px;top:16px;z-index:1500;
+  background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);
+  padding:10px 14px;border-radius:10px;color:#fff;font-size:20px;cursor:pointer;
+  backdrop-filter:blur(6px);
+}
+
+/* mobile menu (glass) */
+.mobile-menu{
+  position:fixed;top:0;right:-320px;height:100vh;width:320px;padding-top:120px;
+  z-index:1400;transition:right .35s ease;display:flex;flex-direction:column;gap:22px;
+}
+.mobile-menu.open{right:0}
+.mobile-menu a{padding:12px 26px;color:#fff;font-size:18px;font-weight:600}
+.mobile-menu a:hover{color:#e0b24a}
+.glass{background:rgba(255,255,255,0.04);backdrop-filter:blur(10px);border-left:1px solid rgba(255,255,255,0.06)}
+
+/* cinematic fade overlay */
+.fade-wrap{
+  position:fixed;inset:0;background:#000;z-index:2000;display:flex;align-items:center;justify-content:center;
+  transition:opacity .8s ease;pointer-events:none;
+}
+.fade-wrap .fade-inner{text-align:center;color:#f7e9c9;animation:fadeInTitle .9s ease both}
+.fade-wrap .glow-title{font-family:"Cinzel",serif;font-size:48px;letter-spacing:8px;text-shadow:0 12px 38px rgba(224,178,74,.12)}
+.fade-wrap .glow-sub{margin-top:10px;opacity:.85}
+.fade-wrap.fade-out{opacity:0;}
+
+/* hero (main landing after fade) */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:60px 20px;z-index:10}
+.watermark{position:absolute;inset:0;background-image:url('88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png');background-position:center;background-repeat:no-repeat;background-size:75%;opacity:.04;filter:blur(3px) saturate(.9);pointer-events:none}
+.hero-center{position:relative;z-index:30;text-align:center;max-width:1000px;padding:20px}
+.hero-brand{font-family:"Cinzel",serif;font-size:72px;color:#f6e7b9;letter-spacing:6px;margin-bottom:8px;text-shadow:0 8px 30px rgba(0,0,0,.6)}
+.hero-lead{color:rgba(255,255,255,.8);margin-bottom:18px;font-size:16px}
+.enter-btn{display:inline-block;padding:12px 26px;border-radius:8px;border:2px solid #e0b24a;color:#e0b24a;font-weight:700;transition:all .22s}
+.enter-btn:hover{background:#e0b24a;color:#070707;box-shadow:0 18px 48px rgba(224,178,74,.12)}
+
+/* floating Xs (parallax like) */
+.floating-x{position:fixed;font-family:'Cinzel',serif;color:rgba(224,178,74,0.03);z-index:2;pointer-events:none}
+.fx1{left:6%;top:8%;font-size:22vw;animation:fxa 36s infinite ease-in-out}
+.fx2{right:8%;top:36%;font-size:16vw;animation:fxb 44s infinite ease-in-out}
+.fx3{left:28%;bottom:6%;font-size:12vw;animation:fxc 48s infinite ease-in-out}
+@keyframes fxa{0%{transform:translate(0,0) rotate(0)}30%{transform:translate(30px,-40px) rotate(12deg)}60%{transform:translate(-20px,30px) rotate(-8deg)}100%{transform:translate(0,0) rotate(0)}}
+@keyframes fxb{0%{transform:translate(0,0)}50%{transform:translate(-60px,40px) rotate(30deg)}100%{transform:translate(0,0)}}
+@keyframes fxc{0%{transform:translate(0,0)}50%{transform:translate(20px,-30px) rotate(20deg)}100%{transform:translate(0,0)}}
+
+/* common content */
+.content{padding:120px 30px;max-width:1200px;margin:0 auto}
+.page-title{font-family:"Cinzel",serif;font-size:30px;margin-bottom:10px;color:#fff}
+.lead{color:rgba(255,255,255,.8);margin-bottom:18px}
+
+/* grids & cards */
+.gallery-grid,.collections-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:22px}
+.art-card,.collection-card,.placeholder{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);text-align:center;color:#ddd}
+
+/* member gates */
+.gates-wrap{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#020202,#070707)}
+.gate{position:absolute;top:0;height:100%;width:50%;background:linear-gradient(180deg,#0f0f10,#0b0b0b);transition:transform 1.2s cubic-bezier(.2,.9,.2,1);z-index:20;box-shadow:inset 0 0 60px rgba(0,0,0,.6)}
+.gate.left{left:0;border-right:1px solid rgba(255,255,255,0.04);transform-origin:left center}
+.gate.right{right:0;border-left:1px solid rgba(255,255,255,0.04);transform-origin:right center}
+.gate.open-left{transform:translateX(-105%) rotateY(-6deg)}
+.gate.open-right{transform:translateX(105%) rotateY(6deg)}
+
+/* soft gold heaven light */
+.heaven-light{position:absolute;inset:0;pointer-events:none;z-index:18;background:radial-gradient(ellipse at center, rgba(224,178,74,0.12) 0%, transparent 45%);mix-blend-mode:screen;opacity:0.95;filter:blur(36px) saturate(1.1)}
+
+/* center password box */
+.gate-center{position:relative;z-index:30;text-align:center;color:#efe6c7;backdrop-filter:blur(6px)}
+.gate-center h1{font-family:"Cinzel",serif;font-size:44px;margin-bottom:10px}
+.gate-center .lead{color:rgba(255,255,255,.85);margin-bottom:18px}
+.gate-form{display:flex;gap:12px;justify-content:center;align-items:center}
+.gate-form input{padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.5);color:#fff;min-width:220px}
+.gate-form button{padding:12px 20px;border-radius:8px;border:2px solid #e0b24a;background:transparent;color:#e0b24a;font-weight:700;cursor:pointer}
+.gate-center.denied{animation:shake .32s}
+@keyframes shake{0%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-6px)}100%{transform:translateX(0)}}
+
+/* small screens */
+@media (max-width:880px){
+  .hero-brand{font-size:40px}
+  .top-nav{gap:18px}
+  .mobile-menu{width:100%;right:-100%}
+  .mobile-menu.open{right:0}
+  .floating-x{display:none}
+  .gate-form{flex-direction:column}
+}
+
+/* subtle transitions & fade utilities */
+.fade-in{animation:fadeIn .9s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
