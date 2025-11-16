@@ -226,3 +226,75 @@ a{text-decoration:none;color:inherit}
     border-radius: 12px;
     backdrop-filter: blur(14px);
 }
+/* ================================
+   GLOBAL CINEMATIC FADE-IN
+================================ */
+body {
+    opacity: 0;
+    animation: fadeInCinematic 1.6s ease forwards;
+}
+
+@keyframes fadeInCinematic {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ================================
+   FADE TO BLACK TRANSITION
+================================ */
+.fade-black {
+    animation: fadeToBlack 1s ease forwards;
+}
+
+@keyframes fadeToBlack {
+    from { opacity: 1; }
+    to { opacity: 0; background:black; }
+}
+
+/* ================================
+   FLOATING X PARALLAX
+================================ */
+.floating-x {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 280px;
+    height: auto;
+    transform: translate(-50%, -50%);
+    opacity: 0.13;
+    animation: floatX 10s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes floatX {
+    0% { transform: translate(-50%, -48%) scale(1); }
+    50% { transform: translate(-50%, -52%) scale(1.05); }
+    100% { transform: translate(-50%, -48%) scale(1); }
+}
+
+/* ================================
+   GOLD TEXT + SCROLL FADE
+================================ */
+.gold-section {
+    color: #d4af37;
+    font-size: 1.6rem;
+    margin: 40px 0;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s;
+}
+
+.gold-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================================
+   GLASS MENU
+================================ */
+.glass-menu {
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+}
