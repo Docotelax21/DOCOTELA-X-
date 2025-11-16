@@ -1,23 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Members Only | Docotela X</title>
-    <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Members Only | Docotela X</title>
+
+<link href="styles.css" rel="stylesheet">
+
+<style>
+
+/* PAGE FADE */
+body {
+    margin: 0;
+    background: #000;
+    color: white;
+    font-family: 'Cinzel', serif;
+    animation: fadeIn 1.5s ease forwards;
+    overflow-x: hidden;
+}
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+/* FLOATING X WATERMARK */
+.watermark-x {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.07;
+    font-size: 40vw;
+    font-weight: 700;
+    color: white;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* PARALLAX BACKGROUND */
+.parallax-bg {
+    background: url('88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png') no-repeat center;
+    background-size: contain;
+    background-attachment: fixed;
+    opacity: 0.05;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+
+/* TOP CENTER NAV */
+.top-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 35px;
+    font-size: 20px;
+    z-index: 20;
+}
+.top-nav a {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+.top-nav a:hover { color: gold; }
+
+/* GLASS HAMBURGER MENU */
+.hamburger {
+    position: fixed;
+    top: 22px;
+    right: 25px;
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 25;
+}
+
+.mobile-menu.glass {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 65%;
+    height: 100vh;
+    backdrop-filter: blur(18px);
+    background: rgba(255,255,255,0.05);
+    padding: 120px 40px;
+    transition: 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 24;
+}
+.mobile-menu.glass a {
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    transition: 0.3s;
+}
+.mobile-menu.glass a:hover { color: gold; }
+
+.menu-open { right: 0 !important; }
+
+/* FULLSCREEN GATES */
+.gate-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.gate-left, .gate-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 2s ease;
+    filter: drop-shadow(0 0 20px gold);
+}
+
+.gate-left {
+    left: 0;
+    background-image: url('https://i.ibb.co/r0p5QzM/gate-left.png');
+}
+.gate-right {
+    right: 0;
+    background-image: url('https://i.ibb.co/hmsyqGJ/gate-right.png');
+}
+
+.gates-open-left { transform: translateX(-100%); }
+.gates-open-right { transform: translateX(100%); }
+
+/* PASSWORD CARD */
+.password-box {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(20px);
+    padding: 45px;
+    border-radius: 20px;
+    text-align: center;
+    z-index: 10;
+    width: 320px;
+}
+
+.password-box h2 {
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+.password-box input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.password-box button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: gold;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.error-msg {
+    color: red;
+    margin-top: 10px;
+    height: 20px;
+}
+
+</style>
 </head>
-<body class="fade-in"><!-- TOP NAV -->
+<body>
+
+<div class="parallax-bg"></div>
+<div class="watermark-x">X</div>
+
+<!-- NAVIGATION -->
 <div class="top-nav">
     <a href="home.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
 </div>
 
-<!-- HAMBURGER -->
 <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
 
-<!-- SLIDE MENU -->
-<div id="mobileMenu" class="mobile-menu glass-menu">
+<div id="mobileMenu" class="mobile-menu glass">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -27,54 +202,47 @@
     <a href="contact.html">Contact</a>
 </div>
 
-    <!-- FLOATING X + NAVIGATION -->
-    <div class="floating-x">X</div>
+<!-- GATES -->
+<div class="gate-container">
+    <div class="gate-left" id="gateLeft"></div>
+    <div class="gate-right" id="gateRight"></div>
 
-    <div class="top-nav">
-        <a href="home.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+    <div class="password-box" id="passwordBox">
+        <h2>Members Only</h2>
+        <input type="password" id="passInput" placeholder="Enter password">
+        <button onclick="checkPass()">Enter</button>
+        <div class="error-msg" id="errorMsg"></div>
     </div>
+</div>
 
-    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+<script src="menu.js"></script>
 
-    <div id="mobileMenu" class="mobile-menu glass">
-        <a href="home.html">Home</a>
-        <a href="collections.html">Collections</a>
-        <a href="gallery.html">Art Gallery</a>
-        <a href="exclusive-drops.html">Exclusive Drops</a>
-        <a href="membersonly.html">Members Only</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-    </div>
+<script>
+function checkPass() {
+    let input = document.getElementById("passInput").value;
+    let error = document.getElementById("errorMsg");
 
-    <!-- FULL SCREEN GATES -->
-    <section class="gate-wrapper">
+    if (input === "memberson1y") {
+        error.innerHTML = "";
+        openGates();
+        setTimeout(() => {
+            window.location.href = "private-collection.html";
+        }, 2500);
+    } else {
+        error.innerHTML = "Incorrect password";
+    }
+}
 
-        <img src="gate-left.png" class="gate gate-left" />
-        <img src="gate-right.png" class="gate gate-right" />
+function openGates() {
+    document.getElementById("gateLeft").classList.add("gates-open-left");
+    document.getElementById("gateRight").classList.add("gates-open-right");
+}
 
-        <div class="password-box">
-            <h2>Private Access</h2>
-            <input id="memberPass" type="password" placeholder="Enter Password" />
-            <button onclick="openGates()">Enter</button>
-            <p id="errorText"></p>
-        </div>
-
-    </section>
-
-    <section id="membersContent" class="hidden-content">
-        <h1 class="gold-title big-title">Welcome to The Private Collection</h1>
-
-        <div class="private-links">
-            <a href="private-collection.html" class="private-card glass">Private Collection</a>
-            <a href="exclusive-art.html" class="private-card glass">Exclusive Art</a>
-            <a href="exclusive-drops.html" class="private-card glass">Exclusive Drops</a>
-        </div>
-    </section>
-
-    <script src="menu.js"></script>
-    <script src="members.js"></script>
+/* MENU */
+function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("menu-open");
+}
+</script>
 
 </body>
 </html>
