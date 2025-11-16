@@ -107,3 +107,122 @@ a{text-decoration:none;color:inherit}
 /* subtle transitions & fade utilities */
 .fade-in{animation:fadeIn .9s ease both}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* CINEMATIC FADE */
+.fade-in {
+    animation: fadeIn 1.4s ease forwards;
+    opacity: 0;
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* FLOATING PARALLAX X */
+.floating-x {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 160px;
+    transform: translate(-50%, -50%);
+    opacity: 0.07;
+    font-family: Cinzel, serif;
+    animation: floatX 9s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+@keyframes floatX {
+    0% { transform: translate(-50%, -52%); }
+    100% { transform: translate(-50%, -48%); }
+}
+
+/* FULLSCREEN GATES */
+.gate-wrapper {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, rgba(0,0,0,0.8), rgba(0,0,0,1));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 2000;
+}
+
+.gate {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    object-fit: cover;
+    transition: transform 1.2s ease-in-out;
+}
+
+.gate-left {
+    left: 0;
+}
+.gate-right {
+    right: 0;
+}
+
+.open-left {
+    transform: translateX(-100%);
+}
+.open-right {
+    transform: translateX(100%);
+}
+
+.gate-wrapper.fade-out {
+    animation: fadeOutGates 1s ease forwards;
+}
+@keyframes fadeOutGates {
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* PASSWORD BOX */
+.password-box {
+    position: absolute;
+    z-index: 2100;
+    background: rgba(0,0,0,0.45);
+    padding: 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(12px);
+    text-align: center;
+}
+.password-box input {
+    width: 220px;
+    padding: 10px;
+    margin: 10px 0;
+}
+.password-box button {
+    padding: 10px 28px;
+    border: none;
+    background: gold;
+    color: black;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+/* HIDDEN CONTENT */
+.hidden-content {
+    opacity: 0;
+    pointer-events: none;
+    margin-top: 120px;
+    text-align: center;
+    transition: opacity 1.2s ease;
+}
+.hidden-content.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.private-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 40px;
+}
+.private-card {
+    padding: 25px 50px;
+    font-size: 22px;
+    text-decoration: none;
+    color: gold;
+    border-radius: 12px;
+    backdrop-filter: blur(14px);
+}
