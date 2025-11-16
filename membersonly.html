@@ -1,82 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Members Only — Docotela X</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members Only | Docotela X</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="members">
+<body class="fade-in">
 
-  <div class="top-nav">
-    <a href="home.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </div>
+    <!-- FLOATING X + NAVIGATION -->
+    <div class="floating-x">X</div>
 
-  <div class="hamburger" id="hamburger">☰</div>
-  <nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
-    <a href="home.html">Home</a>
-    <a href="collections.html">Collections</a>
-    <a href="gallery.html">Art Gallery</a>
-    <a href="exclusive-drops.html">Exclusive Drops</a>
-    <a href="membersonly.html">Members Only</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <!-- the cinematic gates area -->
-  <div class="gates-wrap">
-    <div class="gate left"></div>
-    <div class="gate right"></div>
-
-    <!-- gold light beam -->
-    <div class="heaven-light"></div>
-
-    <div class="gate-center">
-      <h1>Members Only</h1>
-      <p class="lead">Enter password to reveal the private collection.</p>
-
-      <form id="gateForm" class="gate-form">
-        <input id="gatePass" type="password" placeholder="Password" autocomplete="off" />
-        <button type="submit" class="enter-btn">Open Gates</button>
-      </form>
-
-      <p id="gateError" class="muted error" style="display:none;">Access denied</p>
+    <div class="top-nav">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
     </div>
-  </div>
 
-<script src="menu.js"></script>
-<script>
-(function(){
-  const form = document.getElementById('gateForm');
-  const pass = document.getElementById('gatePass');
-  const err = document.getElementById('gateError');
-  const left = document.querySelector('.gate.left');
-  const right = document.querySelector('.gate.right');
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    err.style.display='none';
-    if (pass.value === 'memberson1y') {
-      // open cinematic gates
-      left.classList.add('open-left');
-      right.classList.add('open-right');
-      document.body.classList.add('gates-opening');
+    <div id="mobileMenu" class="mobile-menu glass">
+        <a href="home.html">Home</a>
+        <a href="collections.html">Collections</a>
+        <a href="gallery.html">Art Gallery</a>
+        <a href="exclusive-drops.html">Exclusive Drops</a>
+        <a href="membersonly.html">Members Only</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
 
-      // after gates open, redirect to private-collection
-      setTimeout(()=>{ window.location.href = 'private-collection.html'; }, 1600);
-    } else {
-      // access denied - show red X + message
-      err.style.display='block';
-      err.style.color='#ff5555';
-      // brief red flash on center
-      document.querySelector('.gate-center').classList.add('denied');
-      setTimeout(()=>document.querySelector('.gate-center').classList.remove('denied'),700);
-    }
-  });
-})();
-</script>
+    <!-- FULL SCREEN GATES -->
+    <section class="gate-wrapper">
+
+        <img src="gate-left.png" class="gate gate-left" />
+        <img src="gate-right.png" class="gate gate-right" />
+
+        <div class="password-box">
+            <h2>Private Access</h2>
+            <input id="memberPass" type="password" placeholder="Enter Password" />
+            <button onclick="openGates()">Enter</button>
+            <p id="errorText"></p>
+        </div>
+
+    </section>
+
+    <section id="membersContent" class="hidden-content">
+        <h1 class="gold-title big-title">Welcome to The Private Collection</h1>
+
+        <div class="private-links">
+            <a href="private-collection.html" class="private-card glass">Private Collection</a>
+            <a href="exclusive-art.html" class="private-card glass">Exclusive Art</a>
+            <a href="exclusive-drops.html" class="private-card glass">Exclusive Drops</a>
+        </div>
+    </section>
+
+    <script src="menu.js"></script>
+    <script src="members.js"></script>
+
 </body>
 </html>
