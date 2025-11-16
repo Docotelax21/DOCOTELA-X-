@@ -1,20 +1,13 @@
-// menu.js - lightweight toggle for hamburger + close on link click
-(function(){
-  function $(sel){return document.querySelectorAll(sel)}
-  const hbEls = document.querySelectorAll('.hamburger');
-  const menus = document.querySelectorAll('#mobileMenu');
+function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+    menu.classList.toggle("open");
+}
 
-  function toggle() {
-    menus.forEach(m=>m.classList.toggle('open'));
-  }
+document.addEventListener("click", function(e) {
+    const menu = document.getElementById("mobileMenu");
+    const burger = document.querySelector(".hamburger");
 
-  hbEls.forEach(hb=>hb.addEventListener('click', toggle));
-
-  // close menu when link clicked
-  document.addEventListener('click', function(e){
-    const clicked = e.target;
-    if (clicked.tagName === 'A' && clicked.closest('#mobileMenu')) {
-      menus.forEach(m=>m.classList.remove('open'));
+    if (!menu.contains(e.target) && e.target !== burger) {
+        menu.classList.remove("open");
     }
-  });
-})();
+});
