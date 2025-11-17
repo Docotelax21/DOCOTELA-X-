@@ -5,235 +5,132 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Members Only — Docotela X</title>
 
-  <!-- fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <!-- main stylesheet -->
   <link rel="stylesheet" href="styles.css">
 
   <style>
-    :root {
-      --gold: #caa93a;
-      --gold-strong: #f3d457;
-      --dark: #0b0b0c;
-    }
-
-    body.membersonly {
+    body {
       background: linear-gradient(180deg,#050506 0%, #0f0f10 60%);
       color: #e8e6e1;
-      overflow-x: hidden;
       margin: 0;
-      font-family: "Poppins", system-ui;
+      font-family: "Poppins", sans-serif;
+      overflow-x: hidden;
     }
 
-    /* ---------------- NAV ---------------- */
-
+    /* TOP NAV CENTER */
     .top-nav {
       position: fixed;
+      top: 18px;
       left: 50%;
       transform: translateX(-50%);
-      top: 18px;
-      z-index: 120;
       display: flex;
       gap: 36px;
+      z-index: 200;
     }
     .top-nav a {
       color: #ffffff;
       text-decoration: none;
       font-size: 18px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
+      font-weight: 600;
+      letter-spacing: 0.7px;
     }
     .top-nav a:hover {
-      color: var(--gold-strong);
+      color: #caa93a;
     }
 
+    /* HAMBURGER */
     .hamburger {
       position: fixed;
-      right: 20px;
       top: 14px;
-      z-index: 200;
-      font-size: 28px;
-      color: #fff;
+      right: 20px;
+      font-size: 30px;
+      color: white;
       cursor: pointer;
+      z-index: 201;
     }
 
+    /* SLIDE MENU */
     .mobile-menu {
       position: fixed;
-      right: -340px;
       top: 0;
+      right: -320px;
+      width: 320px;
       height: 100vh;
-      width: 340px;
-      background: rgba(10,10,12,0.92);
-      backdrop-filter: blur(10px);
-      padding-top: 100px;
-      z-index: 190;
+      background: rgba(10,10,10,0.96);
+      backdrop-filter: blur(8px);
       transition: right .45s ease;
+      padding-top: 90px;
+      z-index: 200;
     }
     .mobile-menu.open {
       right: 0;
     }
     .mobile-menu a {
       display: block;
-      padding: 18px 32px;
+      padding: 18px 30px;
       text-decoration: none;
-      color: #fff;
+      color: white;
       font-size: 18px;
     }
     .mobile-menu a:hover {
-      color: var(--gold-strong);
+      color: #caa93a;
     }
 
-    /* ----------------- BACKGROUND DECORATION ----------------- */
-
-    .members-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .watermark-large {
-      position: absolute;
-      left: 50%;
-      top: 40%;
-      transform: translate(-50%, -50%);
-      opacity: .06;
-      font-family: "Cinzel", serif;
-      font-size: 28vw;
-      letter-spacing: 6px;
-      color: var(--gold);
-    }
-
-    .fog {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(40% 40% at 50% 40%, rgba(255,255,255,0.03), transparent 20%);
-      opacity: 1;
-      transition: opacity .8s ease;
-    }
-
-    /* ----------------- MAIN GATE ------------------ */
-
-    .members-wrap {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 20px 80px;
-      z-index: 10;
-      position: relative;
-    }
-
-    .gate-stage {
-      position: relative;
-      width: 100%;
-      max-width: 900px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .gate-card {
-      width: 520px;
-      max-width: 90vw;
-      padding: 34px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,215,80,0.08);
-      backdrop-filter: blur(8px);
+    /* MEMBERS CONTENT BOX */
+    .members-box {
+      max-width: 600px;
+      margin: 180px auto;
+      padding: 30px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 12px;
       text-align: center;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
-      transform: translateY(10px);
-      opacity: 0;
-      transition: opacity .9s ease, transform .9s ease;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
     }
 
-    .gate-card.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .gate-card h2 {
+    h1 {
       font-family: "Cinzel", serif;
-      color: var(--gold-strong);
-      margin-top: 0;
-      font-size: 30px;
+      color: #caa93a;
+      font-size: 32px;
+      margin-bottom: 10px;
     }
 
-    .input-row {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .input-row input {
-      padding: 12px 16px;
+    p {
+      color: #d7d4cf;
       font-size: 16px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #fff;
-      border-radius: 8px;
-      width: 240px;
-      outline: none;
     }
 
-    .input-row button {
-      padding: 10px 18px;
+    input {
+      padding: 12px 16px;
+      width: 70%;
       border-radius: 8px;
       border: none;
-      background: linear-gradient(180deg, var(--gold), #d6b84a);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      margin-top: 18px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 16px;
+      padding: 12px 26px;
       font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      background: #caa93a;
+      color: #111;
       cursor: pointer;
+      font-size: 16px;
     }
 
-    /* GATE PANELS */
-    .gate-visual {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .gate-panel {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 50%;
-      border-radius: 12px;
-      background: rgba(15,15,18,0.6);
-      transition: transform 1s ease;
-      box-shadow: inset 0 -40px 80px rgba(0,0,0,0.7);
-    }
-
-    .gate-panel.left { left: 0; }
-    .gate-panel.right { right: 0; }
-
-    .gate-panel.closed.left { transform: translateX(0); }
-    .gate-panel.closed.right { transform: translateX(0); }
-
-    .gate-panel.open.left { transform: translateX(-120%); }
-    .gate-panel.open.right { transform: translateX(120%); }
-
-    .divine-light {
-      position: absolute;
-      width: 40%;
-      height: 70%;
-      background: radial-gradient(closest-side, rgba(255,240,200,0.3), transparent 70%);
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    .divine-light.visible {
-      opacity: 1;
+    button:hover {
+      filter: brightness(.92);
     }
   </style>
 </head>
 
-<body class="membersonly">
+<body>
 
   <!-- TOP CENTER NAV -->
   <div class="top-nav">
@@ -243,10 +140,10 @@
   </div>
 
   <!-- HAMBURGER -->
-  <div class="hamburger" id="burger">☰</div>
+  <div id="burger" class="hamburger">☰</div>
 
   <!-- SLIDE MENU -->
-  <aside id="mobileMenu" class="mobile-menu">
+  <div id="mobileMenu" class="mobile-menu">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -254,92 +151,37 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </aside>
-
-  <!-- BG DECOR -->
-  <div class="members-bg">
-    <div class="watermark-large">Docotela X</div>
-    <div class="fog" id="fog"></div>
   </div>
 
-  <!-- MAIN -->
-  <main class="members-wrap">
+  <!-- MEMBERS LOGIC BOX -->
+  <div class="members-box">
+    <h1>Members Only</h1>
+    <p>Enter your access key to proceed.</p>
 
-    <div class="gate-stage">
+    <input id="pw" type="password" placeholder="Access key">
 
-      <!-- GATE PANELS -->
-      <div class="gate-visual">
-        <div class="gate-panel left closed" id="leftGate"></div>
-        <div class="gate-panel right closed" id="rightGate"></div>
-        <div class="divine-light" id="divineLight"></div>
-      </div>
-
-      <!-- PASSWORD CARD -->
-      <div class="gate-card" id="card">
-        <h2>Members Only</h2>
-        <p>Enter your access key to reveal the private archive.</p>
-
-        <div class="input-row">
-          <input id="pw" type="password" placeholder="Access key">
-          <button id="openBtn">Open</button>
-        </div>
-
-        <small style="color:#bdbab6;opacity:.9;display:block;margin-top:12px;">
-          Access is limited. Contact us for membership.
-        </small>
-      </div>
-
-    </div>
-
-  </main>
+    <button id="go">Unlock</button>
+  </div>
 
   <script>
-    const PASSWORD = "freedom";
+    // Password to access private page
+    const PASSWORD = "memberson1y";
 
-    const burger = document.getElementById("burger");
     const mobileMenu = document.getElementById("mobileMenu");
+    const burger = document.getElementById("burger");
 
     burger.onclick = () => {
       mobileMenu.classList.toggle("open");
     };
 
-    // Gate Logic
-    const leftGate = document.getElementById("leftGate");
-    const rightGate = document.getElementById("rightGate");
-    const divine = document.getElementById("divineLight");
-    const openBtn = document.getElementById("openBtn");
-    const pw = document.getElementById("pw");
-    const card = document.getElementById("card");
-
-    window.onload = () => {
-      setTimeout(() => card.classList.add("show"), 300);
-    };
-
-    function openGates() {
-      leftGate.classList.replace("closed", "open");
-      rightGate.classList.replace("closed", "open");
-
-      divine.classList.add("visible");
-
-      setTimeout(() => {
+    document.getElementById("go").onclick = () => {
+      const val = document.getElementById("pw").value.trim();
+      if (val === PASSWORD) {
         window.location.href = "private-collection.html";
-      }, 1500);
-    }
-
-    openBtn.onclick = () => {
-      if (pw.value.trim() === PASSWORD) {
-        openGates();
       } else {
-        pw.style.boxShadow = "0 0 12px rgba(255,0,0,0.4)";
-        setTimeout(() => {
-          pw.style.boxShadow = "none";
-        }, 600);
+        alert("Incorrect access key.");
       }
     };
-
-    pw.addEventListener("keydown", e => {
-      if (e.key === "Enter") openBtn.click();
-    });
   </script>
 
 </body>
