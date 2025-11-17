@@ -1,82 +1,154 @@
-/* GENERAL RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ============================================
+   DOCOTELA X — COMPLETE ANIMATION PACK
+   Fully cinematic / luxury / smooth
+   ============================================ */
+
+/* GLOBAL RESET */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+/* VARIABLES */
+:root {
+    --gold: #caa93a;
+    --gold-light: #f3d457;
+    --dark: #0a0a0a;
+
+    --fade-time: 1.2s;
+    --fade-delay: .2s;
+    --move-slow: 1.4s cubic-bezier(.22, .9, .2, 1);
+}
+
+/* ============================================
+   GLOBAL FADE-IN ON PAGE LOAD
+============================================ */
 body {
-  background: #000;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  overflow-x: hidden;
+    opacity: 0;
+    animation: globalFadeIn 1.2s ease forwards;
+}
+@keyframes globalFadeIn {
+    0% { opacity: 0; filter: blur(10px); }
+    100% { opacity: 1; filter: blur(0px); }
 }
 
-a {
-  color: white;
-  text-decoration: none;
+/* ============================================
+   PAGE TRANSITION ON NAVIGATE (FADE TO BLACK)
+============================================ */
+.page-fade-out {
+    animation: fadeToBlack .7s ease forwards;
+}
+@keyframes fadeToBlack {
+    from { opacity: 1; }
+    to   { opacity: 0; background: #000; }
 }
 
-/* TOP NAV */
-.top-nav {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 40px;
-  z-index: 4000;
-  padding: 20px;
-  font-size: 18px;
+/* ============================================
+   FLOATING “X” PARALLAX
+============================================ */
+.floating-x {
+    position: relative;
+    display: inline-block;
+    animation: floatX 6s ease-in-out infinite;
+}
+@keyframes floatX {
+    0%   { transform: translateY(0px); opacity: .95; }
+    50%  { transform: translateY(-10px); opacity: 1; }
+    100% { transform: translateY(0px); opacity: .95; }
 }
 
-.top-nav a:hover {
-  color: gold;
+/* Parallax background */
+.parallax-bg {
+    background-size: cover;
+    background-position: center;
+    animation: parallaxMove 18s linear infinite alternate;
+}
+@keyframes parallaxMove {
+    0% { background-position: center 0%; }
+    100% { background-position: center 30%; }
 }
 
-/* HAMBURGER */
-.hamburger {
-  position: fixed;
-  top: 20px;
-  right: 25px;
-  font-size: 34px;
-  cursor: pointer;
-  z-index: 5000;
-  user-select: none;
+/* ============================================
+   GOLD SHIMMER TEXT EFFECT
+============================================ */
+.gold-shine {
+    color: var(--gold-light);
+    background: linear-gradient(90deg, #8a6f1a, #f4d25a, #8a6f1a);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldShine 4s linear infinite;
+}
+@keyframes goldShine {
+    0% { background-position: 0%; }
+    100% { background-position: 200%; }
 }
 
-.hamburger:hover {
-  color: gold;
+/* ============================================
+   FLOAT FADE-IN SECTIONS (scroll reveal)
+============================================ */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .9s ease, transform 1.1s var(--move-slow);
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* MOBILE MENU */
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 70%;
-  height: 100vh;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(12px);
-  padding-top: 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  padding-left: 30px;
-  transition: 0.4s ease;
-  z-index: 4500;
-  max-height: 100vh;
-  overflow-y: auto;
+/* ============================================
+   ANGELIC FOG (smooth drifting)
+============================================ */
+.fog-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: url('https://i.imgur.com/9JzZyUQ.png');
+    opacity: 0.12;
+    mix-blend-mode: screen;
+    animation: fogMove 30s linear infinite;
+    filter: blur(12px);
+}
+@keyframes fogMove {
+    0% { transform: translateX(0px); }
+    100% { transform: translateX(-140px); }
 }
 
-.mobile-menu.open {
-  right: 0;
+/* ============================================
+   GATE GLOW (Members Page)
+============================================ */
+.gate-glow {
+    animation: gatePulse 3s ease-in-out infinite;
+}
+@keyframes gatePulse {
+    0%   { filter: drop-shadow(0 0 10px rgba(243,212,87,0.15)); }
+    50%  { filter: drop-shadow(0 0 26px rgba(243,212,87,0.4)); }
+    100% { filter: drop-shadow(0 0 10px rgba(243,212,87,0.15)); }
 }
 
-.mobile-menu a {
-  font-size: 20px;
+/* ============================================
+   NAV MENU (slide + fade)
+============================================ */
+.menu-slide {
+    transform: translateX(60px);
+    opacity: 0;
+    transition: transform .5s ease, opacity .5s ease;
+}
+.menu-slide.show {
+    transform: translateX(0);
+    opacity: 1;
 }
 
-.mobile-menu a:hover {
-  color: gold;
+/* ============================================
+   SOFT CARD FLOAT
+============================================ */
+.card-float {
+    animation: cardFloat 5s ease-in-out infinite;
+}
+@keyframes cardFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
 }
