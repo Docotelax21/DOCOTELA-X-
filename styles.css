@@ -1,301 +1,136 @@
-/* styles.css - Docotela X final master stylesheet
-   Matches the design you specified: cinematic, luxury, floating X, gates, fog, glass menu.
-*/
-
-/* ---------------------------------------------------------
-   GLOBAL VARIABLES
---------------------------------------------------------- */
-:root{
-    --gold: #caa93a;
-    --gold-strong: #f3d457;
-    --dark: #080808;
-    --soft-dark: #0d0d0f;
-    --text-light: #e9e6df;
-    --glass: rgba(255,255,255,0.05);
-    --glass-border: rgba(255,255,255,0.12);
-}
-
-/* ---------------------------------------------------------
-   GLOBAL RESET / BASE
---------------------------------------------------------- */
-* { box-sizing: border-box; }
-html, body {
+/* GENERAL */
+body {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: "Poppins", system-ui, sans-serif;
-    color: var(--text-light);
-    background: linear-gradient(180deg, #050505, #0f0f11 70%);
-    overflow-x: hidden;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-}
-
-img { max-width: 100%; display: block; }
-
-/* Smooth fade-in for page load */
-body {
-    opacity: 0;
-    animation: bodyFade 0.9s ease forwards 0.05s;
-}
-@keyframes bodyFade { from { opacity: 0; } to { opacity: 1; } }
-
-/* ---------------------------------------------------------
-   TOP NAV (SHARED ACROSS ALL PAGES)
---------------------------------------------------------- */
-.top-nav {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 40px;
-    z-index: 1500;
-}
-.top-nav a {
-    color: var(--text-light);
-    font-weight: 600;
-    text-decoration: none;
-    letter-spacing: 1px;
-    font-size: 17px;
     font-family: "Cinzel", serif;
-}
-.top-nav a:hover { color: var(--gold-strong); text-shadow: 0 0 12px rgba(243,212,87,0.25); }
-
-/* ---------------------------------------------------------
-   HAMBURGER + MOBILE MENU
---------------------------------------------------------- */
-.hamburger {
-    position: fixed;
-    top: 16px;
-    right: 20px;
-    font-size: 30px;
-    cursor: pointer;
+    background: #0a0a0a;
     color: white;
-    z-index: 1700;
-    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
 }
 
-/* Slide-out mobile menu */
-.mobile-menu {
+/* FADE IN */
+.fade-in {
+    animation: fadeIn 1.8s ease-out forwards;
+    opacity: 0;
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* NAVBAR */
+.main-header {
+    width: 100%;
     position: fixed;
     top: 0;
-    right: -360px;
-    width: 360px;
-    height: 100vh;
-    background: linear-gradient(180deg, rgba(20,20,20,0.95), rgba(10,10,10,0.92));
-    backdrop-filter: blur(10px);
-    padding-top: 100px;
-    transition: right 0.45s cubic-bezier(.2,.9,.2,1);
-    z-index: 1600;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
 }
-.mobile-menu.open { right: 0; }
-.mobile-menu a {
-    display: block;
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+}
+
+.center-links a {
+    margin: 0 18px;
+    font-size: 18px;
     color: white;
     text-decoration: none;
-    padding: 18px 36px;
-    font-size: 18px;
-    font-family: "Cinzel", serif;
+    transition: 0.3s;
 }
-.mobile-menu a:hover { color: var(--gold-strong); }
-
-/* ensure mobile menu clickable on iOS */
-.mobile-menu a, .mobile-menu { -webkit-user-select: none; }
-
-/* ---------------------------------------------------------
-   FADE / TRANSITION HELPERS
---------------------------------------------------------- */
-.fade-in-slow { opacity: 0; transform: translateY(18px); transition: opacity .9s ease, transform .9s ease; }
-.fade-in-slow.show { opacity: 1; transform: translateY(0); }
-
-/* ---------------------------------------------------------
-   HERO / HOME
---------------------------------------------------------- */
-.hero {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
+.center-links a:hover {
+    color: gold;
 }
 
-.parallax-bg {
-    background-size: cover;
-    background-position: center;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    filter: brightness(0.32);
-    z-index: 1;
-    transform-origin: center;
-    animation: slowPan 40s linear infinite;
-}
-@keyframes slowPan {
-    0% { transform: scale(1) translateY(0px); }
-    50% { transform: scale(1.06) translateY(-18px); }
-    100% { transform: scale(1) translateY(0px); }
+.hamburger {
+    font-size: 32px;
+    cursor: pointer;
+    color: white;
 }
 
-.watermark {
-    position: absolute;
-    inset: 0;
-    background-image: url('88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 70%;
-    opacity: 0.08;
-    filter: blur(3px);
-    z-index: 2;
-}
-
-/* hero center */
-.hero-center {
-    position: relative;
-    z-index: 10;
-    max-width: 900px;
+/* MOBILE MENU */
+#mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: rgba(0,0,0,0.9);
     padding: 20px;
-    margin: 0 auto;
     text-align: center;
 }
-.hero-brand {
-    font-family: "Cinzel", serif;
-    font-size: clamp(36px, 6vw, 72px);
-    color: var(--gold);
-    margin-bottom: 12px;
-    letter-spacing: 2px;
-    text-shadow: 0 0 12px rgba(202,169,58,0.35);
-}
-.hero-lead { font-size: 18px; color: var(--text-light); margin-bottom: 28px; }
-.enter-btn {
-    display: inline-block;
-    padding: 12px 30px;
-    border: 2px solid var(--gold);
-    border-radius: 8px;
-    color: var(--gold);
+#mobile-menu a {
+    padding: 12px 0;
     text-decoration: none;
-    transition: all .28s;
-    font-weight: 700;
+    color: white;
+    font-size: 20px;
 }
-.enter-btn:hover { background: var(--gold); color: var(--dark); box-shadow: 0 0 20px var(--gold); }
-
-/* floating X */
-.floating-x {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    font-family: "Cinzel", serif;
-    font-size: 28vw;
-    color: rgba(255,255,255,0.03);
-    letter-spacing: 18px;
-    pointer-events: none;
-    z-index: 5;
-    animation: floatX 22s ease-in-out infinite;
-}
-@keyframes floatX {
-    0% { transform: translate(-50%,-50%) scale(1); opacity: 0.06; }
-    50% { transform: translate(-50%,-50%) scale(1.04); opacity: 0.095; }
-    100% { transform: translate(-50%,-50%) scale(1); opacity: 0.06; }
+#mobile-menu a:hover {
+    color: gold;
 }
 
-/* small decorative parallax X layers (optional duplicates) */
-.fx1 { font-size: 20vw; top: 12%; left: 6%; transform: none; opacity: 0.06; animation-duration: 28s; }
-.fx2 { font-size: 16vw; top: 62%; left: 72%; transform: none; opacity: 0.05; animation-duration: 34s; }
-.fx3 { font-size: 14vw; top: 78%; left: 28%; transform: none; opacity: 0.045; animation-duration: 40s; }
-
-/* fade overlay (intro) */
-.fade-wrap {
-    position: fixed;
-    inset: 0;
-    background: #000;
+/* HERO SECTION */
+.hero {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2200;
-    opacity: 1;
-    transition: opacity 1.2s ease-out;
+    flex-direction: column;
+    text-align: center;
+    background: url('cover.jpg') center/cover no-repeat;
+    padding-top: 90px;
 }
-.fade-wrap.fade-out { opacity: 0; pointer-events: none; }
 
-/* glow title */
-.glow-title { font-family: "Cinzel", serif; font-size: clamp(28px, 6vw, 72px); color: var(--gold); text-shadow: 0 0 30px rgba(202,169,58,0.45); }
-.glow-sub { font-size: 1.2rem; color: var(--text-light); margin-top: 8px; }
+.logo {
+    font-size: 65px;
+    letter-spacing: 6px;
+    color: gold;
+    text-shadow: 0 0 18px rgba(255,215,0,0.6);
+    margin-bottom: 15px;
+}
 
-/* ---------------------------------------------------------
-   CONTENT / PAGES / GALLERY
---------------------------------------------------------- */
-.content { padding: 100px 30px 80px; max-width: 1200px; margin: 0 auto; }
-.page-title { font-size: 32px; color: var(--text-light); margin-bottom: 16px; font-family: "Cinzel", serif; }
-.lead { color: rgba(255,255,255,0.85); font-size: 16px; margin-bottom: 20px; }
+.tagline {
+    font-size: 20px;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
 
-/* gallery grid */
-.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 24px 0 80px; }
-.art-card { background: rgba(255,255,255,0.02); padding: 18px; border-radius: 8px; text-align: center; }
-.art-thumb { height: 180px; background: rgba(255,255,255,0.04); border-radius: 6px; margin-bottom: 12px; }
+.enter-btn {
+    padding: 14px 32px;
+    border: 1px solid gold;
+    color: gold;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+.enter-btn:hover {
+    background: gold;
+    color: black;
+}
 
-/* responsive */
-@media (max-width: 900px) { .gallery-grid { grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 620px) { .gallery-grid { grid-template-columns: 1fr; padding: 120px 20px 80px; } .top-nav{gap:18px;font-size:15px} }
+/* PAGE CONTENT */
+.page-content {
+    padding: 150px 40px 60px;
+}
 
-/* ---------------------------------------------------------
-   MEMBERS PAGE (GATE A + FOG B)
---------------------------------------------------------- */
-.members-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-.watermark-large { font-family: "Cinzel", serif; font-size: 24vw; color: var(--gold); opacity: 0.06; position: absolute; left: 50%; top: 40%; transform: translate(-50%,-50%); filter: blur(2px); }
-.fog-layer { position: fixed; inset: 0; pointer-events: none; background: radial-gradient(40% 40% at 50% 30%, rgba(255,255,255,0.05), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.25)); opacity: 0.35; z-index: 2; animation: fogFlow 24s ease-in-out infinite; }
-@keyframes fogFlow { 0%{transform:translateY(0);opacity:.35} 50%{transform:translateY(-20px);opacity:.45} 100%{transform:translateY(0);opacity:.35} }
+.page-title {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: gold;
+}
 
-.gate-stage { position: relative; width: 100%; max-width: 980px; margin: 0 auto; padding-top: 160px; z-index: 10; min-height: 56vh; display:flex; align-items:center; justify-content:center; }
-.gate-panel { position: absolute; top: 0; bottom: 0; width: 50%; background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.6)); border: 1px solid rgba(255,230,180,0.12); box-shadow: inset 0 -60px 120px rgba(0,0,0,0.65); transition: transform 1.2s cubic-bezier(.22,.9,.2,1); }
-.gate-panel.left { left: 0; border-radius: 14px 0 0 14px; }
-.gate-panel.right { right: 0; border-radius: 0 14px 14px 0; }
-.gate-panel.open.left { transform: translateX(-130%); }
-.gate-panel.open.right { transform: translateX(130%); }
+.about-text {
+    font-size: 20px;
+    line-height: 1.7;
+    max-width: 850px;
+    margin: 20px auto;
+    text-align: center;
+}
 
-.divine-light { position: absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:40%; height:70%; background: radial-gradient(circle, rgba(255,240,200,0.28), rgba(255,235,180,0.08), transparent 60%); filter: blur(24px); opacity:0; transition: opacity 0.9s ease; border-radius:10px; z-index: 18; }
-.divine-light.visible { opacity: 1; animation: divinePulse 3s infinite ease-in-out; }
-@keyframes divinePulse { 0%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.03)} 100%{transform:translate(-50%,-50%) scale(1)} }
-
-.gate-card { position: relative; z-index: 50; width: 520px; max-width: 92%; margin: auto; padding: 36px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; backdrop-filter: blur(8px); text-align:center; box-shadow: 0 20px 90px rgba(0,0,0,0.6); opacity: 0; transform: translateY(14px); transition: opacity .9s ease, transform .9s ease; }
-.gate-card.show { opacity: 1; transform: translateY(0); }
-.gate-card input { width: 240px; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 8px; }
-.gate-card button { padding: 12px 18px; background: linear-gradient(180deg, var(--gold), #d4b544); border: none; border-radius: 8px; font-weight:700; cursor: pointer; color:#07100b; }
-.gate-card button:hover { filter: brightness(.98); transform: translateY(-1px); }
-
-/* sparkles helper (created by JS) */
-.sparkle { position:absolute; width:6px; height:6px; border-radius:50%; background:linear-gradient(90deg,#fff,#ffd); box-shadow:0 0 12px rgba(255,220,100,0.6); opacity:0; }
-.sparkle.show { animation: rise 1.6s ease forwards; opacity:1; }
-@keyframes rise { 0% { transform: translateY(8px) scale(.8); opacity:0 } 60% { opacity:1 } 100% { transform: translateY(-18px) scale(1.05); opacity:0 } }
-
-/* ---------------------------------------------------------
-   ABOUT PAGE
---------------------------------------------------------- */
-.about-section { padding: 120px 32px; max-width: 980px; margin: 0 auto; line-height: 1.7; font-size: 18px; }
-.about-title { font-family: "Cinzel", serif; font-size: 46px; margin-bottom: 18px; letter-spacing:2px; color: var(--gold); }
-.persona { font-size: 20px; color: var(--text-light); margin-bottom: 12px; }
-.story-block { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding: 22px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); margin-bottom: 18px; }
-
-/* ---------------------------------------------------------
-   SMALL HELPERS
---------------------------------------------------------- */
-.center { display:flex; align-items:center; justify-content:center; }
-.sm { font-size: 14px; color: rgba(255,255,255,0.7); }
-
-/* ---------------------------------------------------------
-   Accessibility / focus states
---------------------------------------------------------- */
-a:focus, button:focus, input:focus { outline: 2px solid rgba(243,212,87,0.12); outline-offset: 2px; }
-
-/* ---------------------------------------------------------
-   RESPONSIVE TWEAKS
---------------------------------------------------------- */
-@media (max-width: 720px) {
-    .top-nav { top: 12px; gap: 16px; transform: translateX(-50%); font-size: 14px; }
-    .hamburger { top: 12px; right: 14px; font-size: 26px; }
-    .parallax-bg { animation-duration: 60s; }
-    .gate-card { width: 92%; padding: 18px; }
-    .hero-brand { font-size: clamp(28px, 12vw, 52px); }
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .center-links {
+        display: none;
+    }
 }
