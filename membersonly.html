@@ -1,22 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <title>Members Only — Docotela X</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body class="membersonly">
-
-  <div class="top-nav" role="navigation">
-    <a href="home.html">Home</a>
-    <a href="collections.html">Collections</a>
-    <a href="contact.html">Contact</a>
-  </div>
-
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Members Only — Docotela X</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+  <div class="top-nav"><a href="index.html">Home</a><a href="collections.html">Collections</a><a href="contact.html">Contact</a></div>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
-    <a href="home.html">Home</a>
+    <a href="index.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
     <a href="exclusive-drops.html">Exclusive Drops</a>
@@ -25,49 +15,28 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- background layers -->
-  <div class="members-bg" aria-hidden="true">
-    <div class="watermark-large">Docotela X</div>
-    <div class="fog-layer" id="fog"></div>
-  </div>
+  <div class="fog-layer" id="fogLayer"></div>
 
-  <main class="gate-stage" role="main" aria-labelledby="members-title">
+  <main class="gate-wrap">
+    <div class="gate-stage">
+      <div class="gate-panel left closed" id="leftGate"></div>
+      <div class="gate-panel right closed" id="rightGate"></div>
+      <div class="divine-light" id="divine"></div>
 
-    <div class="gate-panel left closed" id="leftGate" aria-hidden="true">
-      <div class="gilded"></div>
-      <div class="gate-detail"></div>
-    </div>
-
-    <div class="gate-panel right closed" id="rightGate" aria-hidden="true">
-      <div class="gilded"></div>
-      <div class="gate-detail"></div>
-    </div>
-
-    <div class="divine-light" id="divineLight" aria-hidden="true"></div>
-
-    <div class="gate-card" id="gateCard" role="region" aria-label="Members access">
-      <h2 id="members-title" style="margin:0 0 8px;color:var(--gold-strong);font-family:'Cinzel',serif">Members Only</h2>
-      <p style="margin:0 0 14px;color:rgba(255,255,255,0.9)">Enter your access key to reveal the private archive.</p>
-
-      <div class="input-row" style="display:flex;gap:12px;justify-content:center;align-items:center;margin-top:8px;">
-        <input id="pw" type="password" placeholder="Access key" aria-label="Access key">
-        <button id="openBtn" aria-label="Open gates">Open</button>
+      <div class="gate-card" id="gateCard">
+        <h2>Members Only</h2>
+        <p>Enter your access key to reveal the private archive.</p>
+        <div class="input-row">
+          <input id="memberPassword" type="password" placeholder="Access key" aria-label="Access key">
+          <button id="memberOpen">Open</button>
+        </div>
+        <p style="margin-top:10px;color:rgba(255,255,255,0.75);font-size:.95rem">Wrong password shows subtle feedback. Contact to apply for membership.</p>
       </div>
-
-      <div style="height:10px"></div>
-      <small style="color:rgba(255,255,255,0.7)">Access is limited. Contact us to apply for membership.</small>
     </div>
-
   </main>
 
   <script src="menu.js"></script>
   <script src="animations.js"></script>
-  <script>
-    // small extra: ensure gate-card shows smoothly
-    window.addEventListener('load', ()=> {
-      const card = document.getElementById('gateCard');
-      setTimeout(()=> card.classList.add('show'), 220);
-    });
-  </script>
+  <script src="members.js"></script>
 </body>
 </html>
