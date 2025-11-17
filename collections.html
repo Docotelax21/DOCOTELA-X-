@@ -1,21 +1,22 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Collections — Docotela X</title>
-  <link href="styles.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Art Gallery — Docotela X</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="gallery">
 
-  <div class="top-nav">
+  <div class="top-nav" role="navigation">
     <a href="home.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
 
   <div class="hamburger" aria-label="Open menu">☰</div>
-  <nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
+
+  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -26,21 +27,26 @@
   </nav>
 
   <main class="content">
-    <h1 class="page-title">Collections</h1>
-    <div class="collections-grid">
-      <a class="collection-card" href="collection-8deity.html">8 Deity</a>
-      <a class="collection-card" href="collection-freedom.html">The Feeling of Freedom</a>
-      <a class="collection-card" href="collection-originals.html">Docotela X Originals</a>
-      <a class="collection-card" href="collection-accessories.html">Docotela X Accessories</a>
-      <a class="collection-card" href="collection-kids.html">Docotela X Kids</a>
-      <a class="collection-card" href="collection-limited.html">Docotela X Limited</a>
-      <a class="collection-card" href="collection-emptiness.html">Found in Emptiness</a>
-      <a class="collection-card" href="collection-quietspace.html">Quiet Space</a>
-      <a class="collection-card" href="collection-chaos.html">Art of Chaos</a>
-      <a class="collection-card" href="collection-simplicity.html">Simplicity in Motion</a>
+    <h1 class="page-title">Art Gallery</h1>
+    <p class="lead">Curated works — viewing & inquiry only.</p>
+
+    <div class="gallery-grid">
+      <div class="art-card">
+        <div class="art-thumb">Artwork Placeholder</div>
+        <h3>Title</h3>
+        <p class="meta">Medium • Year</p>
+        <a class="enter-btn" href="contact.html">Inquire</a>
+      </div>
+      <div class="art-card">
+        <div class="art-thumb">Artwork Placeholder</div>
+        <h3>Title</h3>
+        <p class="meta">Medium • Year</p>
+        <a class="enter-btn" href="contact.html">Inquire</a>
+      </div>
     </div>
   </main>
 
-<script src="menu.js"></script>
+  <script src="menu.js"></script>
+  <script src="animations.js"></script>
 </body>
 </html>
