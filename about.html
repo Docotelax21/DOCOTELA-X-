@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>About — Docotela X</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>About — Docotela X</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <nav class="top-nav">
+  <div class="top-nav" role="navigation" aria-label="Main navigation">
     <a href="home.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </nav>
+  </div>
 
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
@@ -26,26 +26,24 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <main class="content container">
-    <h1 class="page-title">About Docotela X</h1>
+  <main class="about-section fade-in-slow">
+    <h1 class="about-title">About Docotela X</h1>
 
-    <p class="lead">Docotela X is a feeling — a quiet rebellion translated into cloth, metal and paper. We make objects that demand patience. Each stitch, fold and mark is a conversation between discipline and escape.</p>
+    <div class="story-block fade-in-slow">
+      <p class="persona">Docotela X began as a private experiment — a wayfinding through clothes that carry memory and motion. We believe in garments that breathe with a life beyond trend; they are vessels for a state of mind.</p>
+    </div>
 
-    <section style="margin-top:26px;">
-      <p>We began as a small studio with a stubborn belief: that clothing could be an archive of memory and freedom. We built, failed, redesigned and kept the few ideas that carried truth. The work is deliberate, limited, and not eager to please. It is made for those who recognise the value of solitude and the subtlety of detail.</p>
+    <div class="story-block fade-in-slow">
+      <p>We make small runs. We work with hands. Each collection is a curated chapter — quiet, fierce, and made for a body that wants to move freely. When people asked us to conform, we doubled down on freedom. The result: a language of material and restraint.</p>
+    </div>
 
-      <p style="margin-top:14px;">Every collection is a chapter — some loud, some whispering — but all honest. We work with ten artists and handcraft each limited piece to hold a story. We are committed to craft as practice, not as spectacle.</p>
-    </section>
-
-    <div style="margin-top:28px;">
-      <a class="enter-btn" href="collections.html">View Collections</a>
+    <div class="story-block fade-in-slow">
+      <p class="sm">We also cherish the people who walk with us: the artists, the makers, the friends and the collectors. That care shows up stitched into seams and signed into small runs. Docotela X exists for those who want to wear conviction, not fashion.</p>
     </div>
   </main>
 
-  <!-- floating Xs -->
-  <div class="floating-x fx1">X</div>
-  <div class="floating-x fx2">X</div>
-
-<script src="menu.js"></script>
+  <script src="menu.js"></script>
+  <script src="animations.js"></script>
+  <script>/* ensure reveals run */ window.addEventListener('load', ()=> { document.querySelectorAll('.fade-in-slow').forEach(el=>el.classList.add('show')); });</script>
 </body>
 </html>
