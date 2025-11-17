@@ -1,250 +1,252 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Members Only — Docotela X</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Members Only — Docotela X</title>
 
-<!-- FONTS -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-/* -------------------------------------------
-   GLOBAL
--------------------------------------------- */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    background: #000;
-    overflow-x: hidden;
-    color: #fff;
-}
+  <!-- main stylesheet -->
+  <link rel="stylesheet" href="styles.css">
 
-/* -------------------------------------------
-   TOP NAV
--------------------------------------------- */
-.top-nav {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2000;
-    display: flex;
-    gap: 40px;
-}
+  <style>
+    :root {
+      --gold: #caa93a;
+      --gold-strong: #f3d457;
+      --dark: #0b0b0c;
+    }
 
-.top-nav a {
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    font-family: "Cinzel";
-    transition: 0.3s;
-}
+    body.membersonly {
+      background: linear-gradient(180deg,#050506 0%, #0f0f10 60%);
+      color: #e8e6e1;
+      overflow-x: hidden;
+      margin: 0;
+      font-family: "Poppins", system-ui;
+    }
 
-.top-nav a:hover {
-    color: gold;
-}
+    /* ---------------- NAV ---------------- */
 
-/* -------------------------------------------
-   HAMBURGER
--------------------------------------------- */
-.hamburger {
-    position: fixed;
-    top: 18px;
-    right: 25px;
-    font-size: 32px;
-    color: white;
-    cursor: pointer;
-    z-index: 2100;
-}
+    .top-nav {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 18px;
+      z-index: 120;
+      display: flex;
+      gap: 36px;
+    }
+    .top-nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .top-nav a:hover {
+      color: var(--gold-strong);
+    }
 
-/* -------------------------------------------
-   GLASS MOBILE MENU
--------------------------------------------- */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -320px;
-    height: 100vh;
-    width: 300px;
-    backdrop-filter: blur(14px);
-    background: rgba(255, 255, 255, 0.08);
-    padding-top: 120px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    transition: 0.5s ease;
-    z-index: 2000;
-}
+    .hamburger {
+      position: fixed;
+      right: 20px;
+      top: 14px;
+      z-index: 200;
+      font-size: 28px;
+      color: #fff;
+      cursor: pointer;
+    }
 
-.mobile-menu.open {
-    right: 0;
-}
+    .mobile-menu {
+      position: fixed;
+      right: -340px;
+      top: 0;
+      height: 100vh;
+      width: 340px;
+      background: rgba(10,10,12,0.92);
+      backdrop-filter: blur(10px);
+      padding-top: 100px;
+      z-index: 190;
+      transition: right .45s ease;
+    }
+    .mobile-menu.open {
+      right: 0;
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 18px 32px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 18px;
+    }
+    .mobile-menu a:hover {
+      color: var(--gold-strong);
+    }
 
-.mobile-menu a {
-    color: white;
-    text-decoration: none;
-    font-family: "Cinzel";
-    font-size: 20px;
-    padding: 10px 30px;
-    transition: 0.3s;
-}
+    /* ----------------- BACKGROUND DECORATION ----------------- */
 
-.mobile-menu a:hover {
-    color: gold;
-}
+    .members-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-/* -------------------------------------------
-   CINEMATIC BACKGROUND
--------------------------------------------- */
-.members-bg {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at center, #222 0%, #000 70%);
-    z-index: -3;
-}
+    .watermark-large {
+      position: absolute;
+      left: 50%;
+      top: 40%;
+      transform: translate(-50%, -50%);
+      opacity: .06;
+      font-family: "Cinzel", serif;
+      font-size: 28vw;
+      letter-spacing: 6px;
+      color: var(--gold);
+    }
 
-/* -------------------------------------------
-   ANGELIC FOG
--------------------------------------------- */
-.fog {
-    position: fixed;
-    inset: 0;
-    background: url('https://i.imgur.com/1A0gq0Z.png'); /* soft fog texture */
-    background-size: cover;
-    opacity: 0;
-    animation: fogReveal 4s ease forwards;
-    z-index: -1;
-}
+    .fog {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(40% 40% at 50% 40%, rgba(255,255,255,0.03), transparent 20%);
+      opacity: 1;
+      transition: opacity .8s ease;
+    }
 
-@keyframes fogReveal {
-    0% { opacity: 0; transform: translateY(60px); }
-    100% { opacity: 0.45; transform: translateY(0); }
-}
+    /* ----------------- MAIN GATE ------------------ */
 
-/* -------------------------------------------
-   GOLD HEAVEN GATES (D)
--------------------------------------------- */
-.gate-wrap {
-    position: relative;
-    margin: 140px auto 0;
-    width: 90%;
-    max-width: 650px;
-    height: 520px;
-}
+    .members-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 20px 80px;
+      z-index: 10;
+      position: relative;
+    }
 
-.gate {
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    transition: 2.2s cubic-bezier(.19,1,.22,1);
-    filter: drop-shadow(0 0 18px gold);
-}
+    .gate-stage {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.left-gate {
-    left: 0;
-    background-image: url('https://i.imgur.com/ziAfS6G.png'); /* GOLD GATE LEFT */
-}
+    .gate-card {
+      width: 520px;
+      max-width: 90vw;
+      padding: 34px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,215,80,0.08);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      transform: translateY(10px);
+      opacity: 0;
+      transition: opacity .9s ease, transform .9s ease;
+    }
 
-.right-gate {
-    right: 0;
-    background-image: url('https://i.imgur.com/kW5F4bO.png'); /* GOLD GATE RIGHT */
-}
+    .gate-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.gate.open-left {
-    transform: translateX(-120%);
-}
+    .gate-card h2 {
+      font-family: "Cinzel", serif;
+      color: var(--gold-strong);
+      margin-top: 0;
+      font-size: 30px;
+    }
 
-.gate.open-right {
-    transform: translateX(120%);
-}
+    .input-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
 
-/* -------------------------------------------
-   PASSWORD BOX
--------------------------------------------- */
-.password-box {
-    margin-top: 55px;
-    text-align: center;
-}
+    .input-row input {
+      padding: 12px 16px;
+      font-size: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      border-radius: 8px;
+      width: 240px;
+      outline: none;
+    }
 
-.password-box input {
-    padding: 14px 20px;
-    width: 230px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 2px solid gold;
-    background: rgba(0,0,0,0.6);
-    color: white;
-    text-align: center;
-    outline: none;
-}
+    .input-row button {
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      background: linear-gradient(180deg, var(--gold), #d6b84a);
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-.password-box button {
-    margin-top: 18px;
-    padding: 12px 25px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 8px;
-    border: none;
-    background: gold;
-    color: black;
-    transition: 0.3s;
-}
+    /* GATE PANELS */
+    .gate-visual {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.password-box button:hover {
-    background: #ffeb91;
-}
+    .gate-panel {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      border-radius: 12px;
+      background: rgba(15,15,18,0.6);
+      transition: transform 1s ease;
+      box-shadow: inset 0 -40px 80px rgba(0,0,0,0.7);
+    }
 
-.error {
-    margin-top: 12px;
-    color: #ff5454;
-    font-size: 16px;
-}
+    .gate-panel.left { left: 0; }
+    .gate-panel.right { right: 0; }
 
-/* -------------------------------------------
-   SECRET CONTENT (hidden until correct pw)
--------------------------------------------- */
-.secret-content {
-    display: none;
-    margin-top: 60px;
-    text-align: center;
-    padding: 0 25px;
-}
+    .gate-panel.closed.left { transform: translateX(0); }
+    .gate-panel.closed.right { transform: translateX(0); }
 
-.secret-content h2 {
-    font-family: "Cinzel";
-    font-size: 32px;
-    color: gold;
-    margin-bottom: 20px;
-}
+    .gate-panel.open.left { transform: translateX(-120%); }
+    .gate-panel.open.right { transform: translateX(120%); }
 
-.secret-content p {
-    font-size: 18px;
-    opacity: 0.8;
-}
-</style>
+    .divine-light {
+      position: absolute;
+      width: 40%;
+      height: 70%;
+      background: radial-gradient(closest-side, rgba(255,240,200,0.3), transparent 70%);
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .divine-light.visible {
+      opacity: 1;
+    }
+  </style>
 </head>
 
-<body>
+<body class="membersonly">
 
-<!-- BACKGROUND + FOG -->
-<div class="members-bg"></div>
-<div class="fog"></div>
-
-<!-- NAV -->
-<div class="top-nav">
+  <!-- TOP CENTER NAV -->
+  <div class="top-nav">
     <a href="home.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-</div>
+  </div>
 
-<div class="hamburger" onclick="toggleMenu()">☰</div>
+  <!-- HAMBURGER -->
+  <div class="hamburger" id="burger">☰</div>
 
-<div id="mobileMenu" class="mobile-menu">
+  <!-- SLIDE MENU -->
+  <aside id="mobileMenu" class="mobile-menu">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -252,68 +254,93 @@ body {
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-</div>
+  </aside>
 
+  <!-- BG DECOR -->
+  <div class="members-bg">
+    <div class="watermark-large">Docotela X</div>
+    <div class="fog" id="fog"></div>
+  </div>
 
-<!-- GATES -->
-<div class="gate-wrap">
-    <div class="gate left-gate" id="leftGate"></div>
-    <div class="gate right-gate" id="rightGate"></div>
-</div>
+  <!-- MAIN -->
+  <main class="members-wrap">
 
-<!-- PASSWORD -->
-<div class="password-box">
-    <input type="password" id="pw" placeholder="Enter Access Code">
-    <button onclick="unlock()">Enter</button>
-    <div class="error" id="errorMsg"></div>
-</div>
+    <div class="gate-stage">
 
-<!-- HIDDEN CONTENT -->
-<div class="secret-content" id="secretContent">
-    <h2>Welcome to the Inner Circle</h2>
-    <p>Exclusive early access. Private releases. Reserved pieces for members only.</p>
-</div>
+      <!-- GATE PANELS -->
+      <div class="gate-visual">
+        <div class="gate-panel left closed" id="leftGate"></div>
+        <div class="gate-panel right closed" id="rightGate"></div>
+        <div class="divine-light" id="divineLight"></div>
+      </div>
 
+      <!-- PASSWORD CARD -->
+      <div class="gate-card" id="card">
+        <h2>Members Only</h2>
+        <p>Enter your access key to reveal the private archive.</p>
 
-<script>
-/* ------------------------------
-   MOBILE MENU
--------------------------------*/
-function toggleMenu() {
-    document.getElementById("mobileMenu").classList.toggle("open");
-}
+        <div class="input-row">
+          <input id="pw" type="password" placeholder="Access key">
+          <button id="openBtn">Open</button>
+        </div>
 
-document.addEventListener("click", function(e){
-    const menu = document.getElementById("mobileMenu");
-    const burger = document.querySelector(".hamburger");
-    if (!menu.contains(e.target) && e.target !== burger) {
-        menu.classList.remove("open");
+        <small style="color:#bdbab6;opacity:.9;display:block;margin-top:12px;">
+          Access is limited. Contact us for membership.
+        </small>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    const PASSWORD = "freedom";
+
+    const burger = document.getElementById("burger");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    burger.onclick = () => {
+      mobileMenu.classList.toggle("open");
+    };
+
+    // Gate Logic
+    const leftGate = document.getElementById("leftGate");
+    const rightGate = document.getElementById("rightGate");
+    const divine = document.getElementById("divineLight");
+    const openBtn = document.getElementById("openBtn");
+    const pw = document.getElementById("pw");
+    const card = document.getElementById("card");
+
+    window.onload = () => {
+      setTimeout(() => card.classList.add("show"), 300);
+    };
+
+    function openGates() {
+      leftGate.classList.replace("closed", "open");
+      rightGate.classList.replace("closed", "open");
+
+      divine.classList.add("visible");
+
+      setTimeout(() => {
+        window.location.href = "private-collection.html";
+      }, 1500);
     }
-});
 
-/* ------------------------------
-   GATE UNLOCK
--------------------------------*/
-function unlock() {
-    const pw = document.getElementById("pw").value;
-    const error = document.getElementById("errorMsg");
+    openBtn.onclick = () => {
+      if (pw.value.trim() === PASSWORD) {
+        openGates();
+      } else {
+        pw.style.boxShadow = "0 0 12px rgba(255,0,0,0.4)";
+        setTimeout(() => {
+          pw.style.boxShadow = "none";
+        }, 600);
+      }
+    };
 
-    if (pw === "M3Mberson1y") {
-
-        error.textContent = "";
-
-        document.getElementById("leftGate").classList.add("open-left");
-        document.getElementById("rightGate").classList.add("open-right");
-
-        setTimeout(()=>{
-            document.getElementById("secretContent").style.display = "block";
-        }, 2200);
-
-    } else {
-        error.textContent = "Incorrect password.";
-    }
-}
-</script>
+    pw.addEventListener("keydown", e => {
+      if (e.key === "Enter") openBtn.click();
+    });
+  </script>
 
 </body>
 </html>
