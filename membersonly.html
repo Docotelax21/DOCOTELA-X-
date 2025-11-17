@@ -1,152 +1,250 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Members Only — Docotela X</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Members Only — Docotela X</title>
 
-  <!-- fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- your main stylesheet -->
-  <link rel="stylesheet" href="styles.css">
-
-  <style>
-    /* --- page-specific styles for members only (keeps consistent with styles.css) --- */
-    :root{
-      --gold: #caa93a;
-      --gold-strong: #f3d457;
-      --glass-bg: rgba(20,20,22,0.55);
-      --dark: #0b0b0c;
-    }
-
-    html,body{height:100%;margin:0;font-family:"Poppins",system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;}
-    body.membersonly{background:linear-gradient(180deg,#050506 0%, #0f0f10 60%); color:#e8e6e1; overflow-x:hidden;}
-
-/* top center nav (keeps same look) */
-.top-nav{position:fixed;left:50%;transform:translateX(-50%);top:18px;z-index:120;display:flex;gap:36px}
-.top-nav a{color:#eae8e2;text-decoration:none;padding:6px 0;font-weight:600;letter-spacing:0.6px;opacity:.95}
-.top-nav a:hover{color:var(--gold-strong);text-shadow:0 6px 22px rgba(243,212,87,0.12)}
-
-/* hamburger in top-right */
-.hamburger{position:fixed;right:20px;top:14px;z-index:200;font-size:28px;color:#fff;cursor:pointer}
-.mobile-menu{position:fixed;right:-360px;top:0;height:100vh;width:360px;background:linear-gradient(180deg, rgba(12,12,14,0.92), rgba(10,10,11,0.88));backdrop-filter:blur(8px);transition:right .45s cubic-bezier(.2,.9,.2,1);z-index:190;padding-top:92px;box-shadow:-40px 0 120px rgba(0,0,0,0.6);}
-.mobile-menu.open{right:0}
-.mobile-menu a{display:block;color:#fff;padding:18px 36px;text-decoration:none;font-size:18px;opacity:.95}
-.mobile-menu a:hover{color:var(--gold-strong)}
-
-/* center content area */
-.members-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 24px 80px;position:relative;z-index:10}
-
-/* behind content: subtle watermark + particles */
-.members-bg{
-  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
-}
-.watermark-large{
-  position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);opacity:.06;font-family:"Cinzel",serif;font-size:28vw;color:var(--gold);letter-spacing:6px;filter:blur(2px);
+<style>
+/* -------------------------------------------
+   GLOBAL
+-------------------------------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: #000;
+    overflow-x: hidden;
+    color: #fff;
 }
 
-/* fog layer */
-.fog{
-  position:fixed;left:0;right:0;top:0;bottom:0;z-index:2;pointer-events:none;
-  background:radial-gradient(40% 40% at 50% 40%, rgba(255,255,255,0.03), transparent 20%),
-             radial-gradient(30% 22% at 30% 70%, rgba(240,230,200,0.02), transparent 20%),
-             linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.12));
-  mix-blend-mode:screen;
-  transition:opacity .6s ease;
+/* -------------------------------------------
+   TOP NAV
+-------------------------------------------- */
+.top-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    display: flex;
+    gap: 40px;
 }
 
-/* the gate container center */
-.gate-stage{position:relative;width:100%;max-width:980px;display:flex;align-items:center;justify-content:center;z-index:30}
-
-/* floating glass card (contains password field) */
-.gate-card{
-  width:520px;max-width:92vw;padding:34px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.22));
-  border:1px solid rgba(255,215,80,0.06);backdrop-filter: blur(8px);box-shadow:0 30px 80px rgba(0,0,0,0.7);
-  border-radius:12px;text-align:center;transform:translateY(0);transition:transform .7s cubic-bezier(.2,.9,.2,1),opacity .7s;
+.top-nav a {
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    font-family: "Cinzel";
+    transition: 0.3s;
 }
 
-/* title */
-.gate-card h2{font-family:"Cinzel", serif;font-weight:400;color:var(--gold-strong);margin:0 0 8px;font-size:28px;letter-spacing:2px;text-shadow:0 10px 40px rgba(202,169,58,0.06)}
-.gate-card p{color:#d6d3cf;margin:0 0 16px;opacity:.9}
-
-/* field */
-.input-row{display:flex;gap:12px;justify-content:center;align-items:center}
-.input-row input[type="password"]{
-  border-radius:8px;padding:12px 16px;font-size:16px;border:none;outline:none;width:260px;background:rgba(255,255,255,0.02);color:#eee;box-shadow: inset 0 -2px 10px rgba(0,0,0,0.6);
-  border:1px solid rgba(255,255,255,0.03)
-}
-.input-row button{
-  background:linear-gradient(180deg,var(--gold), #d6b84a);border:none;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;color:#07100b;
-  box-shadow:0 10px 30px rgba(204,166,43,0.12);
-}
-.input-row button:hover{filter:brightness(.98);transform:translateY(-1px)}
-
-/* gate visual behind card */
-.gate-visual{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-48%);width:680px;height:420px;max-width:94vw;pointer-events:none;z-index:20;
-  display:flex;align-items:center;justify-content:center;
+.top-nav a:hover {
+    color: gold;
 }
 
-/* left + right gate */
-.gate-panel{position:absolute;top:0;bottom:0;width:50%;height:100%;background:linear-gradient(180deg, rgba(20,20,22,0.6), rgba(8,8,8,0.6));border:1px solid rgba(255,215,80,0.04);box-shadow: inset 0 -60px 120px rgba(0,0,0,0.65);overflow:hidden}
-.gate-panel.left{left:0;border-radius:12px 0 0 12px}
-.gate-panel.right{right:0;border-radius:0 12px 12px 0}
-
-/* gilded trim */
-.gilded{
-  position:absolute;inset:8px;border-radius:8px;background:linear-gradient(180deg, rgba(255,235,170,0.05), rgba(255,200,60,0.02));filter:blur(8px);opacity:.25;pointer-events:none
+/* -------------------------------------------
+   HAMBURGER
+-------------------------------------------- */
+.hamburger {
+    position: fixed;
+    top: 18px;
+    right: 25px;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    z-index: 2100;
 }
 
-/* embossed pattern / subtle highlights */
-.gate-detail{position:absolute;inset:40px;border-radius:6px;background:linear-gradient(180deg, rgba(255,255,255,0.008), rgba(0,0,0,0.05));opacity:.12;mix-blend-mode:overlay}
-
-/* closed state: panels meet center; open state: panels slide out */
-.gate-panel.closed.left{transform:translateX(0);transition:transform .9s cubic-bezier(.2,.9,.2,1)}
-.gate-panel.closed.right{transform:translateX(0);transition:transform .9s cubic-bezier(.2,.9,.2,1)}
-.gate-panel.open.left{transform:translateX(-120%);transition:transform 1.2s cubic-bezier(.22,.9,.2,1)}
-.gate-panel.open.right{transform:translateX(120%);transition:transform 1.2s cubic-bezier(.22,.9,.2,1)}
-
-/* divine light between gates */
-.divine-light{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:40%;height:70%;background:radial-gradient(closest-side, rgba(255,240,200,0.28), rgba(255,235,180,0.08), transparent 60%);filter:blur(24px);opacity:0;transition:opacity .8s ease;z-index:18;border-radius:10px;
+/* -------------------------------------------
+   GLASS MOBILE MENU
+-------------------------------------------- */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    height: 100vh;
+    width: 300px;
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.08);
+    padding-top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    transition: 0.5s ease;
+    z-index: 2000;
 }
 
-/* after open: stronger light */
-.divine-light.visible{opacity:1;animation:lightPulse 2.6s infinite ease-in-out}
-@keyframes lightPulse{0%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.02)}100%{transform:translate(-50%,-50%) scale(1)}}
-
-/* small sparkles */
-.sparkle{position:absolute;width:6px;height:6px;border-radius:50%;background:linear-gradient(90deg, #fff, rgba(255,240,180,0.9));box-shadow:0 0 12px rgba(255,220,100,0.6);opacity:0;transform:translateY(0)}
-.sparkle.show{opacity:1;animation:rise 1.6s ease forwards}
-@keyframes rise{0%{transform:translateY(8px) scale(.8);opacity:0}60%{opacity:1}100%{transform:translateY(-18px) scale(1.05);opacity:0}}
-
-/* responsive */
-@media (max-width:720px){
-  .gate-visual{width:92vw;height:320px}
-  .gate-card{width:92vw;padding:22px}
-  .input-row input{width:160px}
+.mobile-menu.open {
+    right: 0;
 }
 
-/* small transitions */
-.fade-in-slow{opacity:0;transform:translateY(10px);transition:opacity .9s ease,transform .9s ease}
-.fade-in-slow.show{opacity:1;transform:translateY(0)}
-  </style>
+.mobile-menu a {
+    color: white;
+    text-decoration: none;
+    font-family: "Cinzel";
+    font-size: 20px;
+    padding: 10px 30px;
+    transition: 0.3s;
+}
+
+.mobile-menu a:hover {
+    color: gold;
+}
+
+/* -------------------------------------------
+   CINEMATIC BACKGROUND
+-------------------------------------------- */
+.members-bg {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #222 0%, #000 70%);
+    z-index: -3;
+}
+
+/* -------------------------------------------
+   ANGELIC FOG
+-------------------------------------------- */
+.fog {
+    position: fixed;
+    inset: 0;
+    background: url('https://i.imgur.com/1A0gq0Z.png'); /* soft fog texture */
+    background-size: cover;
+    opacity: 0;
+    animation: fogReveal 4s ease forwards;
+    z-index: -1;
+}
+
+@keyframes fogReveal {
+    0% { opacity: 0; transform: translateY(60px); }
+    100% { opacity: 0.45; transform: translateY(0); }
+}
+
+/* -------------------------------------------
+   GOLD HEAVEN GATES (D)
+-------------------------------------------- */
+.gate-wrap {
+    position: relative;
+    margin: 140px auto 0;
+    width: 90%;
+    max-width: 650px;
+    height: 520px;
+}
+
+.gate {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: 2.2s cubic-bezier(.19,1,.22,1);
+    filter: drop-shadow(0 0 18px gold);
+}
+
+.left-gate {
+    left: 0;
+    background-image: url('https://i.imgur.com/ziAfS6G.png'); /* GOLD GATE LEFT */
+}
+
+.right-gate {
+    right: 0;
+    background-image: url('https://i.imgur.com/kW5F4bO.png'); /* GOLD GATE RIGHT */
+}
+
+.gate.open-left {
+    transform: translateX(-120%);
+}
+
+.gate.open-right {
+    transform: translateX(120%);
+}
+
+/* -------------------------------------------
+   PASSWORD BOX
+-------------------------------------------- */
+.password-box {
+    margin-top: 55px;
+    text-align: center;
+}
+
+.password-box input {
+    padding: 14px 20px;
+    width: 230px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 2px solid gold;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    text-align: center;
+    outline: none;
+}
+
+.password-box button {
+    margin-top: 18px;
+    padding: 12px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background: gold;
+    color: black;
+    transition: 0.3s;
+}
+
+.password-box button:hover {
+    background: #ffeb91;
+}
+
+.error {
+    margin-top: 12px;
+    color: #ff5454;
+    font-size: 16px;
+}
+
+/* -------------------------------------------
+   SECRET CONTENT (hidden until correct pw)
+-------------------------------------------- */
+.secret-content {
+    display: none;
+    margin-top: 60px;
+    text-align: center;
+    padding: 0 25px;
+}
+
+.secret-content h2 {
+    font-family: "Cinzel";
+    font-size: 32px;
+    color: gold;
+    margin-bottom: 20px;
+}
+
+.secret-content p {
+    font-size: 18px;
+    opacity: 0.8;
+}
+</style>
 </head>
-<body class="membersonly">
 
-  <!-- top-center nav -->
-  <div class="top-nav" role="navigation" aria-label="Main navigation">
+<body>
+
+<!-- BACKGROUND + FOG -->
+<div class="members-bg"></div>
+<div class="fog"></div>
+
+<!-- NAV -->
+<div class="top-nav">
     <a href="home.html">Home</a>
-    <a href="collections.html">Collections</a>
+    <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </div>
+</div>
 
-  <!-- hamburger -->
-  <div class="hamburger" id="burger" aria-label="Open menu" title="Open menu">☰</div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
 
-  <!-- slide menu -->
-  <aside id="mobileMenu" class="mobile-menu" aria-hidden="true">
+<div id="mobileMenu" class="mobile-menu">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -154,155 +252,68 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </aside>
+</div>
 
-  <!-- decorative / background layers -->
-  <div class="members-bg" aria-hidden="true">
-    <div class="watermark-large">Docotela X</div>
-    <div class="fog" id="fog"></div>
-    <!-- small sparkles runtime injected -->
-  </div>
 
-  <!-- main stage -->
-  <main class="members-wrap" role="main">
+<!-- GATES -->
+<div class="gate-wrap">
+    <div class="gate left-gate" id="leftGate"></div>
+    <div class="gate right-gate" id="rightGate"></div>
+</div>
 
-    <div class="gate-stage">
+<!-- PASSWORD -->
+<div class="password-box">
+    <input type="password" id="pw" placeholder="Enter Access Code">
+    <button onclick="unlock()">Enter</button>
+    <div class="error" id="errorMsg"></div>
+</div>
 
-      <!-- gate visual behind -->
-      <div class="gate-visual" aria-hidden="true">
-        <div class="gate-panel left closed" id="leftGate">
-          <div class="gilded"></div>
-          <div class="gate-detail"></div>
-        </div>
-        <div class="gate-panel right closed" id="rightGate">
-          <div class="gilded"></div>
-          <div class="gate-detail"></div>
-        </div>
+<!-- HIDDEN CONTENT -->
+<div class="secret-content" id="secretContent">
+    <h2>Welcome to the Inner Circle</h2>
+    <p>Exclusive early access. Private releases. Reserved pieces for members only.</p>
+</div>
 
-        <div class="divine-light" id="divineLight"></div>
-      </div>
 
-      <!-- the floating glass card -->
-      <div class="gate-card fade-in-slow" id="card">
-        <h2>Members Only</h2>
-        <p>Enter your access key to reveal the private archive.</p>
+<script>
+/* ------------------------------
+   MOBILE MENU
+-------------------------------*/
+function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("open");
+}
 
-        <div class="input-row">
-          <input id="pw" type="password" placeholder="Access key" aria-label="Access key">
-          <button id="openBtn" aria-label="Open gates">Open</button>
-        </div>
-
-        <div style="height:8px"></div>
-        <small style="color:#bdbab6;opacity:.9">Access is limited. Contact us for membership.</small>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- menu script & gate logic -->
-  <script>
-    // ----- CONFIG -----
-    // Set the members-only password here:
-    const PASSWORD = "freedom"; // <<--- change to your desired key
-
-    // ----- MENU (works across pages) -----
-    const burger = document.getElementById('burger');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    function toggleMenu(){
-      const open = mobileMenu.classList.toggle('open');
-      mobileMenu.setAttribute('aria-hidden', !open);
+document.addEventListener("click", function(e){
+    const menu = document.getElementById("mobileMenu");
+    const burger = document.querySelector(".hamburger");
+    if (!menu.contains(e.target) && e.target !== burger) {
+        menu.classList.remove("open");
     }
+});
 
-    burger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+/* ------------------------------
+   GATE UNLOCK
+-------------------------------*/
+function unlock() {
+    const pw = document.getElementById("pw").value;
+    const error = document.getElementById("errorMsg");
 
-    // close menu if clicking outside
-    document.addEventListener('click', function(e){
-      if(!mobileMenu.contains(e.target) && e.target !== burger){
-        mobileMenu.classList.remove('open');
-        mobileMenu.setAttribute('aria-hidden','true');
-      }
-    });
+    if (pw === "M3Mberson1y") {
 
-    // allow keyboard escape to close
-    document.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape'){ mobileMenu.classList.remove('open'); mobileMenu.setAttribute('aria-hidden','true'); }
-    });
+        error.textContent = "";
 
-    // ----- gate logic & animations -----
-    const leftGate = document.getElementById('leftGate');
-    const rightGate = document.getElementById('rightGate');
-    const divine = document.getElementById('divineLight');
-    const openBtn = document.getElementById('openBtn');
-    const pwInput = document.getElementById('pw');
-    const fog = document.getElementById('fog');
-    const card = document.getElementById('card');
+        document.getElementById("leftGate").classList.add("open-left");
+        document.getElementById("rightGate").classList.add("open-right");
 
-    // initial show animation
-    window.addEventListener('load', ()=>{
-      setTimeout(()=> card.classList.add('show'), 260);
-      // subtle fog entrance
-      fog.style.opacity = '1';
-    });
+        setTimeout(()=>{
+            document.getElementById("secretContent").style.display = "block";
+        }, 2200);
 
-    // helper: show sparkles
-    function spawnSparkles(count=6){
-      for(let i=0;i<count;i++){
-        const s = document.createElement('div');
-        s.className='sparkle';
-        const rx = (Math.random()*60 - 30) + '%';
-        const ry = (Math.random()*60 + 20) + '%';
-        s.style.left = rx;
-        s.style.top = ry;
-        document.body.appendChild(s);
-        requestAnimationFrame(()=> s.classList.add('show'));
-        setTimeout(()=> s.remove(), 1600);
-      }
+    } else {
+        error.textContent = "Incorrect password.";
     }
-
-    // open gate sequence
-    function openGates(){
-      // animate panels to open
-      leftGate.classList.remove('closed'); leftGate.classList.add('open');
-      rightGate.classList.remove('closed'); rightGate.classList.add('open');
-      // reveal divine light
-      divine.classList.add('visible');
-      // lighten fog slightly
-      fog.style.transition='opacity 1s ease'; fog.style.opacity='0.75';
-      spawnSparkles(10);
-      // small push effect on card
-      card.style.transform='translateY(-10px)';
-      setTimeout(()=> card.style.opacity='.95', 800);
-      // after open, reveal member content (simulate navigation)
-      setTimeout(()=> {
-        // For now we can show a success toast or redirect to private-collection.html
-        // You can change this to load content or go to private page:
-        window.location.href = "private-collection.html";
-      }, 1500);
-    }
-
-    // failed attempt feedback
-    function failFeedback(){
-      card.animate([{transform:'translateY(0)'},{transform:'translateY(-8px)'},{transform:'translateY(0)'}], {duration:380, easing:'ease-out'});
-      pwInput.animate([{boxShadow:'0 0 0px rgba(200,0,0,0)'},{boxShadow:'0 0 18px rgba(200,30,30,0.14)'}], {duration:420});
-      spawnSparkles(4);
-    }
-
-    // click handler
-    openBtn.addEventListener('click', ()=>{
-      const val = (pwInput.value||'').trim();
-      if(val && val === PASSWORD){
-        openGates();
-      } else {
-        failFeedback();
-      }
-    });
-
-    // allow pressing Enter
-    pwInput.addEventListener('keydown', (e)=>{
-      if(e.key === 'Enter'){ openBtn.click(); }
-    });
-  </script>
+}
+</script>
 
 </body>
 </html>
