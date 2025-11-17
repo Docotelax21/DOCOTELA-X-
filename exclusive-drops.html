@@ -1,14 +1,20 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Exclusive Drops — Docotela X</title><link href="styles.css" rel="stylesheet"></head>
-<body>
-  <div class="top-nav">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Exclusive Drops — Docotela X</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="main-wrap">
+  <nav class="top-nav">
     <a href="home.html">Home</a>
-    <a href="about.html">About</a>
+    <a href="collections.html">Collections</a>
     <a href="contact.html">Contact</a>
-  </div>
-  <div class="hamburger" aria-label="Open menu">☰</div>
-  <nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
+  </nav>
+
+  <button class="hamburger">☰</button>
+  <aside id="mobileMenu" class="mobile-menu" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -16,15 +22,23 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </nav>
+  </aside>
 
   <main class="content">
     <h1 class="page-title">Exclusive Drops</h1>
-    <div class="gallery-grid" style="margin-top:18px">
-      <div class="collection-card">
-        <h3>DOCOTELA X — The Sovereign Verde</h3>
-        <p class="muted">R150,000 — Limited</p>
-        <a class="enter-btn" href="product-watch.html">View</a>
+    <p class="lead">Limited product releases — buy options appear on authenticated pages or via direct purchase link.</p>
+
+    <div class="product-show">
+      <div class="product-left">
+        <img src="product-watch.jpg" alt="The Sovereign Verde">
+      </div>
+      <div class="product-right">
+        <h2>DOCOTELA X — The Sovereign Verde</h2>
+        <p style="color:var(--muted)">R150,000 — Limited</p>
+        <p class="meta">A refined timepiece with emerald dial, black case and bespoke finishing — each watch limited to a single run.</p>
+
+        <!-- Paystack link (your paystack shop link) -->
+        <p style="margin-top:18px"><a class="buy-btn" href="https://paystack.shop/pay/fdy-nwp5q0" target="_blank" rel="noopener">Purchase via Paystack</a></p>
       </div>
     </div>
   </main>
