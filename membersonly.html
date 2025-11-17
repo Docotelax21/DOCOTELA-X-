@@ -1,149 +1,151 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Members Only — Docotela X</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Members Only — Docotela X</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<style>
+/* --- PAGE BACKDROP --- */
+.members-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #0a0a0a 0%, #000000 90%);
+    overflow: hidden;
+}
 
-  <style>
-    body {
-      background: linear-gradient(180deg,#050506 0%, #0f0f10 60%);
-      color: #e8e6e1;
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      overflow-x: hidden;
-    }
+/* --- ANGELIC FOG (Style B) --- */
+.fog-layer {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: url('fog2.png') repeat;
+    opacity: 0.25;
+    animation: fogMove 22s linear infinite;
+    filter: blur(18px);
+}
 
-    /* TOP NAV CENTER */
-    .top-nav {
-      position: fixed;
-      top: 18px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 36px;
-      z-index: 200;
-    }
-    .top-nav a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.7px;
-    }
-    .top-nav a:hover {
-      color: #caa93a;
-    }
+@keyframes fogMove {
+    from { transform: translate(-20%, -10%); }
+    to   { transform: translate(20%, 10%); }
+}
 
-    /* HAMBURGER */
-    .hamburger {
-      position: fixed;
-      top: 14px;
-      right: 20px;
-      font-size: 30px;
-      color: white;
-      cursor: pointer;
-      z-index: 201;
-    }
+/* --- GATES WRAPPER --- */
+.gate-wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    /* SLIDE MENU */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -320px;
-      width: 320px;
-      height: 100vh;
-      background: rgba(10,10,10,0.96);
-      backdrop-filter: blur(8px);
-      transition: right .45s ease;
-      padding-top: 90px;
-      z-index: 200;
-    }
-    .mobile-menu.open {
-      right: 0;
-    }
-    .mobile-menu a {
-      display: block;
-      padding: 18px 30px;
-      text-decoration: none;
-      color: white;
-      font-size: 18px;
-    }
-    .mobile-menu a:hover {
-      color: #caa93a;
-    }
+/* --- LUXURY GOLD GATES (Style A) --- */
+.gate {
+    width: 42%;
+    height: 80vh;
+    background: url('lux-gate.png') center/cover no-repeat;
+    position: absolute;
+    top: 10vh;
+    transition: transform 2.8s cubic-bezier(.25,.8,.25,1);
+    filter: drop-shadow(0 0 25px rgba(255,215,0,0.4));
+}
 
-    /* MEMBERS CONTENT BOX */
-    .members-box {
-      max-width: 600px;
-      margin: 180px auto;
-      padding: 30px;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-    }
+.gate-left  { left: 0; transform-origin: left center; }
+.gate-right { right: 0; transform-origin: right center; }
 
-    h1 {
-      font-family: "Cinzel", serif;
-      color: #caa93a;
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
+/* --- PASSWORD BOX --- */
+.pass-box {
+    position: absolute;
+    z-index: 50;
+    text-align: center;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
-    p {
-      color: #d7d4cf;
-      font-size: 16px;
-    }
+.pass-box input {
+    width: 260px;
+    padding: 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,215,0,0.5);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
 
-    input {
-      padding: 12px 16px;
-      width: 70%;
-      border-radius: 8px;
-      border: none;
-      background: rgba(255,255,255,0.08);
-      color: white;
-      margin-top: 18px;
-      font-size: 16px;
-    }
+.pass-box button {
+    margin-top: 14px;
+    width: 260px;
+    padding: 14px;
+    background: rgba(255,215,0,0.15);
+    border: 1px solid gold;
+    color: gold;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s ease;
+}
 
-    button {
-      margin-top: 16px;
-      padding: 12px 26px;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      background: #caa93a;
-      color: #111;
-      cursor: pointer;
-      font-size: 16px;
-    }
+.pass-box button:hover {
+    background: gold;
+    color: #000;
+}
 
-    button:hover {
-      filter: brightness(.92);
-    }
-  </style>
+/* --- Hidden Content (after gates open) --- */
+.member-content {
+    display: none;
+    opacity: 0;
+    animation: fadeIn 1.8s ease forwards;
+    color: #fff;
+    text-align: center;
+    margin-top: 20vh;
+    font-family: Cinzel, serif;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- HAMBURGER FIX --- */
+.hamburger {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 2000;
+    cursor: pointer;
+    font-size: 32px;
+    color: white;
+}
+
+</style>
 </head>
 
-<body>
+<body class="members-page">
 
-  <!-- TOP CENTER NAV -->
-  <div class="top-nav">
+<!-- FOG (B) -->
+<div class="members-bg">
+    <div class="fog-layer"></div>
+</div>
+
+<!-- TOP NAV -->
+<div class="top-nav">
     <a href="home.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </div>
+</div>
 
-  <!-- HAMBURGER -->
-  <div id="burger" class="hamburger">☰</div>
+<!-- HAMBURGER -->
+<div class="hamburger" onclick="toggleMenu()">☰</div>
 
-  <!-- SLIDE MENU -->
-  <div id="mobileMenu" class="mobile-menu">
+<!-- GLASS MENU -->
+<nav id="mobileMenu" class="mobile-menu glass-menu">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -151,38 +153,55 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </div>
+</nav>
 
-  <!-- MEMBERS LOGIC BOX -->
-  <div class="members-box">
-    <h1>Members Only</h1>
-    <p>Enter your access key to proceed.</p>
+<!-- GATE AREA -->
+<div class="gate-wrap">
 
-    <input id="pw" type="password" placeholder="Access key">
+    <!-- GOLD GATES (A) -->
+    <div class="gate gate-left"></div>
+    <div class="gate gate-right"></div>
 
-    <button id="go">Unlock</button>
-  </div>
+    <!-- PASSWORD -->
+    <div class="pass-box">
+        <input id="passInput" type="password" placeholder="Enter Access Code">
+        <button onclick="openGates()">Enter</button>
+    </div>
 
-  <script>
-    // Password to access private page
-    const PASSWORD = "memberson1y";
+</div>
 
-    const mobileMenu = document.getElementById("mobileMenu");
-    const burger = document.getElementById("burger");
+<!-- UNLOCKED CONTENT -->
+<div id="memberStuff" class="member-content">
+    <h1>Welcome Inside</h1>
+    <p>Exclusive Access Granted — Docotela X Private Realm.</p>
+</div>
 
-    burger.onclick = () => {
-      mobileMenu.classList.toggle("open");
-    };
+<script>
+/* HAMBURGER MENU */
+function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+    menu.classList.toggle("open");
+}
 
-    document.getElementById("go").onclick = () => {
-      const val = document.getElementById("pw").value.trim();
-      if (val === PASSWORD) {
-        window.location.href = "private-collection.html";
-      } else {
-        alert("Incorrect access key.");
-      }
-    };
-  </script>
+/* GATE OPEN LOGIC */
+function openGates() {
+    const input = document.getElementById("passInput").value;
+
+    if (input !== "M3Mberson1y") {
+        alert("Incorrect Password");
+        return;
+    }
+
+    // Open gates
+    document.querySelector(".gate-left").style.transform = "translateX(-120%)";
+    document.querySelector(".gate-right").style.transform = "translateX(120%)";
+
+    // Reveal content after gates fully open
+    setTimeout(() => {
+        document.getElementById("memberStuff").style.display = "block";
+    }, 2600);
+}
+</script>
 
 </body>
 </html>
