@@ -1,16 +1,13 @@
-<!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Checkout — Docotela X</title><link href="styles.css" rel="stylesheet"></head>
-<body>
-  <div class="top-nav">
-    <a href="home.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <main class="content">
-    <h1 class="page-title">Checkout</h1>
-    <p class="lead">Proceed to the secure checkout to complete your purchase.</p>
-    <a class="enter-btn" href="https://paystack.shop/pay/fdy-nwp5q0" target="_blank" rel="noopener">Go to Paystack</a>
-  </main>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Checkout — Docotela X</title><link rel="stylesheet" href="styles.css"></head><body>
+<div class="top-nav"><a href="index.html">Home</a><a href="collections.html">Collections</a><a href="contact.html">Contact</a></div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+<nav id="mobileMenu" class="mobile-menu" aria-hidden="true"><a href="index.html">Home</a><a href="collections.html">Collections</a><a href="gallery.html">Art Gallery</a><a href="exclusive-drops.html">Exclusive Drops</a><a href="membersonly.html">Members Only</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+
+<main class="content fade-in">
+  <h1 class="page-title">Checkout</h1>
+  <p class="lead">Paystack link and payment flow will be integrated here.</p>
+  <p>Testing link (example): <a class="contact-link" href="https://paystack.shop/pay/fdy-nwp5q0" target="_blank">Pay now (Paystack)</a></p>
+</main>
+
+<script src="menu.js"></script>
+</body></html>
