@@ -5,118 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Members Only — Docotela X</title>
 
-  <!-- fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- global stylesheet -->
   <link rel="stylesheet" href="styles.css">
-
-  <!-- page-specific styles (keeps everything self-contained and consistent) -->
-  <style>
-    :root{
-      --gold: #caa93a;
-      --gold-strong: #f3d457;
-      --glass-bg: rgba(16,16,18,0.55);
-      --deep: #050507;
-      --muted: #d6d3cf;
-    }
-    html,body{height:100%;margin:0;font-family:"Poppins",system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,#040406 0%, #0b0b0d 60%);color:#eae8e2;}
-    a{color:inherit}
-
-    /* top center navigation */
-    .top-nav{position:fixed;left:50%;transform:translateX(-50%);top:18px;z-index:300;display:flex;gap:36px}
-    .top-nav a{color:#eae8e2;text-decoration:none;padding:6px 0;font-weight:600;letter-spacing:0.6px;opacity:.95}
-    .top-nav a:hover{color:var(--gold-strong);text-shadow:0 8px 30px rgba(243,212,87,0.08)}
-
-    /* hamburger in top-right */
-    .hamburger{position:fixed;right:22px;top:14px;z-index:410;font-size:26px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
-    .hamburger .bar{display:block;width:26px;height:2px;background:linear-gradient(90deg,#fff,#d6c26b);border-radius:2px;box-shadow:0 6px 20px rgba(0,0,0,0.45)}
-
-    /* slide-in glass menu (right) */
-    .mobile-menu{position:fixed;right:-380px;top:0;height:100vh;width:380px;background:linear-gradient(180deg, rgba(8,8,10,0.95), rgba(12,12,13,0.92));backdrop-filter:blur(10px);transition:right .46s cubic-bezier(.2,.9,.2,1);z-index:400;padding-top:110px;box-shadow:-60px 0 140px rgba(0,0,0,0.55);border-left:1px solid rgba(255,215,80,0.03)}
-    .mobile-menu.open{right:0}
-    .mobile-menu a{display:block;color:#fff;padding:20px 36px;text-decoration:none;font-size:18px;opacity:.96}
-    .mobile-menu a:hover{color:var(--gold-strong)}
-
-    /* main stage */
-    .members-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:110px 28px 80px;position:relative;z-index:20}
-
-    /* background watermark & fog */
-    .members-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-    .watermark-large{position:absolute;left:50%;top:18%;transform:translate(-50%,-10%);opacity:.04;font-family:"Cinzel",serif;font-size:26vw;color:var(--gold);letter-spacing:6px;filter:blur(2px)}
-    .fog{
-      position:fixed;left:0;right:0;top:0;bottom:0;z-index:2;pointer-events:none;
-      background:radial-gradient(40% 40% at 50% 40%, rgba(255,255,255,0.03), transparent 20%),
-                 radial-gradient(30% 22% at 30% 70%, rgba(240,230,200,0.02), transparent 20%),
-                 linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.12));
-      mix-blend-mode:screen;opacity:0;transition:opacity .8s ease;
-    }
-
-    /* gate stage */
-    .gate-stage{position:relative;width:100%;max-width:1200px;display:flex;align-items:center;justify-content:center;z-index:30;gap:48px;padding:40px}
-
-    /* gate visuals */
-    .gate-visual{position:relative;width:720px;height:460px;max-width:88vw;pointer-events:none;z-index:20;display:flex;align-items:center;justify-content:center}
-    .gate-panel{position:absolute;top:0;bottom:0;width:50%;height:100%;background:linear-gradient(180deg, rgba(18,18,20,0.6), rgba(8,8,8,0.6));border:1px solid rgba(255,215,80,0.04);box-shadow: inset 0 -60px 140px rgba(0,0,0,0.65);overflow:hidden}
-    .gate-panel.left{left:0;border-radius:12px 0 0 12px}
-    .gate-panel.right{right:0;border-radius:0 12px 12px 0}
-    .gilded{position:absolute;inset:6px;border-radius:8px;background:linear-gradient(180deg, rgba(255,235,170,0.05), rgba(255,200,60,0.02));filter:blur(8px);opacity:.24;pointer-events:none}
-    .gate-detail{position:absolute;inset:40px;border-radius:6px;background:linear-gradient(180deg, rgba(255,255,255,0.008), rgba(0,0,0,0.05));opacity:.12;mix-blend-mode:overlay}
-
-    /* closed vs open */
-    .gate-panel.closed.left{transform:translateX(0);transition:transform .9s cubic-bezier(.2,.9,.2,1)}
-    .gate-panel.closed.right{transform:translateX(0);transition:transform .9s cubic-bezier(.2,.9,.2,1)}
-    .gate-panel.open.left{transform:translateX(-130%);transition:transform 1.2s cubic-bezier(.22,.9,.2,1)}
-    .gate-panel.open.right{transform:translateX(130%);transition:transform 1.2s cubic-bezier(.22,.9,.2,1)}
-
-    /* divine light between gates */
-    .divine-light{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44%;height:78%;background:radial-gradient(closest-side, rgba(255,245,205,0.36), rgba(255,230,160,0.08), transparent 60%);filter:blur(26px);opacity:0;transition:opacity .9s ease;z-index:18;border-radius:12px}
-    .divine-light.visible{opacity:1;animation:lightPulse 2.6s infinite ease-in-out}
-    @keyframes lightPulse{0%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.02)}100%{transform:translate(-50%,-50%) scale(1)}}
-
-    /* sparkles */
-    .sparkle{position:absolute;width:6px;height:6px;border-radius:50%;background:linear-gradient(90deg,#fff,#ffecb3);box-shadow:0 0 18px rgba(255,220,100,0.6);opacity:0;transform:translateY(0)}
-    .sparkle.show{opacity:1;animation:rise 1.6s ease forwards}
-    @keyframes rise{0%{transform:translateY(8px) scale(.8);opacity:0}60%{opacity:1}100%{transform:translateY(-18px) scale(1.05);opacity:0}}
-
-    /* gate card */
-    .gate-card{
-      width:520px;max-width:92vw;padding:34px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.22));
-      border:1px solid rgba(255,215,80,0.06);backdrop-filter: blur(8px);box-shadow:0 30px 80px rgba(0,0,0,0.7);
-      border-radius:12px;text-align:left;transition:transform .7s cubic-bezier(.2,.9,.2,1),opacity .7s;z-index:35;
-    }
-    .gate-card h2{font-family:"Cinzel",serif;font-weight:400;color:var(--gold-strong);margin:0 0 8px;font-size:26px;letter-spacing:2px;text-shadow:0 12px 40px rgba(202,169,58,0.06)}
-    .gate-card p{color:var(--muted);margin:0 0 16px;opacity:.95}
-
-    .input-row{display:flex;gap:12px;justify-content:flex-start;align-items:center}
-    .input-row input[type="password"]{
-      border-radius:8px;padding:12px 16px;font-size:16px;border:none;outline:none;width:260px;background:rgba(255,255,255,0.02);color:#eee;box-shadow: inset 0 -2px 10px rgba(0,0,0,0.6);
-      border:1px solid rgba(255,255,255,0.03)
-    }
-    .input-row button{
-      background:linear-gradient(180deg,var(--gold), #d6b84a);border:none;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;color:#07100b;
-      box-shadow:0 10px 30px rgba(204,166,43,0.12)
-    }
-    .input-row button:hover{filter:brightness(.98);transform:translateY(-1px)}
-
-    /* subtle small cards to left (private preview placeholders) */
-    .preview-col{width:340px;max-width:36vw;display:flex;flex-direction:column;gap:18px}
-    .preview-card{height:200px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));box-shadow:inset 0 -24px 40px rgba(0,0,0,0.6);pointer-events:none}
-
-    /* small reveal animation utility */
-    .fade-in-slow{opacity:0;transform:translateY(10px);transition:opacity .9s ease,transform .9s ease}
-    .fade-in-slow.show{opacity:1;transform:translateY(0)}
-
-    /* responsive */
-    @media (max-width:960px){
-      .gate-stage{flex-direction:column;gap:28px}
-      .preview-col{width:92vw;flex-direction:row;gap:12px;justify-content:center}
-      .preview-card{flex:1;height:160px}
-      .gate-card{text-align:center}
-      .input-row{justify-content:center}
-    }
-  </style>
 </head>
-<body class="membersonly">
+<body class="membersonly main-wrap">
 
   <!-- top-center nav -->
   <div class="top-nav" role="navigation" aria-label="Main navigation">
@@ -125,8 +17,8 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- hamburger (top-right) -->
-  <div class="hamburger" id="burger" aria-label="Open menu" title="Open menu"><span class="bar"></span></div>
+  <!-- hamburger -->
+  <button class="hamburger" id="burger" aria-label="Open menu" title="Open menu">☰</button>
 
   <!-- slide menu -->
   <aside id="mobileMenu" class="mobile-menu" aria-hidden="true">
@@ -147,156 +39,41 @@
 
   <!-- main stage -->
   <main class="members-wrap" role="main">
+
     <div class="gate-stage">
 
-      <!-- left preview column -->
-      <div class="preview-col fade-in-slow" id="previewCol">
-        <div class="preview-card"></div>
-        <div class="preview-card"></div>
-      </div>
-
-      <!-- gate visual + card -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:16px">
-        <div class="gate-visual" aria-hidden="true">
-          <div class="gate-panel left closed" id="leftGate"><div class="gilded"></div><div class="gate-detail"></div></div>
-          <div class="gate-panel right closed" id="rightGate"><div class="gilded"></div><div class="gate-detail"></div></div>
-          <div class="divine-light" id="divineLight"></div>
+      <!-- gate visual behind -->
+      <div class="gate-visual" aria-hidden="true">
+        <div class="gate-panel left closed" id="leftGate">
+          <div class="gilded"></div>
+          <div class="gate-detail"></div>
+        </div>
+        <div class="gate-panel right closed" id="rightGate">
+          <div class="gilded"></div>
+          <div class="gate-detail"></div>
         </div>
 
-        <div class="gate-card fade-in-slow" id="card">
-          <h2>Members Only</h2>
-          <p>Enter your access key to reveal the private archive.</p>
-
-          <div class="input-row">
-            <input id="pw" type="password" placeholder="Access key" aria-label="Access key">
-            <button id="openBtn" aria-label="Open gates">Open</button>
-          </div>
-
-          <div style="height:8px"></div>
-          <small style="color:#bdbab6;opacity:.92">Access is limited. Contact us for membership.</small>
-        </div>
+        <div class="divine-light" id="divineLight"></div>
       </div>
 
+      <!-- the floating glass card -->
+      <div class="gate-card fade-in-slow" id="card">
+        <h2>Members Only</h2>
+        <p>Enter your access key to reveal the private archive.</p>
+
+        <div class="input-row">
+          <input id="pw" type="password" placeholder="Access key" aria-label="Access key">
+          <button id="openBtn" aria-label="Open gates">Open</button>
+        </div>
+
+        <div style="height:8px"></div>
+        <small style="color:#bdbab6;opacity:.9">Access is limited. Contact us for membership.</small>
+      </div>
     </div>
+
   </main>
 
-  <!-- scripts: namespaced, contained (keeps everything working without extra files) -->
-  <script>
-    // ----- CONFIG -----
-    // Change the password as needed:
-    const PASSWORD = "freedom"; // <<-- change to your key
-
-    // ----- MENU HANDLERS (works across pages) -----
-    (function(){
-      const burger = document.getElementById('burger');
-      const mobileMenu = document.getElementById('mobileMenu');
-
-      function toggleMenu(){
-        const open = mobileMenu.classList.toggle('open');
-        mobileMenu.setAttribute('aria-hidden', String(!open));
-      }
-
-      burger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
-
-      // close when clicking outside
-      document.addEventListener('click', (e)=>{
-        if(!mobileMenu.contains(e.target) && e.target !== burger){
-          mobileMenu.classList.remove('open');
-          mobileMenu.setAttribute('aria-hidden','true');
-        }
-      });
-
-      // close on escape
-      document.addEventListener('keydown', (e)=>{
-        if(e.key === 'Escape'){ mobileMenu.classList.remove('open'); mobileMenu.setAttribute('aria-hidden','true'); }
-      });
-    })();
-
-    // ----- GATE LOGIC & ANIMATIONS -----
-    (function(){
-      const leftGate = document.getElementById('leftGate');
-      const rightGate = document.getElementById('rightGate');
-      const divine = document.getElementById('divineLight');
-      const openBtn = document.getElementById('openBtn');
-      const pwInput = document.getElementById('pw');
-      const fog = document.getElementById('fog');
-      const card = document.getElementById('card');
-      const previews = document.getElementById('previewCol');
-
-      // show initial fades
-      window.addEventListener('load', ()=>{
-        setTimeout(()=> card.classList.add('show'), 220);
-        setTimeout(()=> previews.classList.add('show'), 320);
-        // fog entrance
-        setTimeout(()=> fog.style.opacity = '0.85', 260);
-      });
-
-      // spawn small sparkles inside gate (positioned relative to body)
-      function spawnSparkles(count=8){
-        for(let i=0;i<count;i++){
-          const s = document.createElement('div');
-          s.className='sparkle';
-          // random positions within the gate visual area
-          s.style.left = (45 + Math.random()*20) + '%'; // near center
-          s.style.top  = (40 + Math.random()*30) + '%';
-          document.body.appendChild(s);
-          // ensure CSS animation triggers
-          requestAnimationFrame(()=> s.classList.add('show'));
-          setTimeout(()=> s.remove(), 1800);
-        }
-      }
-
-      function openGates(){
-        // animate gate panels open
-        leftGate.classList.remove('closed'); leftGate.classList.add('open');
-        rightGate.classList.remove('closed'); rightGate.classList.add('open');
-        // reveal divine light
-        divine.classList.add('visible');
-        // lighten fog a touch
-        fog.style.transition = 'opacity 1s ease'; fog.style.opacity = '0.6';
-        spawnSparkles(12);
-        // push card slightly up
-        card.style.transform = 'translateY(-10px)';
-        setTimeout(()=> card.style.opacity = '.98', 800);
-        // after open: redirect to private collection (or reveal content)
-        setTimeout(()=> {
-          // Uncomment one of the two options below depending on desired behaviour:
-          // Option A: Redirect to a private page:
-          window.location.href = "private-collection.html";
-          // Option B: Replace card with inline member content (if you prefer not to redirect).
-          // replaceCardWithContent();
-        }, 1300);
-      }
-
-      function failFeedback(){
-        // small shake + glow
-        card.animate([{transform:'translateY(0)'},{transform:'translateY(-8px)'},{transform:'translateY(0)'}], {duration:380, easing:'ease-out'});
-        pwInput.animate([{boxShadow:'0 0 0px rgba(200,0,0,0)'},{boxShadow:'0 0 18px rgba(200,30,30,0.14)'}], {duration:420});
-        spawnSparkles(4);
-      }
-
-      openBtn.addEventListener('click', ()=>{
-        const val = (pwInput.value||'').trim();
-        if(val && val === PASSWORD){
-          openGates();
-        } else {
-          failFeedback();
-        }
-      });
-
-      // allow enter
-      pwInput.addEventListener('keydown', (e)=>{
-        if(e.key === 'Enter'){ openBtn.click(); }
-      });
-
-      // Example function if you want to reveal content inline (instead of redirecting)
-      function replaceCardWithContent(){
-        const content = document.createElement('div');
-        content.style.color = '#ddd';
-        content.innerHTML = '<h3 style="color:var(--gold-strong);font-family:Cinzel,serif">Private Archive</h3><p style="max-width:560px">Welcome. This area contains our private drops and archival works. Links will appear here for members only.</p>';
-        card.replaceWith(content);
-      }
-    })();
-  </script>
+  <script src="menu.js"></script>
+  <script src="members.js"></script>
 </body>
 </html>
