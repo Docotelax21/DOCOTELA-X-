@@ -3,196 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Members Only | Docotela X</title>
+<title>Members Only — Docotela X</title>
 
-<link href="styles.css" rel="stylesheet">
-
-<style>
-
-/* PAGE FADE */
-body {
-    margin: 0;
-    background: #000;
-    color: white;
-    font-family: 'Cinzel', serif;
-    animation: fadeIn 1.5s ease forwards;
-    overflow-x: hidden;
-}
-@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-
-/* FLOATING X WATERMARK */
-.watermark-x {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.07;
-    font-size: 40vw;
-    font-weight: 700;
-    color: white;
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* PARALLAX BACKGROUND */
-.parallax-bg {
-    background: url('88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png') no-repeat center;
-    background-size: contain;
-    background-attachment: fixed;
-    opacity: 0.05;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-}
-
-/* TOP CENTER NAV */
-.top-nav {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 35px;
-    font-size: 20px;
-    z-index: 20;
-}
-.top-nav a {
-    text-decoration: none;
-    color: white;
-    transition: 0.3s;
-}
-.top-nav a:hover { color: gold; }
-
-/* GLASS HAMBURGER MENU */
-.hamburger {
-    position: fixed;
-    top: 22px;
-    right: 25px;
-    font-size: 32px;
-    cursor: pointer;
-    z-index: 25;
-}
-
-.mobile-menu.glass {
-    position: fixed;
-    top: 0; right: -100%;
-    width: 65%;
-    height: 100vh;
-    backdrop-filter: blur(18px);
-    background: rgba(255,255,255,0.05);
-    padding: 120px 40px;
-    transition: 0.5s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    z-index: 24;
-}
-.mobile-menu.glass a {
-    color: white;
-    text-decoration: none;
-    font-size: 22px;
-    transition: 0.3s;
-}
-.mobile-menu.glass a:hover { color: gold; }
-
-.menu-open { right: 0 !important; }
-
-/* FULLSCREEN GATES */
-.gate-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.gate-left, .gate-right {
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    transition: transform 2s ease;
-    filter: drop-shadow(0 0 20px gold);
-}
-
-.gate-left {
-    left: 0;
-    background-image: url('https://i.ibb.co/r0p5QzM/gate-left.png');
-}
-.gate-right {
-    right: 0;
-    background-image: url('https://i.ibb.co/hmsyqGJ/gate-right.png');
-}
-
-.gates-open-left { transform: translateX(-100%); }
-.gates-open-right { transform: translateX(100%); }
-
-/* PASSWORD CARD */
-.password-box {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255,255,255,0.07);
-    backdrop-filter: blur(20px);
-    padding: 45px;
-    border-radius: 20px;
-    text-align: center;
-    z-index: 10;
-    width: 320px;
-}
-
-.password-box h2 {
-    margin-bottom: 20px;
-    font-size: 25px;
-}
-
-.password-box input {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.1);
-    color: white;
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
-.password-box button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 12px;
-    background: gold;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 17px;
-}
-
-.error-msg {
-    color: red;
-    margin-top: 10px;
-    height: 20px;
-}
-
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
-<body>
 
-<div class="parallax-bg"></div>
-<div class="watermark-x">X</div>
+<body class="members-page">
 
-<!-- NAVIGATION -->
+<!-- FLOATING X -->
+<img src="88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png" class="floating-x">
+
+<!-- TOP NAV -->
 <div class="top-nav">
     <a href="home.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
 </div>
 
-<div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+<!-- HAMBURGER -->
+<div class="hamburger" id="hamburger" aria-label="Open Menu">☰</div>
 
-<div id="mobileMenu" class="mobile-menu glass">
+<!-- GLASS MENU -->
+<nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -200,48 +33,58 @@ body {
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
+</nav>
+
+<!-- FULLSCREEN GATES -->
+<div class="gates-wrapper">
+    <div class="gate gate-left"></div>
+    <div class="gate gate-right"></div>
+
+    <!-- PASSWORD ACCESS PANEL -->
+    <div class="access-panel">
+        <h1 class="gold-title">Members Only</h1>
+        <p class="sub">Enter Access Key</p>
+
+        <input type="password" id="accessKey" placeholder="Enter password..." class="password-input">
+        <button class="enter-btn" onclick="unlockMembers()">Enter</button>
+
+        <p id="errorMsg" class="error"></p>
+    </div>
 </div>
 
-<!-- GATES -->
-<div class="gate-container">
-    <div class="gate-left" id="gateLeft"></div>
-    <div class="gate-right" id="gateRight"></div>
+<!-- HIDDEN CONTENT -->
+<div id="membersContent" class="members-content hidden">
+    <h1 class="gold-title">Private Collections</h1>
 
-    <div class="password-box" id="passwordBox">
-        <h2>Members Only</h2>
-        <input type="password" id="passInput" placeholder="Enter password">
-        <button onclick="checkPass()">Enter</button>
-        <div class="error-msg" id="errorMsg"></div>
+    <div class="members-links">
+        <a href="private-collection.html" class="members-btn">Private Collection</a>
+        <a href="exclusive-drops.html" class="members-btn">Exclusive Drops</a>
+        <a href="gallery.html" class="members-btn">Art Vault</a>
     </div>
 </div>
 
 <script src="menu.js"></script>
 
 <script>
-function checkPass() {
-    let input = document.getElementById("passInput").value;
-    let error = document.getElementById("errorMsg");
+// Password unlock
+function unlockMembers() {
+    const key = document.getElementById("accessKey").value;
+    const error = document.getElementById("errorMsg");
 
-    if (input === "memberson1y") {
-        error.innerHTML = "";
-        openGates();
+    if (key === "docotela") {
+        document.querySelector(".gates-wrapper").classList.add("open-gates");
         setTimeout(() => {
-            window.location.href = "private-collection.html";
-        }, 2500);
+            document.getElementById("membersContent").classList.remove("hidden");
+        }, 1800);
     } else {
-        error.innerHTML = "Incorrect password";
+        error.textContent = "Incorrect password.";
     }
 }
 
-function openGates() {
-    document.getElementById("gateLeft").classList.add("gates-open-left");
-    document.getElementById("gateRight").classList.add("gates-open-right");
-}
-
-/* MENU */
-function toggleMenu() {
-    document.getElementById("mobileMenu").classList.toggle("menu-open");
-}
+// Fix hamburger menu
+document.getElementById("hamburger").addEventListener("click", () => {
+    document.getElementById("mobileMenu").classList.toggle("open");
+});
 </script>
 
 </body>
