@@ -1,43 +1,59 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<title>Docotela X — Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Docotela X — Home</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+<body class="home">
 
-<body>
+  <!-- TOP NAV (center) -->
+  <div class="top-nav" role="navigation" aria-label="Main">
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
 
-<!-- TOP NAV -->
-<div class="top-nav">
-  <a href="home.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</div>
+  <!-- HAMBURGER (top-right) -->
+  <div class="hamburger" aria-label="Open menu">☰</div>
 
-<!-- HAMBURGER -->
-<div class="hamburger" onclick="toggleMenu()">☰</div>
+  <!-- MOBILE MENU (single consistent panel) -->
+  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <a href="home.html">Home</a>
+    <a href="collections.html">Collections</a>
+    <a href="gallery.html">Art Gallery</a>
+    <a href="exclusive-drops.html">Exclusive Drops</a>
+    <a href="membersonly.html">Members Only</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<!-- MOBILE MENU -->
-<nav id="mobileMenu" class="mobile-menu">
-  <a href="home.html">Home</a>
-  <a href="collections.html">Collections</a>
-  <a href="gallery.html">Art Gallery</a>
-  <a href="exclusive-drops.html">Exclusive Drops</a>
-  <a href="membersonly.html">Members Only</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</nav>
+  <!-- Cinematic fade overlay -->
+  <div id="fadeWrap" class="fade-wrap">
+    <div class="fade-inner">
+      <div class="glow-title">DOCOTELA X</div>
+      <div class="glow-sub">Limited collections. Handcrafted art.</div>
+    </div>
+  </div>
 
-<!-- HERO -->
-<main style="height:100vh; display:flex; justify-content:center; align-items:center; flex-direction:column;">
-  <img src="88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png" class="floating-x" style="width:130px; opacity:0.2;">
-  <h1 style="font-family:Cinzel; letter-spacing:8px; font-size:40px;">DOCOTELA X</h1>
-  <a class="enter-btn" href="gallery.html" style="margin-top:25px; border:1px solid gold; padding:12px 30px;">Enter the Gallery</a>
-</main>
+  <!-- HERO -->
+  <main class="hero" role="main">
+    <div class="watermark" aria-hidden="true"></div>
 
-<script src="menu.js"></script>
+    <div class="hero-center" id="heroContent">
+      <h1 class="hero-brand">DOCOTELA X</h1>
+      <p class="hero-lead">Limited pieces crafted by hand — a feeling you wear.</p>
+      <a class="enter-btn" href="gallery.html">Enter the Gallery</a>
+    </div>
+
+    <!-- floating cinematic Xs -->
+    <div class="floating-x fx1" aria-hidden="true">X</div>
+    <div class="floating-x fx2" aria-hidden="true">X</div>
+    <div class="floating-x fx3" aria-hidden="true">X</div>
+  </main>
+
+  <script src="menu.js"></script>
+  <script src="animations.js"></script>
 </body>
 </html>
