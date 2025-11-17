@@ -1,90 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Members Only — Docotela X</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="members-page">
 
-<!-- FLOATING X -->
-<img src="88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png" class="floating-x">
-
 <!-- TOP NAV -->
 <div class="top-nav">
-    <a href="home.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+  <a href="home.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
 </div>
 
 <!-- HAMBURGER -->
-<div class="hamburger" id="hamburger" aria-label="Open Menu">☰</div>
+<div class="hamburger" id="hamburger">☰</div>
 
-<!-- GLASS MENU -->
+<!-- GLASS SLIDE MENU -->
 <nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
-    <a href="home.html">Home</a>
-    <a href="collections.html">Collections</a>
-    <a href="gallery.html">Art Gallery</a>
-    <a href="exclusive-drops.html">Exclusive Drops</a>
-    <a href="membersonly.html">Members Only</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+  <a href="home.html">Home</a>
+  <a href="collections.html">Collections</a>
+  <a href="gallery.html">Art Gallery</a>
+  <a href="exclusive-drops.html">Exclusive Drops</a>
+  <a href="membersonly.html">Members Only</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
 </nav>
 
-<!-- FULLSCREEN GATES -->
-<div class="gates-wrapper">
-    <div class="gate gate-left"></div>
-    <div class="gate gate-right"></div>
+<!-- FULLSCREEN GATE -->
+<div class="gates-container">
+    <div class="gate-left"></div>
+    <div class="gate-right"></div>
 
-    <!-- PASSWORD ACCESS PANEL -->
-    <div class="access-panel">
-        <h1 class="gold-title">Members Only</h1>
-        <p class="sub">Enter Access Key</p>
+    <div class="password-wrap">
+        <h1 class="members-title">Members Only</h1>
 
-        <input type="password" id="accessKey" placeholder="Enter password..." class="password-input">
-        <button class="enter-btn" onclick="unlockMembers()">Enter</button>
+        <input type="password" id="memberPass"
+               placeholder="Enter Access Code">
 
-        <p id="errorMsg" class="error"></p>
-    </div>
-</div>
+        <button class="enter-btn" onclick="unlockGate()">Enter</button>
 
-<!-- HIDDEN CONTENT -->
-<div id="membersContent" class="members-content hidden">
-    <h1 class="gold-title">Private Collections</h1>
-
-    <div class="members-links">
-        <a href="private-collection.html" class="members-btn">Private Collection</a>
-        <a href="exclusive-drops.html" class="members-btn">Exclusive Drops</a>
-        <a href="gallery.html" class="members-btn">Art Vault</a>
+        <p id="errorMsg" class="error-msg"></p>
     </div>
 </div>
 
 <script src="menu.js"></script>
 
 <script>
-// Password unlock
-function unlockMembers() {
-    const key = document.getElementById("accessKey").value;
+// PASSWORD + GATE LOGIC
+function unlockGate() {
+    const pass = document.getElementById("memberPass").value.trim();
     const error = document.getElementById("errorMsg");
 
-    if (key === "docotela") {
-        document.querySelector(".gates-wrapper").classList.add("open-gates");
+    if (pass === "docotelaX") {
+        document.querySelector(".gate-left").classList.add("gate-open-left");
+        document.querySelector(".gate-right").classList.add("gate-open-right");
+
         setTimeout(() => {
-            document.getElementById("membersContent").classList.remove("hidden");
-        }, 1800);
+            window.location.href = "private-collection.html";
+        }, 2500);
     } else {
         error.textContent = "Incorrect password.";
     }
 }
-
-// Fix hamburger menu
-document.getElementById("hamburger").addEventListener("click", () => {
-    document.getElementById("mobileMenu").classList.toggle("open");
-});
 </script>
 
 </body>
