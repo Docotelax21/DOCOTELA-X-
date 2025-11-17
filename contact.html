@@ -3,15 +3,14 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>About — Docotela X</title>
+<title>Contact — Docotela X</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body class="main-wrap">
-
-  <nav class="top-nav" role="navigation">
+  <nav class="top-nav">
     <a href="home.html">Home</a>
-    <a href="collections.html">Collections</a>
+    <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
@@ -26,38 +25,18 @@
     <a href="contact.html">Contact</a>
   </aside>
 
-  <div class="watermark" aria-hidden="true" style="opacity:.03">
-    <img src="88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png" style="width:82vw;max-width:1000px;opacity:.04"/>
-  </div>
+  <main class="content">
+    <h1 class="page-title">Contact</h1>
+    <p class="lead">Email: <a style="color:var(--gold)" href="mailto:docotelax@gmail.com">docotelax@gmail.com</a></p>
 
-  <main class="content cinematic-bg">
-    <h1 class="page-title">About Docotela X</h1>
-
-    <p class="lead fade-in">Docotela X is the feeling of freedom translated into cloth, metal and light — a careful tension between discipline and escape. Each collection is treated like a small scene: private, limited, patient.</p>
-
-    <section class="fade-in">
-      <h2 style="font-family:Cinzel,serif;color:var(--gold-strong)">Our Philosophy</h2>
-      <p style="color:var(--muted);max-width:900px">We pursue restraint as expression. Designs arrive through subtraction: each seam removed is a quiet decision. We keep runs intentionally small so each piece arrives with the breath of the artist who made it.</p>
-    </section>
-
-    <section class="fade-in" style="margin-top:28px">
-      <h2 style="font-family:Cinzel,serif;color:var(--gold-strong)">The Journey</h2>
-      <p style="color:var(--muted);max-width:900px">From a 1978 VW Beetle shell to hand-stitched garments and midnight workshops — the studio formed by refusal. Investors said no, then watched. We learned to keep working. The car, rebuilt over six years, proved the consistency of a vision: finish what you start and let the work speak.</p>
-    </section>
-
-    <section class="fade-in" style="margin-top:28px">
-      <h2 style="font-family:Cinzel,serif;color:var(--gold-strong)">Craft & Rarity</h2>
-      <p style="color:var(--muted);max-width:900px">Each drop is limited to a number of handcrafted pieces. We partner with ten young artists to handcraft each release — a promise that every object carries a visible mark of its maker.</p>
-    </section>
+    <form class="contact-form" action="https://formspree.io/f/xanajjbr" method="POST">
+      <label>Name <input type="text" name="name" required></label>
+      <label>Email <input type="email" name="email" required></label>
+      <label>Message <textarea name="message" rows="6" required></textarea></label>
+      <button type="submit" class="enter-btn">Send Message</button>
+    </form>
   </main>
 
 <script src="menu.js"></script>
-<script>
-  // reveal animation for about page
-  document.addEventListener('DOMContentLoaded', ()=>{
-    const els = document.querySelectorAll('.fade-in');
-    requestAnimationFrame(()=>{ els.forEach((el,i)=> setTimeout(()=> el.classList.add('visible'), 160*i + 120)); });
-  });
-</script>
 </body>
 </html>
