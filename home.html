@@ -1,59 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <title>Docotela X — Home</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docotela X | Home</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="home">
+<body>
 
-  <!-- TOP NAV (center) -->
-  <div class="top-nav" role="navigation" aria-label="Main">
-    <a href="home.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </div>
-
-  <!-- HAMBURGER (top-right) -->
-  <div class="hamburger" aria-label="Open menu">☰</div>
-
-  <!-- MOBILE MENU (single consistent panel) -->
-  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
-    <a href="home.html">Home</a>
-    <a href="collections.html">Collections</a>
-    <a href="gallery.html">Art Gallery</a>
-    <a href="exclusive-drops.html">Exclusive Drops</a>
-    <a href="membersonly.html">Members Only</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <!-- Cinematic fade overlay -->
-  <div id="fadeWrap" class="fade-wrap">
-    <div class="fade-inner">
-      <div class="glow-title">DOCOTELA X</div>
-      <div class="glow-sub">Limited collections. Handcrafted art.</div>
-    </div>
-  </div>
-
-  <!-- HERO -->
-  <main class="hero" role="main">
-    <div class="watermark" aria-hidden="true"></div>
-
-    <div class="hero-center" id="heroContent">
-      <h1 class="hero-brand">DOCOTELA X</h1>
-      <p class="hero-lead">Limited pieces crafted by hand — a feeling you wear.</p>
-      <a class="enter-btn" href="gallery.html">Enter the Gallery</a>
+<header class="main-header">
+    <div class="top-nav">
+        <div class="center-links">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            ☰
+        </div>
     </div>
 
-    <!-- floating cinematic Xs -->
-    <div class="floating-x fx1" aria-hidden="true">X</div>
-    <div class="floating-x fx2" aria-hidden="true">X</div>
-    <div class="floating-x fx3" aria-hidden="true">X</div>
-  </main>
+    <div id="mobile-menu">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="collections.html">Collections</a>
+        <a href="members.html">Members Only</a>
+    </div>
+</header>
 
-  <script src="menu.js"></script>
-  <script src="animations.js"></script>
+<div class="fade-in">
+    <div class="hero">
+        <h1 class="logo">DOCOTELA X</h1>
+        <p class="tagline">Limited collections. Handcrafted art.</p>
+
+        <a href="collections.html" class="enter-btn">Enter the Gallery</a>
+    </div>
+</div>
+
+<script src="animations.js"></script>
+
 </body>
 </html>
