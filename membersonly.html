@@ -1,73 +1,71 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Members Only — Docotela X</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-</head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Members Only — Docotela X</title><link href="styles.css" rel="stylesheet"></head>
+<body>
 
-<body class="members-page">
+  <div class="top-nav">
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
 
-<!-- TOP NAV -->
-<div class="top-nav">
-  <a href="home.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</div>
+  <div class="hamburger" aria-label="Open menu">☰</div>
+  <nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
+    <a href="home.html">Home</a>
+    <a href="collections.html">Collections</a>
+    <a href="gallery.html">Art Gallery</a>
+    <a href="exclusive-drops.html">Exclusive Drops</a>
+    <a href="membersonly.html">Members Only</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<!-- HAMBURGER -->
-<div class="hamburger" id="hamburger">☰</div>
-
-<!-- GLASS SLIDE MENU -->
-<nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
-  <a href="home.html">Home</a>
-  <a href="collections.html">Collections</a>
-  <a href="gallery.html">Art Gallery</a>
-  <a href="exclusive-drops.html">Exclusive Drops</a>
-  <a href="membersonly.html">Members Only</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</nav>
-
-<!-- FULLSCREEN GATE -->
-<div class="gates-container">
-    <div class="gate-left"></div>
-    <div class="gate-right"></div>
-
-    <div class="password-wrap">
-        <h1 class="members-title">Members Only</h1>
-
-        <input type="password" id="memberPass"
-               placeholder="Enter Access Code">
-
-        <button class="enter-btn" onclick="unlockGate()">Enter</button>
-
-        <p id="errorMsg" class="error-msg"></p>
+  <div class="gates-wrap" id="gatesWrap">
+    <div class="gate left" id="leftGate">
+      <div class="gate-plate" aria-hidden="true">DOCOTELA</div>
     </div>
-</div>
+    <div class="gate right" id="rightGate">
+      <div class="gate-plate" aria-hidden="true">X</div>
+    </div>
+
+    <div class="password-card">
+      <div class="password-box" id="passwordBox">
+        <h2 style="margin-bottom:6px">Members Only</h2>
+        <p class="muted" style="margin-bottom:12px">Enter password to open the gates.</p>
+        <input id="passInput" type="password" placeholder="Password">
+        <button id="openBtn">Open Gates</button>
+        <p id="errorMsg" style="color:#ff6b6b;display:none;margin-top:10px">Incorrect password</p>
+      </div>
+    </div>
+  </div>
 
 <script src="menu.js"></script>
-
 <script>
-// PASSWORD + GATE LOGIC
-function unlockGate() {
-    const pass = document.getElementById("memberPass").value.trim();
-    const error = document.getElementById("errorMsg");
+  (function(){
+    const left = document.getElementById('leftGate');
+    const right = document.getElementById('rightGate');
+    const openBtn = document.getElementById('openBtn');
+    const passInput = document.getElementById('passInput');
+    const errorMsg = document.getElementById('errorMsg');
 
-    if (pass === "docotelaX") {
-        document.querySelector(".gate-left").classList.add("gate-open-left");
-        document.querySelector(".gate-right").classList.add("gate-open-right");
+    openBtn.addEventListener('click', function(){
+      const v = passInput.value.trim();
+      if(v === 'memberson1y'){
+        errorMsg.style.display = 'none';
+        // subtle 3d reveal: gates open
+        left.classList.add('open-left');
+        right.classList.add('open-right');
+        // brief delay then redirect
+        setTimeout(()=>{ location.href = 'private-collection.html'; }, 1400);
+      } else {
+        errorMsg.style.display = 'block';
+      }
+    });
 
-        setTimeout(() => {
-            window.location.href = "private-collection.html";
-        }, 2500);
-    } else {
-        error.textContent = "Incorrect password.";
-    }
-}
+    passInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter') openBtn.click();
+    });
+  })();
 </script>
-
 </body>
 </html>
