@@ -1,32 +1,29 @@
-/* menu.js — single site menu control (hamburger + outside click + keyboard) */
+// menu.js - universal hamburger menu script (simple and robust)
 (function(){
-  const burgerEls = document.querySelectorAll('.hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  if(!mobileMenu) return;
-
-  function toggleMenu(ev){
-    if(ev) ev.stopPropagation();
-    const open = mobileMenu.classList.toggle('open');
-    mobileMenu.setAttribute('aria-hidden', !open);
+  function toggleMenu(){
+    const menu = document.getElementById('mobileMenu');
+    if(!menu) return;
+    menu.classList.toggle('open');
   }
 
-  burgerEls.forEach(b=>b.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(e); }));
+  // expose globally for inline onclick compatibility (some pages call toggleMenu())
+  window.toggleMenu = toggleMenu;
 
-  // close if clicking outside
+  // close the menu when clicking outside
   document.addEventListener('click', function(e){
-    if(!mobileMenu.contains(e.target) && ![...burgerEls].some(b=>b.contains(e.target))){
-      mobileMenu.classList.remove('open');
-      mobileMenu.setAttribute('aria-hidden','true');
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.querySelector('.hamburger');
+    if(!menu || !burger) return;
+    if(menu.classList.contains('open') && !menu.contains(e.target) && !burger.contains(e.target)){
+      menu.classList.remove('open');
     }
   });
 
-  document.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape'){ mobileMenu.classList.remove('open'); mobileMenu.setAttribute('aria-hidden','true'); }
-  });
-
-  // ensure links close menu when clicked
-  mobileMenu.querySelectorAll('a').forEach(a=>{
-    a.addEventListener('click', ()=>{ mobileMenu.classList.remove('open'); mobileMenu.setAttribute('aria-hidden','true'); });
+  // close on escape
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      const menu = document.getElementById('mobileMenu');
+      if(menu) menu.classList.remove('open');
+    }
   });
 })();
