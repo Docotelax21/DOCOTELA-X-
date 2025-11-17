@@ -1,44 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Docotela X | Home</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Docotela X — Home</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- same as index -->
+  <div class="top-nav">
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <a href="home.html">Home</a>
+    <a href="collections.html">Collections</a>
+    <a href="gallery.html">Art Gallery</a>
+    <a href="exclusive-drops.html">Exclusive Drops</a>
+    <a href="membersonly.html">Members Only</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<header class="main-header">
-    <div class="top-nav">
-        <div class="center-links">
-            <a href="home.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </div>
-        <div class="hamburger" onclick="toggleMenu()">
-            ☰
-        </div>
+  <div id="fadeWrap" class="fade-wrap">
+    <div class="fade-inner">
+      <div class="glow-title">DOCOTELA X</div>
+      <div class="glow-sub">Limited collections. Handcrafted art.</div>
     </div>
+  </div>
 
-    <div id="mobile-menu">
-        <a href="home.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="collections.html">Collections</a>
-        <a href="members.html">Members Only</a>
+  <main class="hero">
+    <div class="watermark"></div>
+    <div class="hero-center fade-in">
+      <h1 class="hero-brand">DOCOTELA X</h1>
+      <p class="hero-lead">Limited pieces crafted by hand — the feeling of freedom in cloth.</p>
+      <a class="enter-btn" href="gallery.html">Enter the Gallery</a>
     </div>
-</header>
+    <div class="floating-x fx1">X</div>
+    <div class="floating-x fx2">X</div>
+    <div class="floating-x fx3">X</div>
+  </main>
 
-<div class="fade-in">
-    <div class="hero">
-        <h1 class="logo">DOCOTELA X</h1>
-        <p class="tagline">Limited collections. Handcrafted art.</p>
-
-        <a href="collections.html" class="enter-btn">Enter the Gallery</a>
-    </div>
-</div>
-
-<script src="animations.js"></script>
-
+  <script src="menu.js"></script>
+  <script src="animations.js"></script>
+  <script>hideIntro('fadeWrap',4200);</script>
 </body>
 </html>
