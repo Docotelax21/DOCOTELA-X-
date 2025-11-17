@@ -1,21 +1,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <title>Art Gallery — Docotela X</title>
+  <title>Collections — Docotela X</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="gallery">
-
-  <div class="top-nav" role="navigation">
+<body>
+  <div class="top-nav">
     <a href="home.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
-
-  <div class="hamburger" aria-label="Open menu">☰</div>
-
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
   <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
@@ -26,23 +23,19 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <main class="content">
-    <h1 class="page-title">Art Gallery</h1>
-    <p class="lead">Curated works — viewing & inquiry only.</p>
-
-    <div class="gallery-grid">
-      <div class="art-card">
-        <div class="art-thumb">Artwork Placeholder</div>
-        <h3>Title</h3>
-        <p class="meta">Medium • Year</p>
-        <a class="enter-btn" href="contact.html">Inquire</a>
-      </div>
-      <div class="art-card">
-        <div class="art-thumb">Artwork Placeholder</div>
-        <h3>Title</h3>
-        <p class="meta">Medium • Year</p>
-        <a class="enter-btn" href="contact.html">Inquire</a>
-      </div>
+  <main class="content fade-in-slow">
+    <h1 class="page-title">Collections</h1>
+    <div class="collections-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:24px;">
+      <a class="collection-card" href="collection-freedom.html">The Feeling of Freedom</a>
+      <a class="collection-card" href="collection-8deity.html">8Deity</a>
+      <a class="collection-card" href="collection-originals.html">Docotela X Originals</a>
+      <a class="collection-card" href="collection-accessories.html">Docotela X Accessories</a>
+      <a class="collection-card" href="collection-kids.html">Docotela X Kids</a>
+      <a class="collection-card" href="collection-limited.html">Docotela X Limited</a>
+      <a class="collection-card" href="collection-emptiness.html">Found in Emptiness</a>
+      <a class="collection-card" href="collection-quietspace.html">Quiet Space</a>
+      <a class="collection-card" href="collection-chaos.html">Art of Chaos</a>
+      <a class="collection-card" href="collection-simplicity.html">Simplicity in Motion</a>
     </div>
   </main>
 
