@@ -1,47 +1,63 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<title>Members Only — Docotela X</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
+  <title>Members Only — Docotela X</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+<body class="membersonly">
 
-<body>
+  <div class="top-nav">
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
 
-<div class="top-nav">
-  <a href="home.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</div>
+  <div class="hamburger" aria-label="Open menu">☰</div>
 
-<div class="hamburger" onclick="toggleMenu()">☰</div>
+  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <a href="home.html">Home</a>
+    <a href="collections.html">Collections</a>
+    <a href="gallery.html">Art Gallery</a>
+    <a href="exclusive-drops.html">Exclusive Drops</a>
+    <a href="membersonly.html">Members Only</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<nav id="mobileMenu" class="mobile-menu">
-  <a href="home.html">Home</a>
-  <a href="collections.html">Collections</a>
-  <a href="gallery.html">Art Gallery</a>
-  <a href="exclusive-drops.html">Exclusive Drops</a>
-  <a href="membersonly.html">Members Only</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</nav>
+  <div class="members-bg" aria-hidden="true">
+    <div class="watermark-large">Docotela X</div>
+    <div class="fog" id="fog"></div>
+  </div>
 
-<main style="height:100vh; display:flex; justify-content:center; align-items:center; flex-direction:column;">
+  <main class="members-wrap" role="main">
+    <div class="gate-stage" aria-hidden="false">
+      <div class="gate-panel left closed" id="leftGate">
+        <div class="gilded"></div>
+        <div class="gate-detail"></div>
+      </div>
+      <div class="gate-panel right closed" id="rightGate">
+        <div class="gilded"></div>
+        <div class="gate-detail"></div>
+      </div>
 
-  <h1 style="font-family:Cinzel; margin-bottom:20px;">Members Only</h1>
+      <div class="divine-light" id="divineLight" aria-hidden="true"></div>
 
-  <input 
-    type="password" 
-    placeholder="Enter Access Key" 
-    style="padding:12px 20px; width:260px; background:#111; border:1px solid gold; color:white;">
+      <div class="gate-card" id="gateCard">
+        <h2>Members Only</h2>
+        <p>Enter your access key to reveal the private archive.</p>
 
-  <button style="margin-top:20px; padding:10px 25px; border:1px solid white; background:none; color:white;">
-    Enter
-  </button>
+        <div class="input-row">
+          <input id="pw" type="password" placeholder="Access key" aria-label="Access key">
+          <button id="openBtn">Open</button>
+        </div>
+        <small style="display:block;margin-top:12px;color:#bdbab6">Access is limited. Contact us for membership.</small>
+      </div>
+    </div>
+  </main>
 
-</main>
-
-<script src="menu.js"></script>
+  <script src="menu.js"></script>
+  <script src="animations.js"></script>
 </body>
 </html>
