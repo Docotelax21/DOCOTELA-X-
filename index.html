@@ -1,13 +1,58 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Docotela X</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Docotela X — Home</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <script>window.location.replace('home.html');</script>
-  <noscript><a href="home.html">Enter Docotela X</a></noscript>
+
+  <!-- top nav -->
+  <div class="top-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- hamburger -->
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <!-- mobile menu -->
+  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <a href="index.html">Home</a>
+    <a href="collections.html">Collections</a>
+    <a href="gallery.html">Art Gallery</a>
+    <a href="exclusive-drops.html">Exclusive Drops</a>
+    <a href="membersonly.html">Members Only</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- cinematic fade intro -->
+  <div id="fadeWrap" class="fade-wrap">
+    <div class="fade-inner">
+      <div class="glow-title">DOCOTELA X</div>
+      <div class="glow-sub">Limited collections. Handcrafted art.</div>
+    </div>
+  </div>
+
+  <main class="hero">
+    <div class="watermark" aria-hidden="true"></div>
+
+    <div class="hero-center fade-in">
+      <h1 class="hero-brand">DOCOTELA X</h1>
+      <p class="hero-lead">Limited pieces crafted by hand — the feeling of freedom in cloth.</p>
+      <a class="enter-btn" href="gallery.html">Enter the Gallery</a>
+    </div>
+
+    <div class="floating-x fx1">X</div>
+    <div class="floating-x fx2">X</div>
+    <div class="floating-x fx3">X</div>
+  </main>
+
+  <script src="menu.js"></script>
+  <script src="animations.js"></script>
+  <script>hideIntro('fadeWrap',4200);</script>
 </body>
 </html>
