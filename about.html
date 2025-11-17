@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>About — Docotela X</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>About — Docotela X</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
-<body class="page about">
+<body class="main-wrap">
 
-  <!-- NAV + HAMBURGER -->
-  <div class="top-nav">
+  <nav class="top-nav" role="navigation">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="contact.html">Contact</a>
-  </div>
+  </nav>
+
   <button class="hamburger" aria-label="Open menu">☰</button>
-  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+  <aside id="mobileMenu" class="mobile-menu" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -24,35 +24,40 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </nav>
+  </aside>
 
-  <!-- Floating Xs & watermark -->
-  <div class="watermark" aria-hidden="true"></div>
-  <div class="floating-x fx1">X</div>
-  <div class="floating-x fx2">X</div>
-  <div class="floating-x fx3">X</div>
+  <div class="watermark" aria-hidden="true" style="opacity:.03">
+    <img src="88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png" style="width:82vw;max-width:1000px;opacity:.04"/>
+  </div>
 
   <main class="content cinematic-bg">
-    <section class="about-hero" style="padding-top:140px; text-align:center; max-width:980px; margin:0 auto;">
-      <h1 style="font-family:'Cinzel',serif;font-size:44px;margin-bottom:10px;color:#f3d457;letter-spacing:3px;">Docotela X</h1>
-      <p style="font-size:18px;color:rgba(255,255,255,0.9);max-width:760px;margin:0 auto 28px;">
-        We build for the few who prefer the slow, considered life. Docotela X began as the stubborn pursuit of freedom — freedom from the constant acceleration of trends, freedom to make things slowly and beautifully.
-      </p>
+    <h1 class="page-title">About Docotela X</h1>
 
-      <div style="max-width:760px;margin:0 auto;color:rgba(255,255,255,0.85);font-size:15px;line-height:1.7;">
-        <p><strong>Our craft</strong> is small-batch and hand-finished. Each stitch is a choice; each seam, a conversation between maker and material. We are not loud. Our garments are private ceremonies — pieces that age with you, not against you.</p>
+    <p class="lead fade-in">Docotela X is the feeling of freedom translated into cloth, metal and light — a careful tension between discipline and escape. Each collection is treated like a small scene: private, limited, patient.</p>
 
-        <p><strong>Our story</strong> started with an old VW, a bare shell and six years of quiet work. It taught us two things: consistency turns doubt into proof, and the things worth making take time. That patience became the backbone of the brand — we make fewer things, but we make them true.</p>
+    <section class="fade-in">
+      <h2 style="font-family:Cinzel,serif;color:var(--gold-strong)">Our Philosophy</h2>
+      <p style="color:var(--muted);max-width:900px">We pursue restraint as expression. Designs arrive through subtraction: each seam removed is a quiet decision. We keep runs intentionally small so each piece arrives with the breath of the artist who made it.</p>
+    </section>
 
-        <p><strong>Our promise</strong> is to protect the feeling of freedom — in choice, in wear, and in living. We invite you to move slowly with us.</p>
-      </div>
+    <section class="fade-in" style="margin-top:28px">
+      <h2 style="font-family:Cinzel,serif;color:var(--gold-strong)">The Journey</h2>
+      <p style="color:var(--muted);max-width:900px">From a 1978 VW Beetle shell to hand-stitched garments and midnight workshops — the studio formed by refusal. Investors said no, then watched. We learned to keep working. The car, rebuilt over six years, proved the consistency of a vision: finish what you start and let the work speak.</p>
+    </section>
 
-      <div style="margin-top:28px;">
-        <a class="enter-btn" href="collections.html">View Collections</a>
-      </div>
+    <section class="fade-in" style="margin-top:28px">
+      <h2 style="font-family:Cinzel,serif;color:var(--gold-strong)">Craft & Rarity</h2>
+      <p style="color:var(--muted);max-width:900px">Each drop is limited to a number of handcrafted pieces. We partner with ten young artists to handcraft each release — a promise that every object carries a visible mark of its maker.</p>
     </section>
   </main>
 
-  <script src="menu.js"></script>
+<script src="menu.js"></script>
+<script>
+  // reveal animation for about page
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const els = document.querySelectorAll('.fade-in');
+    requestAnimationFrame(()=>{ els.forEach((el,i)=> setTimeout(()=> el.classList.add('visible'), 160*i + 120)); });
+  });
+</script>
 </body>
 </html>
