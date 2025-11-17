@@ -1,24 +1,28 @@
-// menu.js - single shared menu script
+// menu.js - small, reliable mobile menu toggle
 (function(){
-  function toggleMenu(){
+  window.toggleMenu = function(){
     const menu = document.getElementById('mobileMenu');
     if(!menu) return;
     menu.classList.toggle('open');
-  }
-  // Expose to global for inline handlers (safe)
-  window.toggleMenu = toggleMenu;
+    // ensure it is scrollable on mobile
+    if(menu.classList.contains('open')){
+      menu.style.display = 'block';
+    } else {
+      // keep natural display for compactness
+      setTimeout(()=> menu.style.display = '', 450);
+    }
+  };
 
   document.addEventListener('click', function(e){
     const menu = document.getElementById('mobileMenu');
     const burger = document.querySelector('.hamburger');
     if(!menu || !burger) return;
-    // close menu if clicking outside
-    if (!menu.contains(e.target) && e.target !== burger && !burger.contains(e.target)) {
+    if(!menu.contains(e.target) && e.target !== burger){
       menu.classList.remove('open');
     }
   });
 
-  // close on Escape
+  // allow ESC to close
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape'){
       const menu = document.getElementById('mobileMenu');
