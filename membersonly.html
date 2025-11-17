@@ -1,151 +1,27 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Members Only — Docotela X</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Members Only — Docotela X</title>
 
-<style>
-/* --- PAGE BACKDROP --- */
-.members-bg {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, #0a0a0a 0%, #000000 90%);
-    overflow: hidden;
-}
-
-/* --- ANGELIC FOG (Style B) --- */
-.fog-layer {
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: url('fog2.png') repeat;
-    opacity: 0.25;
-    animation: fogMove 22s linear infinite;
-    filter: blur(18px);
-}
-
-@keyframes fogMove {
-    from { transform: translate(-20%, -10%); }
-    to   { transform: translate(20%, 10%); }
-}
-
-/* --- GATES WRAPPER --- */
-.gate-wrap {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* --- LUXURY GOLD GATES (Style A) --- */
-.gate {
-    width: 42%;
-    height: 80vh;
-    background: url('lux-gate.png') center/cover no-repeat;
-    position: absolute;
-    top: 10vh;
-    transition: transform 2.8s cubic-bezier(.25,.8,.25,1);
-    filter: drop-shadow(0 0 25px rgba(255,215,0,0.4));
-}
-
-.gate-left  { left: 0; transform-origin: left center; }
-.gate-right { right: 0; transform-origin: right center; }
-
-/* --- PASSWORD BOX --- */
-.pass-box {
-    position: absolute;
-    z-index: 50;
-    text-align: center;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.pass-box input {
-    width: 260px;
-    padding: 14px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,215,0,0.5);
-    border-radius: 8px;
-    color: #fff;
-    font-size: 1rem;
-    text-align: center;
-    backdrop-filter: blur(8px);
-}
-
-.pass-box button {
-    margin-top: 14px;
-    width: 260px;
-    padding: 14px;
-    background: rgba(255,215,0,0.15);
-    border: 1px solid gold;
-    color: gold;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: 0.3s ease;
-}
-
-.pass-box button:hover {
-    background: gold;
-    color: #000;
-}
-
-/* --- Hidden Content (after gates open) --- */
-.member-content {
-    display: none;
-    opacity: 0;
-    animation: fadeIn 1.8s ease forwards;
-    color: #fff;
-    text-align: center;
-    margin-top: 20vh;
-    font-family: Cinzel, serif;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(40px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-/* --- HAMBURGER FIX --- */
-.hamburger {
-    position: fixed;
-    top: 25px;
-    right: 25px;
-    z-index: 2000;
-    cursor: pointer;
-    font-size: 32px;
-    color: white;
-}
-
-</style>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
+<body class="membersonly">
 
-<body class="members-page">
-
-<!-- FOG (B) -->
-<div class="members-bg">
-    <div class="fog-layer"></div>
-</div>
-
-<!-- TOP NAV -->
-<div class="top-nav">
+  <!-- TOP NAV CENTER -->
+  <div class="top-nav" role="navigation" aria-label="Main">
     <a href="home.html">Home</a>
-    <a href="about.html">About</a>
+    <a href="collections.html">Collections</a>
     <a href="contact.html">Contact</a>
-</div>
+  </div>
 
-<!-- HAMBURGER -->
-<div class="hamburger" onclick="toggleMenu()">☰</div>
+  <!-- HAMBURGER (top-right) -->
+  <button class="hamburger" aria-label="Open menu" title="Open menu">☰</button>
 
-<!-- GLASS MENU -->
-<nav id="mobileMenu" class="mobile-menu glass-menu">
+  <!-- GLOBAL SLIDE MENU -->
+  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -153,55 +29,110 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-</nav>
+  </nav>
 
-<!-- GATE AREA -->
-<div class="gate-wrap">
+  <!-- BACKGROUND LAYERS -->
+  <div class="members-bg" aria-hidden="true">
+    <div class="watermark-large">DOCOTELA X</div>
+    <div class="angelic-fog" id="angelicFog"></div>
+  </div>
 
-    <!-- GOLD GATES (A) -->
-    <div class="gate gate-left"></div>
-    <div class="gate gate-right"></div>
+  <!-- MAIN STAGE -->
+  <main class="members-wrap" role="main">
+    <div class="gate-stage">
 
-    <!-- PASSWORD -->
-    <div class="pass-box">
-        <input id="passInput" type="password" placeholder="Enter Access Code">
-        <button onclick="openGates()">Enter</button>
+      <!-- gate visual (gold, realistic style) -->
+      <div class="gate-visual" aria-hidden="true">
+        <div class="gate-panel left closed" id="leftGate">
+          <div class="gilded"></div>
+          <div class="bolt-detail"></div>
+        </div>
+
+        <div class="gate-panel right closed" id="rightGate">
+          <div class="gilded"></div>
+          <div class="bolt-detail"></div>
+        </div>
+
+        <div class="divine-light" id="divineLight" aria-hidden="true"></div>
+      </div>
+
+      <!-- floating card with password -->
+      <div class="gate-card" id="gateCard" role="region" aria-label="Members access">
+        <h2>Members Only</h2>
+        <p class="muted">Enter the access key to reveal the private archive.</p>
+
+        <div class="input-row">
+          <input id="pwInput" type="password" inputmode="text" autocomplete="off" placeholder="Access key" aria-label="Access key">
+          <button id="openBtn" class="gold-btn" aria-label="Open gates">Open</button>
+        </div>
+
+        <p id="feedback" class="muted small" aria-live="polite" style="display:none;color:#e9b86b;"></p>
+      </div>
     </div>
+  </main>
 
-</div>
+  <!-- Global script for menu + gate logic -->
+  <script src="menu.js"></script>
 
-<!-- UNLOCKED CONTENT -->
-<div id="memberStuff" class="member-content">
-    <h1>Welcome Inside</h1>
-    <p>Exclusive Access Granted — Docotela X Private Realm.</p>
-</div>
+  <script>
+    // MEMBERS GATE LOGIC (final)
+    (function(){
+      const PASSWORD = "M3Mberson1y"; // final password (case-sensitive)
+      const leftGate = document.getElementById('leftGate');
+      const rightGate = document.getElementById('rightGate');
+      const divine = document.getElementById('divineLight');
+      const openBtn = document.getElementById('openBtn');
+      const pwInput = document.getElementById('pwInput');
+      const feedback = document.getElementById('feedback');
+      const fog = document.getElementById('angelicFog');
+      const gateCard = document.getElementById('gateCard');
 
-<script>
-/* HAMBURGER MENU */
-function toggleMenu() {
-    const menu = document.getElementById("mobileMenu");
-    menu.classList.toggle("open");
-}
+      // initial subtle entrance
+      window.addEventListener('load', () => {
+        setTimeout(()=> gateCard.classList.add('entered'), 140);
+        setTimeout(()=> { if(fog) fog.classList.add('visible'); }, 260);
+      });
 
-/* GATE OPEN LOGIC */
-function openGates() {
-    const input = document.getElementById("passInput").value;
+      function failAnim(){
+        feedback.style.display = 'block';
+        feedback.textContent = 'Access denied';
+        gateCard.animate([{transform:'translateY(0)'},{transform:'translateY(-8px)'},{transform:'translateY(0)'}], {duration:360, easing:'ease-out'});
+        pwInput.classList.add('shake');
+        setTimeout(()=>{ pwInput.classList.remove('shake'); }, 420);
+      }
 
-    if (input !== "M3Mberson1y") {
-        alert("Incorrect Password");
-        return;
-    }
+      function openSequence(){
+        // open gate panels
+        leftGate.classList.remove('closed'); leftGate.classList.add('open');
+        rightGate.classList.remove('closed'); rightGate.classList.add('open');
 
-    // Open gates
-    document.querySelector(".gate-left").style.transform = "translateX(-120%)";
-    document.querySelector(".gate-right").style.transform = "translateX(120%)";
+        // reveal divine light and intensify fog
+        divine.classList.add('visible');
+        if(fog){ fog.style.transition='opacity 0.9s ease'; fog.style.opacity='0.9'; }
 
-    // Reveal content after gates fully open
-    setTimeout(() => {
-        document.getElementById("memberStuff").style.display = "block";
-    }, 2600);
-}
-</script>
+        // small card push and fade
+        gateCard.classList.add('leaving');
+        setTimeout(()=> {
+          // redirect after animation
+          window.location.href = 'private-collection.html';
+        }, 1400);
+      }
 
+      openBtn.addEventListener('click', function(){
+        feedback.style.display = 'none';
+        const v = String(pwInput.value || '').trim();
+        if(v === PASSWORD){
+          openSequence();
+        } else {
+          failAnim();
+        }
+      });
+
+      // allow Enter
+      pwInput.addEventListener('keydown', function(e){
+        if(e.key === 'Enter'){ openBtn.click(); }
+      });
+    })();
+  </script>
 </body>
 </html>
