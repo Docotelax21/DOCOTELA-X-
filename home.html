@@ -7,18 +7,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
-<body class="home main-wrap">
+<body class="home">
 
-  <!-- top center nav -->
-  <nav class="top-nav" role="navigation">
+  <!-- top center nav (hidden on home by CSS) -->
+  <nav class="top-nav">
     <a href="home.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- hamburger + mobile menu -->
-  <button class="hamburger" aria-label="Open menu">☰</button>
-  <aside id="mobileMenu" class="mobile-menu" aria-hidden="true">
+  <!-- hamburger -->
+  <div class="hamburger" aria-label="Open menu" onclick="toggleMenu()">☰</div>
+
+  <!-- mobile menu -->
+  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -26,48 +28,39 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </aside>
+  </nav>
 
-  <!-- cinematic fade on load -->
-  <div id="fadeWrap" class="fade-wrap" role="presentation">
+  <!-- cinematic intro (fade out) -->
+  <div class="fade-wrap" id="introFade">
     <div class="fade-inner">
-      <div class="glow-title" style="font-size:34px;letter-spacing:4px">DOCOTELA X</div>
-      <div class="glow-sub" style="margin-top:8px">Limited collections. Handcrafted art.</div>
+      <div class="glow-title">DOCOTELA X</div>
+      <div class="glow-sub">Limited collections. Handcrafted art.</div>
     </div>
   </div>
 
-  <!-- watermark (soft, faint) -->
-  <div class="watermark" aria-hidden="true">
-    <img src="88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png" style="width:90vw;max-width:1200px;opacity:.06;filter:grayscale(.2)"/>
-  </div>
-
-  <!-- floating cinematic Xs (parallax) -->
-  <div class="floating-x fx1">X</div>
-  <div class="floating-x fx2">X</div>
-  <div class="floating-x fx3">X</div>
-
+  <!-- HERO -->
   <main class="hero">
-    <div class="hero-center">
-      <h1 class="hero-brand">DOCOTELA X</h1>
-      <p class="hero-lead">Limited pieces handcrafted by artists. Each collection is a scene — enter if you belong to the feeling.</p>
+    <div class="watermark" aria-hidden="true"></div>
 
+    <div class="hero-center container">
+      <h1 class="hero-brand">DOCOTELA X</h1>
+      <p class="hero-lead">Limited pieces crafted by hand. A feeling you wear.</p>
       <a class="enter-btn" href="gallery.html">Enter the Gallery</a>
     </div>
+
+    <!-- floating Xs (parallax feel) -->
+    <div class="floating-x fx1">X</div>
+    <div class="floating-x fx2">X</div>
+    <div class="floating-x fx3">X</div>
   </main>
 
 <script src="menu.js"></script>
 <script>
-  // cinematic fade-in then hide
+  // intro fade timing (4s then fade)
   (function(){
-    const wrap = document.getElementById('fadeWrap');
-    setTimeout(()=>{ wrap.classList.add('fade-out'); }, 3200);
-    setTimeout(()=>{ wrap.style.display='none'; }, 4200);
-    // add scroll reveal for visible fade-in elements
-    document.addEventListener('DOMContentLoaded', ()=>{
-      const els = document.querySelectorAll('.fade-in');
-      const obs = new IntersectionObserver((entries)=>{ entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('visible'); }); }, {threshold:0.12});
-      els.forEach(e=>obs.observe(e));
-    });
+    const intro = document.getElementById('introFade');
+    setTimeout(()=> intro.classList.add('fade-out'), 4200);
+    setTimeout(()=> intro.style.display='none', 4800);
   })();
 </script>
 </body>
