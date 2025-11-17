@@ -1,56 +1,44 @@
-/* members.js — gate logic for members-only */
+// members.js - gate logic
 (function(){
-  const PASSWORD = 'freedom'; // change here to desired key
-  const leftGate = document.getElementById('leftGate');
-  const rightGate = document.getElementById('rightGate');
-  const divine = document.getElementById('divineLight');
-  const openBtn = document.getElementById('openBtn');
-  const pwInput = document.getElementById('pw');
-  const fog = document.getElementById('fog');
-  const card = document.getElementById('card');
+  const PASSWORD = 'memberson1y'; // change here if needed
+  const left = document.getElementById('leftGate');
+  const right = document.getElementById('rightGate');
+  const divine = document.getElementById('divine');
+  const btn = document.getElementById('memberOpen');
+  const input = document.getElementById('memberPassword');
+  const fog = document.getElementById('fogLayer');
+  const card = document.getElementById('gateCard');
 
-  function spawnSparkles(count=6){
-    for(let i=0;i<count;i++){
-      const s = document.createElement('div');
-      s.className='sparkle';
-      // random position inside gate area
-      s.style.left = (40 + Math.random()*40) + '%';
-      s.style.top = (30 + Math.random()*40) + '%';
-      document.body.appendChild(s);
-      requestAnimationFrame(()=> s.classList.add('show'));
-      setTimeout(()=> s.remove(), 1800);
-    }
+  // show fog on load
+  window.addEventListener('load', ()=>{
+    if(fog) fog.classList.add('active');
+    if(card) card.classList.add('fade-in');
+  });
+
+  function spawnSparkles(count=8){
+    window.spawnSparkles && window.spawnSparkles(count);
   }
 
-  function openGates(){
-    leftGate.classList.remove('closed'); leftGate.classList.add('open');
-    rightGate.classList.remove('closed'); rightGate.classList.add('open');
-    divine.classList.add('visible');
-    fog.style.transition='opacity 1s ease'; fog.style.opacity='0.75';
-    spawnSparkles(10);
-    card.style.transform='translateY(-8px)';
-    setTimeout(()=> {
-      // redirect to private collection
-      window.location.href = "private-collection.html";
-    }, 1300);
+  function openSequence(){
+    if(left) left.classList.add('open');
+    if(right) right.classList.add('open');
+    if(divine) divine.classList.add('visible');
+    if(fog){ fog.style.transition='opacity .9s'; fog.style.opacity='0.8' }
+    spawnSparkles(12);
+    setTimeout(()=> { window.location.href='private-collection.html'; }, 1400);
   }
 
   function failFeedback(){
-    card.animate([{transform:'translateY(0)'},{transform:'translateY(-8px)'},{transform:'translateY(0)'}], {duration:380, easing:'ease-out'});
-    pwInput.animate([{boxShadow:'0 0 0px rgba(200,0,0,0)'},{boxShadow:'0 0 18px rgba(200,30,30,0.14)'}], {duration:420});
+    if(card) card.animate([{transform:'translateY(0)'},{transform:'translateY(-8px)'},{transform:'translateY(0)'}], {duration:420});
     spawnSparkles(4);
   }
 
-  if(openBtn){
-    openBtn.addEventListener('click', ()=>{
-      const val = (pwInput.value||'').trim();
-      if(val && val === PASSWORD){ openGates(); } else { failFeedback(); }
-    });
-    pwInput.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') openBtn.click(); });
-  }
-
-  // initial reveal animations
-  window.addEventListener('load', ()=>{
-    setTimeout(()=> { if(card) card.classList.add('show'); fog.style.opacity = '1'; }, 260);
+  btn && btn.addEventListener('click', ()=>{
+    const v = (input.value||'').trim();
+    if(!v){ failFeedback(); return; }
+    if(v === PASSWORD) openSequence();
+    else failFeedback();
   });
+
+  input && input.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') btn.click(); });
 })();
