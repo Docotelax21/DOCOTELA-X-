@@ -1,47 +1,36 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <title>Exclusive Drops — Docotela X</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
-<body class="main-wrap">
-  <nav class="top-nav">
-    <a href="home.html">Home</a>
-    <a href="collections.html">Collections</a>
-    <a href="contact.html">Contact</a>
-  </nav>
 
-  <button class="hamburger">☰</button>
-  <aside id="mobileMenu" class="mobile-menu" aria-hidden="true">
-    <a href="home.html">Home</a>
-    <a href="collections.html">Collections</a>
-    <a href="gallery.html">Art Gallery</a>
-    <a href="exclusive-drops.html">Exclusive Drops</a>
-    <a href="membersonly.html">Members Only</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </aside>
+<body>
 
-  <main class="content">
-    <h1 class="page-title">Exclusive Drops</h1>
-    <p class="lead">Limited product releases — buy options appear on authenticated pages or via direct purchase link.</p>
+<div class="top-nav">
+  <a href="home.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
 
-    <div class="product-show">
-      <div class="product-left">
-        <img src="product-watch.jpg" alt="The Sovereign Verde">
-      </div>
-      <div class="product-right">
-        <h2>DOCOTELA X — The Sovereign Verde</h2>
-        <p style="color:var(--muted)">R150,000 — Limited</p>
-        <p class="meta">A refined timepiece with emerald dial, black case and bespoke finishing — each watch limited to a single run.</p>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
 
-        <!-- Paystack link (your paystack shop link) -->
-        <p style="margin-top:18px"><a class="buy-btn" href="https://paystack.shop/pay/fdy-nwp5q0" target="_blank" rel="noopener">Purchase via Paystack</a></p>
-      </div>
-    </div>
-  </main>
+<nav id="mobileMenu" class="mobile-menu">
+  <a href="home.html">Home</a>
+  <a href="collections.html">Collections</a>
+  <a href="gallery.html">Art Gallery</a>
+  <a href="exclusive-drops.html">Exclusive Drops</a>
+  <a href="membersonly.html">Members Only</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<main style="padding-top:140px; text-align:center;">
+  <h1 style="font-family:Cinzel; letter-spacing:5px;">Exclusive Drops</h1>
+  <p style="opacity:0.7; margin-top:10px;">Limited pieces. Once sold out, never returning.</p>
+</main>
 
 <script src="menu.js"></script>
 </body>
