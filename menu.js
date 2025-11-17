@@ -1,38 +1,46 @@
-// menu.js — robust glass hamburger for Docotela X
-(function(){
-  const hb = document.querySelectorAll('.hamburger');
-  const menus = document.querySelectorAll('#mobileMenu');
+// menu.js (single global menu script)
+// Works with elements having class="hamburger" and id="mobileMenu"
 
-  function toggleMenu() {
-    menus.forEach(m=>{
-      const open = m.classList.toggle('open');
-      m.setAttribute('aria-hidden', (!open).toString());
-    });
-    hb.forEach(b=>{
-      const expanded = b.getAttribute('aria-expanded') === 'true';
-      b.setAttribute('aria-expanded', (!expanded).toString());
-    });
+(function(){
+  // find hamburger(s) and menu
+  const hamburgers = Array.from(document.querySelectorAll('.hamburger'));
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function toggleMenu(e){
+    if(e) e.stopPropagation();
+    if(!mobileMenu) return;
+    mobileMenu.classList.toggle('open');
+    const isOpen = mobileMenu.classList.contains('open');
+    mobileMenu.setAttribute('aria-hidden', (!isOpen).toString());
   }
 
-  hb.forEach(b => b.addEventListener('click', toggleMenu));
+  // attach clicks
+  hamburgers.forEach(h => h.addEventListener('click', toggleMenu));
 
   // click outside to close
-  document.addEventListener('click', function(e){
-    const isHamburger = Array.from(hb).some(b=>b.contains(e.target));
-    const isInsideMenu = Array.from(menus).some(m=>m.contains(e.target));
-    if (!isHamburger && !isInsideMenu) {
-      menus.forEach(m=>m.classList.remove('open'));
-      hb.forEach(b=>b.setAttribute('aria-expanded','false'));
-      menus.forEach(m=>m.setAttribute('aria-hidden','true'));
-    }
+  document.addEventListener('click', function(ev){
+    if(!mobileMenu) return;
+    const open = mobileMenu.classList.contains('open');
+    if(!open) return;
+    if(mobileMenu.contains(ev.target)) return;
+    if(hamburgers.some(h=>h.contains(ev.target))) return;
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden','true');
   });
 
-  // close on Esc
+  // close on escape
   document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape') {
-      menus.forEach(m=>m.classList.remove('open'));
-      hb.forEach(b=>b.setAttribute('aria-expanded','false'));
+    if(e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')){
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden','true');
     }
   });
 
+  // ensure links in menu close it when clicked
+  document.addEventListener('click', function(ev){
+    if(!mobileMenu) return;
+    if(ev.target.tagName === 'A' && ev.target.closest('.mobile-menu')){
+      setTimeout(()=> { mobileMenu.classList.remove('open'); mobileMenu.setAttribute('aria-hidden','true'); }, 80);
+    }
+  });
 })();
