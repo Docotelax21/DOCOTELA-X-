@@ -1,21 +1,22 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Contact — Docotela X</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
-<body class="main-wrap">
+<body>
+
   <nav class="top-nav">
     <a href="home.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <button class="hamburger" aria-label="Open menu">☰</button>
-  <aside id="mobileMenu" class="mobile-menu" aria-hidden="true">
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -23,17 +24,17 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </aside>
+  </nav>
 
-  <main class="content">
+  <main class="content container">
     <h1 class="page-title">Contact</h1>
-    <p class="lead">Email: <a style="color:var(--gold)" href="mailto:docotelax@gmail.com">docotelax@gmail.com</a></p>
+    <p class="lead">For inquiries or membership interest, email <a href="mailto:docotelax@gmail.com" style="color:#f6dfb6">docotelax@gmail.com</a> or use the form below.</p>
 
-    <form class="contact-form" action="https://formspree.io/f/xanajjbr" method="POST">
+    <form action="https://formspree.io/f/xanajjbr" method="POST" class="contact-form">
       <label>Name <input type="text" name="name" required></label>
-      <label>Email <input type="email" name="email" required></label>
+      <label>Email <input type="email" name="_replyto" required></label>
       <label>Message <textarea name="message" rows="6" required></textarea></label>
-      <button type="submit" class="enter-btn">Send Message</button>
+      <button class="enter-btn" type="submit">Send message</button>
     </form>
   </main>
 
