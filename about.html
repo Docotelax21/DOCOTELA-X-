@@ -1,51 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Docotela X | About</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>About — Docotela X</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="top-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <a href="index.html">Home</a>
+    <a href="collections.html">Collections</a>
+    <a href="gallery.html">Art Gallery</a>
+    <a href="exclusive-drops.html">Exclusive Drops</a>
+    <a href="membersonly.html">Members Only</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<header class="main-header">
-    <div class="top-nav">
-        <div class="center-links">
-            <a href="home.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </div>
-        <div class="hamburger" onclick="toggleMenu()">
-            ☰
-        </div>
-    </div>
+  <main class="content">
+    <h1 class="page-title">About Docotela X</h1>
 
-    <div id="mobile-menu">
-        <a href="home.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="collections.html">Collections</a>
-        <a href="members.html">Members Only</a>
-    </div>
-</header>
+    <section class="about-section fade-in">
+      <h2 class="about-title">A Maker's Quiet Rebellion</h2>
 
-<div class="fade-in page-content">
-    <h1 class="page-title">ABOUT DOCOTELA X</h1>
+      <p>Docotela X began as a resistance to speed and conformity. Every fold, seam and finish is an argument for time — slow, deliberate, human. We craft collections as fragments of a life, each collection a chamber of memory and motion.</p>
 
-    <p class="about-text">
-        Docotela X is a luxury art-fashion house built on exclusivity, craftsmanship, 
-        and the feeling of freedom.  
-        Every collection is limited, every piece handcrafted, and every release 
-        created with intentional storytelling.
-    </p>
+      <p>We failed many times. We rebuilt a 1978 Beetle by hand across six years to prove a point — consistency matters. That project became proof that vision and patience can make the impossible look inevitable. That ethos is sewn into every piece.</p>
 
-    <p class="about-text">
-        Docotela X represents your journey — discipline, art, struggle, vision, freedom.  
-        It’s not clothing. It’s meaning.
-    </p>
-</div>
+      <p class="highlight">Limited runs. Handcrafted details. Quiet confidence.</p>
 
-<script src="animations.js"></script>
+      <p>We believe true luxury is freedom — the freedom to choose who we are and how we move. Docotela X is an invitation to that feeling.</p>
+    </section>
+  </main>
 
+  <script src="menu.js"></script>
+  <script src="animations.js"></script>
 </body>
 </html>
