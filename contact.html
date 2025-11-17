@@ -1,23 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Contact — Docotela X</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Contact — Docotela X</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <nav class="top-nav">
-    <a href="home.html">Home</a>
+  <div class="top-nav">
+    <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </nav>
-
+  </div>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
-    <a href="home.html">Home</a>
+    <a href="index.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
     <a href="exclusive-drops.html">Exclusive Drops</a>
@@ -26,18 +22,13 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <main class="content container">
+  <main class="content fade-in">
     <h1 class="page-title">Contact</h1>
-    <p class="lead">For inquiries or membership interest, email <a href="mailto:docotelax@gmail.com" style="color:#f6dfb6">docotelax@gmail.com</a> or use the form below.</p>
-
-    <form action="https://formspree.io/f/xanajjbr" method="POST" class="contact-form">
-      <label>Name <input type="text" name="name" required></label>
-      <label>Email <input type="email" name="_replyto" required></label>
-      <label>Message <textarea name="message" rows="6" required></textarea></label>
-      <button class="enter-btn" type="submit">Send message</button>
-    </form>
+    <p class="lead">Questions, membership inquiries, press — reach us below.</p>
+    <p>Email: <a class="contact-link" href="mailto:docotelax@gmail.com">docotelax@gmail.com</a></p>
+    <p>Apply for membership via the members page.</p>
   </main>
 
-<script src="menu.js"></script>
+  <script src="menu.js"></script>
 </body>
 </html>
