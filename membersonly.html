@@ -1,175 +1,27 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Members Only — Docotela X</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-
-<style>
-/* PAGE BACKDROP */
-.members-bg {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at center, #0d0d0f 0%, #000 80%);
-    overflow: hidden;
-}
-
-/* ANGELIC FOG LAYERS */
-.fog-layer {
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    top: -50%;
-    left: -50%;
-    background: url('https://i.imgur.com/v8aR4Fp.png') repeat;
-    opacity: 0.18;
-    filter: blur(12px);
-    animation: fogMove 45s linear infinite;
-}
-.fog-layer2 {
-    animation-duration: 70s;
-    opacity: 0.12;
-    filter: blur(18px);
-}
-@keyframes fogMove {
-    0% { transform: translateX(0) translateY(0); }
-    50% { transform: translateX(-8%) translateY(6%); }
-    100% { transform: translateX(0) translateY(0); }
-}
-
-/* REAL GOLD HEAVEN GATES */
-.gate-wrapper {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-}
-
-.gate {
-    width: 48%;
-    max-width: 520px;
-    height: 80%;
-    max-height: 720px;
-    background: url('https://i.imgur.com/ekNZvCw.png') center/contain no-repeat;
-    filter: drop-shadow(0 0 25px rgba(255,215,120,0.65));
-    transition: transform 2.8s cubic-bezier(.19,1,.22,1);
-}
-
-.gate-left { transform: translateX(0); }
-.gate-right { transform: translateX(0); }
-
-.gate-open-left { transform: translateX(-140%) rotateY(18deg); }
-.gate-open-right { transform: translateX(140%) rotateY(-18deg); }
-
-/* PASSWORD BOX */
-.password-wrap {
-    position: relative;
-    z-index: 20;
-    text-align: center;
-    margin-top: 40vh;
-    animation: fadeIn 3s ease forwards;
-}
-
-.password-wrap h1 {
-    font-family: Cinzel;
-    font-size: 2.3rem;
-    color: gold;
-    letter-spacing: 3px;
-}
-
-.password-wrap input {
-    margin-top: 20px;
-    padding: 14px 22px;
-    width: 260px;
-    border-radius: 8px;
-    border: 1px solid gold;
-    background: rgba(0,0,0,0.55);
-    color: white;
-    font-size: 1rem;
-    text-align: center;
-}
-
-.password-wrap button {
-    margin-top: 14px;
-    padding: 12px 26px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    background: gold;
-    color: black;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.password-wrap button:hover {
-    background: white;
-}
-
-/* CONTENT AFTER ACCESS */
-.hidden-content {
-    display: none;
-    position: relative;
-    z-index: 30;
-    animation: fadeIn 2s ease forwards;
-}
-
-.hidden-content h2 {
-    font-family: Cinzel;
-    color: gold;
-    margin-top: 30px;
-    font-size: 2rem;
-    text-align: center;
-    letter-spacing: 2px;
-}
-
-.hidden-options {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    gap: 40px;
-}
-
-.hidden-options a {
-    padding: 16px 32px;
-    border: 1px solid gold;
-    border-radius: 10px;
-    text-decoration: none;
-    color: gold;
-    font-family: Poppins;
-    letter-spacing: 1px;
-    transition: 0.4s;
-    backdrop-filter: blur(6px);
-}
-.hidden-options a:hover {
-    background: gold;
-    color: black;
-}
-
-/* FADE ANIMATION */
-@keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Members Only — Docotela X</title>
+  <link href="styles.css" rel="stylesheet">
+  <!-- small inline style to ensure fonts load early for cinematic feel -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+<body class="page members">
 
-<body>
-
-<!-- TOP NAV -->
-<div class="top-nav">
+  <!-- TOP NAV (center) -->
+  <div class="top-nav">
     <a href="home.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-</div>
+  </div>
 
-<!-- HAMBURGER -->
-<div class="hamburger" id="hamburger">☰</div>
+  <!-- HAMBURGER -->
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Open menu">☰</div>
 
-<!-- SLIDE MENU -->
-<nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
+  <!-- SLIDE MENU (shared) -->
+  <nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -177,62 +29,115 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-</nav>
+  </nav>
 
-<!-- BACKDROP -->
-<div class="members-bg">
-    <div class="fog-layer"></div>
-    <div class="fog-layer fog-layer2"></div>
+  <!-- FULLSCREEN CINEMATIC STAGE -->
+  <div class="members-stage">
+    <!-- subtle background (parallax) -->
+    <div class="members-bg-layer layer-back"></div>
+    <div class="members-bg-layer layer-mid"></div>
 
-    <!-- GATES -->
-    <div class="gate-wrapper">
-        <div class="gate gate-left" id="gateLeft"></div>
-        <div class="gate gate-right" id="gateRight"></div>
+    <!-- soft golden light beam -->
+    <div class="gold-light"></div>
+
+    <!-- angelic fog overlay (animated) -->
+    <div class="angelic-fog" aria-hidden="true"></div>
+
+    <!-- gated door elements (3D feel) -->
+    <div class="gate-wrap">
+      <div class="gate left-gate" aria-hidden="true">
+        <div class="gate-plate">
+          <div class="gate-engrave">DOCOTELA X</div>
+        </div>
+      </div>
+
+      <div class="gate-right-space"></div>
+
+      <div class="gate right-gate" aria-hidden="true">
+        <div class="gate-plate">
+          <div class="gate-engrave">DOCOTELA X</div>
+        </div>
+      </div>
     </div>
-</div>
 
-<!-- PASSWORD ENTRY -->
-<div class="password-wrap" id="passwordWrap">
-    <h1>Members Only</h1>
-    <p style="color:#bbb;font-size:0.9rem;margin-top:8px;">Enter Access Key</p>
-    <input id="accessKeyInput" type="password" placeholder="Access Code">
-    <br>
-    <button onclick="unlock()">Enter</button>
-</div>
+    <!-- centered password card (appears above gates) -->
+    <div class="password-panel" role="form" aria-labelledby="membersTitle">
+      <h1 id="membersTitle">Members Only</h1>
+      <p class="sub">Enter your access key to reveal the private archive.</p>
 
-<!-- HIDDEN SECTION AFTER ENTRY -->
-<div class="hidden-content" id="hiddenContent">
-    <h2>Private Access Granted</h2>
-    <div class="hidden-options">
-        <a href="private-collection.html">Private Collection</a>
-        <a href="exclusive-drops.html">Secret Drops</a>
-        <a href="gallery.html">Hidden Gallery</a>
+      <div class="password-row">
+        <input id="memberPass" type="password" placeholder="Enter password" aria-label="Password">
+        <button id="openBtn" class="enter-btn">Open</button>
+      </div>
+
+      <div id="memberMsg" class="member-msg" aria-live="polite"></div>
     </div>
-</div>
+  </div>
 
-<script src="menu.js"></script>
+  <script src="menu.js"></script>
+  <script>
+    // Membersonly behaviour:
+    // - correct password triggers cinematic gate sequence
+    // - wrong password shows amber 'access denied' with subtle gate glow
+    (function(){
+      const openBtn = document.getElementById('openBtn');
+      const input = document.getElementById('memberPass');
+      const msg = document.getElementById('memberMsg');
+      const leftGate = document.querySelector('.left-gate');
+      const rightGate = document.querySelector('.right-gate');
+      const fog = document.querySelector('.angelic-fog');
 
-<script>
-function unlock() {
-    const input = document.getElementById("accessKeyInput").value.trim();
-    if (input !== "docotela") {
-        alert("Incorrect password");
-        return;
-    }
+      const PASSWORD = 'memberson1y'; // keep as agreed
 
-    // Animate gates
-    document.getElementById("gateLeft").classList.add("gate-open-left");
-    document.getElementById("gateRight").classList.add("gate-open-right");
+      function deny() {
+        msg.textContent = 'Access denied';
+        msg.classList.remove('ok');
+        msg.classList.add('denied');
+        // flash a red edge on the gates
+        leftGate.classList.add('denied');
+        rightGate.classList.add('denied');
+        setTimeout(()=>{
+          leftGate.classList.remove('denied');
+          rightGate.classList.remove('denied');
+        }, 1200);
+      }
 
-    // Hide password box
-    document.getElementById("passwordWrap").style.display = "none";
+      function grant() {
+        msg.textContent = 'Access granted';
+        msg.classList.remove('denied');
+        msg.classList.add('ok');
 
-    // Show hidden content after gates open
-    setTimeout(() => {
-        document.getElementById("hiddenContent").style.display = "block";
-    }, 2600);
-}
-</script>
+        // cinematic sequence:
+        // 1) intensify gold light + fog parting
+        document.querySelector('.gold-light').classList.add('bright');
+        fog.classList.add('part');
 
+        // 2) open gates (add classes that translate them apart)
+        leftGate.classList.add('open-left');
+        rightGate.classList.add('open-right');
+
+        // 3) slight zoom-in & fade to private area after delay
+        setTimeout(()=>{
+          // final reveal -> redirect to private-collection.html
+          window.location.href = 'private-collection.html';
+        }, 1700);
+      }
+
+      openBtn.addEventListener('click', function(){
+        const val = input.value.trim();
+        if (val === PASSWORD) {
+          grant();
+        } else {
+          deny();
+        }
+      });
+
+      // allow Enter key
+      input.addEventListener('keydown', function(e){
+        if (e.key === 'Enter') openBtn.click();
+      });
+
+    })();
+  </script>
 </body>
 </html>
