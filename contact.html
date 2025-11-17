@@ -1,14 +1,22 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact — Docotela X</title><link href="styles.css" rel="stylesheet"></head>
-<body>
-  <div class="top-nav">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>About — Docotela X</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="main-wrap">
+
+  <nav class="top-nav" role="navigation">
     <a href="home.html">Home</a>
-    <a href="about.html">About</a>
+    <a href="collections.html">Collections</a>
     <a href="contact.html">Contact</a>
-  </div>
-  <div class="hamburger" aria-label="Open menu">☰</div>
-  <nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
+  </nav>
+
+  <button class="hamburger" aria-label="Open menu">☰</button>
+  <aside id="mobileMenu" class="mobile-menu" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -16,26 +24,40 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </nav>
+  </aside>
 
-  <main class="content">
-    <h1 class="page-title">Contact</h1>
-    <p class="lead">Email: <a href="mailto:docotelax@gmail.com" style="color:#f7e6c1;text-decoration:underline">docotelax@gmail.com</a></p>
+  <div class="watermark" aria-hidden="true" style="opacity:.03">
+    <img src="88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png" style="width:82vw;max-width:1000px;opacity:.04"/>
+  </div>
 
-    <form action="https://formspree.io/f/xanajjbr" method="POST" class="contact-form" style="margin-top:18px;max-width:720px;">
-      <label style="display:block;margin-bottom:10px">Name
-        <input type="text" name="name" required style="width:100%;padding:10px;border-radius:6px;background:#0b0b0c;border:1px solid rgba(255,255,255,0.04);color:#fff;margin-top:8px">
-      </label>
-      <label style="display:block;margin-bottom:10px">Email
-        <input type="email" name="_replyto" required style="width:100%;padding:10px;border-radius:6px;background:#0b0b0c;border:1px solid rgba(255,255,255,0.04);color:#fff;margin-top:8px">
-      </label>
-      <label style="display:block;margin-bottom:10px">Message
-        <textarea name="message" rows="6" required style="width:100%;padding:10px;border-radius:6px;background:#0b0b0c;border:1px solid rgba(255,255,255,0.04);color:#fff;margin-top:8px"></textarea>
-      </label>
-      <button class="enter-btn" type="submit">Send Message</button>
-    </form>
+  <main class="content cinematic-bg">
+    <h1 class="page-title">About Docotela X</h1>
+
+    <p class="lead fade-in">Docotela X is the feeling of freedom translated into cloth, metal and light — a careful tension between discipline and escape. Each collection is treated like a small scene: private, limited, patient.</p>
+
+    <section class="fade-in">
+      <h2 style="font-family:Cinzel,serif;color:var(--gold-strong)">Our Philosophy</h2>
+      <p style="color:var(--muted);max-width:900px">We pursue restraint as expression. Designs arrive through subtraction: each seam removed is a quiet decision. We keep runs intentionally small so each piece arrives with the breath of the artist who made it.</p>
+    </section>
+
+    <section class="fade-in" style="margin-top:28px">
+      <h2 style="font-family:Cinzel,serif;color:var(--gold-strong)">The Journey</h2>
+      <p style="color:var(--muted);max-width:900px">From a 1978 VW Beetle shell to hand-stitched garments and midnight workshops — the studio formed by refusal. Investors said no, then watched. We learned to keep working. The car, rebuilt over six years, proved the consistency of a vision: finish what you start and let the work speak.</p>
+    </section>
+
+    <section class="fade-in" style="margin-top:28px">
+      <h2 style="font-family:Cinzel,serif;color:var(--gold-strong)">Craft & Rarity</h2>
+      <p style="color:var(--muted);max-width:900px">Each drop is limited to a number of handcrafted pieces. We partner with ten young artists to handcraft each release — a promise that every object carries a visible mark of its maker.</p>
+    </section>
   </main>
 
 <script src="menu.js"></script>
+<script>
+  // reveal animation for about page
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const els = document.querySelectorAll('.fade-in');
+    requestAnimationFrame(()=>{ els.forEach((el,i)=> setTimeout(()=> el.classList.add('visible'), 160*i + 120)); });
+  });
+</script>
 </body>
 </html>
