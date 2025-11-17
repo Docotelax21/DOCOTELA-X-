@@ -4,24 +4,149 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Members Only — Docotela X</title>
-  <link href="styles.css" rel="stylesheet">
-  <!-- small inline style to ensure fonts load early for cinematic feel -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-</head>
-<body class="page members">
 
-  <!-- TOP NAV (center) -->
-  <div class="top-nav">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- your main stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* --- page-specific styles for members only (keeps consistent with styles.css) --- */
+    :root{
+      --gold: #caa93a;
+      --gold-strong: #f3d457;
+      --glass-bg: rgba(20,20,22,0.55);
+      --dark: #0b0b0c;
+    }
+
+    html,body{height:100%;margin:0;font-family:"Poppins",system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+    body.membersonly{background:linear-gradient(180deg,#050506 0%, #0f0f10 60%); color:#e8e6e1; overflow-x:hidden;}
+
+/* top center nav (keeps same look) */
+.top-nav{position:fixed;left:50%;transform:translateX(-50%);top:18px;z-index:120;display:flex;gap:36px}
+.top-nav a{color:#eae8e2;text-decoration:none;padding:6px 0;font-weight:600;letter-spacing:0.6px;opacity:.95}
+.top-nav a:hover{color:var(--gold-strong);text-shadow:0 6px 22px rgba(243,212,87,0.12)}
+
+/* hamburger in top-right */
+.hamburger{position:fixed;right:20px;top:14px;z-index:200;font-size:28px;color:#fff;cursor:pointer}
+.mobile-menu{position:fixed;right:-360px;top:0;height:100vh;width:360px;background:linear-gradient(180deg, rgba(12,12,14,0.92), rgba(10,10,11,0.88));backdrop-filter:blur(8px);transition:right .45s cubic-bezier(.2,.9,.2,1);z-index:190;padding-top:92px;box-shadow:-40px 0 120px rgba(0,0,0,0.6);}
+.mobile-menu.open{right:0}
+.mobile-menu a{display:block;color:#fff;padding:18px 36px;text-decoration:none;font-size:18px;opacity:.95}
+.mobile-menu a:hover{color:var(--gold-strong)}
+
+/* center content area */
+.members-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 24px 80px;position:relative;z-index:10}
+
+/* behind content: subtle watermark + particles */
+.members-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.watermark-large{
+  position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);opacity:.06;font-family:"Cinzel",serif;font-size:28vw;color:var(--gold);letter-spacing:6px;filter:blur(2px);
+}
+
+/* fog layer */
+.fog{
+  position:fixed;left:0;right:0;top:0;bottom:0;z-index:2;pointer-events:none;
+  background:radial-gradient(40% 40% at 50% 40%, rgba(255,255,255,0.03), transparent 20%),
+             radial-gradient(30% 22% at 30% 70%, rgba(240,230,200,0.02), transparent 20%),
+             linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.12));
+  mix-blend-mode:screen;
+  transition:opacity .6s ease;
+}
+
+/* the gate container center */
+.gate-stage{position:relative;width:100%;max-width:980px;display:flex;align-items:center;justify-content:center;z-index:30}
+
+/* floating glass card (contains password field) */
+.gate-card{
+  width:520px;max-width:92vw;padding:34px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.22));
+  border:1px solid rgba(255,215,80,0.06);backdrop-filter: blur(8px);box-shadow:0 30px 80px rgba(0,0,0,0.7);
+  border-radius:12px;text-align:center;transform:translateY(0);transition:transform .7s cubic-bezier(.2,.9,.2,1),opacity .7s;
+}
+
+/* title */
+.gate-card h2{font-family:"Cinzel", serif;font-weight:400;color:var(--gold-strong);margin:0 0 8px;font-size:28px;letter-spacing:2px;text-shadow:0 10px 40px rgba(202,169,58,0.06)}
+.gate-card p{color:#d6d3cf;margin:0 0 16px;opacity:.9}
+
+/* field */
+.input-row{display:flex;gap:12px;justify-content:center;align-items:center}
+.input-row input[type="password"]{
+  border-radius:8px;padding:12px 16px;font-size:16px;border:none;outline:none;width:260px;background:rgba(255,255,255,0.02);color:#eee;box-shadow: inset 0 -2px 10px rgba(0,0,0,0.6);
+  border:1px solid rgba(255,255,255,0.03)
+}
+.input-row button{
+  background:linear-gradient(180deg,var(--gold), #d6b84a);border:none;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;color:#07100b;
+  box-shadow:0 10px 30px rgba(204,166,43,0.12);
+}
+.input-row button:hover{filter:brightness(.98);transform:translateY(-1px)}
+
+/* gate visual behind card */
+.gate-visual{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-48%);width:680px;height:420px;max-width:94vw;pointer-events:none;z-index:20;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* left + right gate */
+.gate-panel{position:absolute;top:0;bottom:0;width:50%;height:100%;background:linear-gradient(180deg, rgba(20,20,22,0.6), rgba(8,8,8,0.6));border:1px solid rgba(255,215,80,0.04);box-shadow: inset 0 -60px 120px rgba(0,0,0,0.65);overflow:hidden}
+.gate-panel.left{left:0;border-radius:12px 0 0 12px}
+.gate-panel.right{right:0;border-radius:0 12px 12px 0}
+
+/* gilded trim */
+.gilded{
+  position:absolute;inset:8px;border-radius:8px;background:linear-gradient(180deg, rgba(255,235,170,0.05), rgba(255,200,60,0.02));filter:blur(8px);opacity:.25;pointer-events:none
+}
+
+/* embossed pattern / subtle highlights */
+.gate-detail{position:absolute;inset:40px;border-radius:6px;background:linear-gradient(180deg, rgba(255,255,255,0.008), rgba(0,0,0,0.05));opacity:.12;mix-blend-mode:overlay}
+
+/* closed state: panels meet center; open state: panels slide out */
+.gate-panel.closed.left{transform:translateX(0);transition:transform .9s cubic-bezier(.2,.9,.2,1)}
+.gate-panel.closed.right{transform:translateX(0);transition:transform .9s cubic-bezier(.2,.9,.2,1)}
+.gate-panel.open.left{transform:translateX(-120%);transition:transform 1.2s cubic-bezier(.22,.9,.2,1)}
+.gate-panel.open.right{transform:translateX(120%);transition:transform 1.2s cubic-bezier(.22,.9,.2,1)}
+
+/* divine light between gates */
+.divine-light{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:40%;height:70%;background:radial-gradient(closest-side, rgba(255,240,200,0.28), rgba(255,235,180,0.08), transparent 60%);filter:blur(24px);opacity:0;transition:opacity .8s ease;z-index:18;border-radius:10px;
+}
+
+/* after open: stronger light */
+.divine-light.visible{opacity:1;animation:lightPulse 2.6s infinite ease-in-out}
+@keyframes lightPulse{0%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.02)}100%{transform:translate(-50%,-50%) scale(1)}}
+
+/* small sparkles */
+.sparkle{position:absolute;width:6px;height:6px;border-radius:50%;background:linear-gradient(90deg, #fff, rgba(255,240,180,0.9));box-shadow:0 0 12px rgba(255,220,100,0.6);opacity:0;transform:translateY(0)}
+.sparkle.show{opacity:1;animation:rise 1.6s ease forwards}
+@keyframes rise{0%{transform:translateY(8px) scale(.8);opacity:0}60%{opacity:1}100%{transform:translateY(-18px) scale(1.05);opacity:0}}
+
+/* responsive */
+@media (max-width:720px){
+  .gate-visual{width:92vw;height:320px}
+  .gate-card{width:92vw;padding:22px}
+  .input-row input{width:160px}
+}
+
+/* small transitions */
+.fade-in-slow{opacity:0;transform:translateY(10px);transition:opacity .9s ease,transform .9s ease}
+.fade-in-slow.show{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body class="membersonly">
+
+  <!-- top-center nav -->
+  <div class="top-nav" role="navigation" aria-label="Main navigation">
     <a href="home.html">Home</a>
-    <a href="about.html">About</a>
+    <a href="collections.html">Collections</a>
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- HAMBURGER -->
-  <div class="hamburger" onclick="toggleMenu()" aria-label="Open menu">☰</div>
+  <!-- hamburger -->
+  <div class="hamburger" id="burger" aria-label="Open menu" title="Open menu">☰</div>
 
-  <!-- SLIDE MENU (shared) -->
-  <nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
+  <!-- slide menu -->
+  <aside id="mobileMenu" class="mobile-menu" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -29,115 +154,155 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </nav>
+  </aside>
 
-  <!-- FULLSCREEN CINEMATIC STAGE -->
-  <div class="members-stage">
-    <!-- subtle background (parallax) -->
-    <div class="members-bg-layer layer-back"></div>
-    <div class="members-bg-layer layer-mid"></div>
-
-    <!-- soft golden light beam -->
-    <div class="gold-light"></div>
-
-    <!-- angelic fog overlay (animated) -->
-    <div class="angelic-fog" aria-hidden="true"></div>
-
-    <!-- gated door elements (3D feel) -->
-    <div class="gate-wrap">
-      <div class="gate left-gate" aria-hidden="true">
-        <div class="gate-plate">
-          <div class="gate-engrave">DOCOTELA X</div>
-        </div>
-      </div>
-
-      <div class="gate-right-space"></div>
-
-      <div class="gate right-gate" aria-hidden="true">
-        <div class="gate-plate">
-          <div class="gate-engrave">DOCOTELA X</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- centered password card (appears above gates) -->
-    <div class="password-panel" role="form" aria-labelledby="membersTitle">
-      <h1 id="membersTitle">Members Only</h1>
-      <p class="sub">Enter your access key to reveal the private archive.</p>
-
-      <div class="password-row">
-        <input id="memberPass" type="password" placeholder="Enter password" aria-label="Password">
-        <button id="openBtn" class="enter-btn">Open</button>
-      </div>
-
-      <div id="memberMsg" class="member-msg" aria-live="polite"></div>
-    </div>
+  <!-- decorative / background layers -->
+  <div class="members-bg" aria-hidden="true">
+    <div class="watermark-large">Docotela X</div>
+    <div class="fog" id="fog"></div>
+    <!-- small sparkles runtime injected -->
   </div>
 
-  <script src="menu.js"></script>
+  <!-- main stage -->
+  <main class="members-wrap" role="main">
+
+    <div class="gate-stage">
+
+      <!-- gate visual behind -->
+      <div class="gate-visual" aria-hidden="true">
+        <div class="gate-panel left closed" id="leftGate">
+          <div class="gilded"></div>
+          <div class="gate-detail"></div>
+        </div>
+        <div class="gate-panel right closed" id="rightGate">
+          <div class="gilded"></div>
+          <div class="gate-detail"></div>
+        </div>
+
+        <div class="divine-light" id="divineLight"></div>
+      </div>
+
+      <!-- the floating glass card -->
+      <div class="gate-card fade-in-slow" id="card">
+        <h2>Members Only</h2>
+        <p>Enter your access key to reveal the private archive.</p>
+
+        <div class="input-row">
+          <input id="pw" type="password" placeholder="Access key" aria-label="Access key">
+          <button id="openBtn" aria-label="Open gates">Open</button>
+        </div>
+
+        <div style="height:8px"></div>
+        <small style="color:#bdbab6;opacity:.9">Access is limited. Contact us for membership.</small>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- menu script & gate logic -->
   <script>
-    // Membersonly behaviour:
-    // - correct password triggers cinematic gate sequence
-    // - wrong password shows amber 'access denied' with subtle gate glow
-    (function(){
-      const openBtn = document.getElementById('openBtn');
-      const input = document.getElementById('memberPass');
-      const msg = document.getElementById('memberMsg');
-      const leftGate = document.querySelector('.left-gate');
-      const rightGate = document.querySelector('.right-gate');
-      const fog = document.querySelector('.angelic-fog');
+    // ----- CONFIG -----
+    // Set the members-only password here:
+    const PASSWORD = "freedom"; // <<--- change to your desired key
 
-      const PASSWORD = 'memberson1y'; // keep as agreed
+    // ----- MENU (works across pages) -----
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-      function deny() {
-        msg.textContent = 'Access denied';
-        msg.classList.remove('ok');
-        msg.classList.add('denied');
-        // flash a red edge on the gates
-        leftGate.classList.add('denied');
-        rightGate.classList.add('denied');
-        setTimeout(()=>{
-          leftGate.classList.remove('denied');
-          rightGate.classList.remove('denied');
-        }, 1200);
+    function toggleMenu(){
+      const open = mobileMenu.classList.toggle('open');
+      mobileMenu.setAttribute('aria-hidden', !open);
+    }
+
+    burger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+
+    // close menu if clicking outside
+    document.addEventListener('click', function(e){
+      if(!mobileMenu.contains(e.target) && e.target !== burger){
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden','true');
       }
+    });
 
-      function grant() {
-        msg.textContent = 'Access granted';
-        msg.classList.remove('denied');
-        msg.classList.add('ok');
+    // allow keyboard escape to close
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){ mobileMenu.classList.remove('open'); mobileMenu.setAttribute('aria-hidden','true'); }
+    });
 
-        // cinematic sequence:
-        // 1) intensify gold light + fog parting
-        document.querySelector('.gold-light').classList.add('bright');
-        fog.classList.add('part');
+    // ----- gate logic & animations -----
+    const leftGate = document.getElementById('leftGate');
+    const rightGate = document.getElementById('rightGate');
+    const divine = document.getElementById('divineLight');
+    const openBtn = document.getElementById('openBtn');
+    const pwInput = document.getElementById('pw');
+    const fog = document.getElementById('fog');
+    const card = document.getElementById('card');
 
-        // 2) open gates (add classes that translate them apart)
-        leftGate.classList.add('open-left');
-        rightGate.classList.add('open-right');
+    // initial show animation
+    window.addEventListener('load', ()=>{
+      setTimeout(()=> card.classList.add('show'), 260);
+      // subtle fog entrance
+      fog.style.opacity = '1';
+    });
 
-        // 3) slight zoom-in & fade to private area after delay
-        setTimeout(()=>{
-          // final reveal -> redirect to private-collection.html
-          window.location.href = 'private-collection.html';
-        }, 1700);
+    // helper: show sparkles
+    function spawnSparkles(count=6){
+      for(let i=0;i<count;i++){
+        const s = document.createElement('div');
+        s.className='sparkle';
+        const rx = (Math.random()*60 - 30) + '%';
+        const ry = (Math.random()*60 + 20) + '%';
+        s.style.left = rx;
+        s.style.top = ry;
+        document.body.appendChild(s);
+        requestAnimationFrame(()=> s.classList.add('show'));
+        setTimeout(()=> s.remove(), 1600);
       }
+    }
 
-      openBtn.addEventListener('click', function(){
-        const val = input.value.trim();
-        if (val === PASSWORD) {
-          grant();
-        } else {
-          deny();
-        }
-      });
+    // open gate sequence
+    function openGates(){
+      // animate panels to open
+      leftGate.classList.remove('closed'); leftGate.classList.add('open');
+      rightGate.classList.remove('closed'); rightGate.classList.add('open');
+      // reveal divine light
+      divine.classList.add('visible');
+      // lighten fog slightly
+      fog.style.transition='opacity 1s ease'; fog.style.opacity='0.75';
+      spawnSparkles(10);
+      // small push effect on card
+      card.style.transform='translateY(-10px)';
+      setTimeout(()=> card.style.opacity='.95', 800);
+      // after open, reveal member content (simulate navigation)
+      setTimeout(()=> {
+        // For now we can show a success toast or redirect to private-collection.html
+        // You can change this to load content or go to private page:
+        window.location.href = "private-collection.html";
+      }, 1500);
+    }
 
-      // allow Enter key
-      input.addEventListener('keydown', function(e){
-        if (e.key === 'Enter') openBtn.click();
-      });
+    // failed attempt feedback
+    function failFeedback(){
+      card.animate([{transform:'translateY(0)'},{transform:'translateY(-8px)'},{transform:'translateY(0)'}], {duration:380, easing:'ease-out'});
+      pwInput.animate([{boxShadow:'0 0 0px rgba(200,0,0,0)'},{boxShadow:'0 0 18px rgba(200,30,30,0.14)'}], {duration:420});
+      spawnSparkles(4);
+    }
 
-    })();
+    // click handler
+    openBtn.addEventListener('click', ()=>{
+      const val = (pwInput.value||'').trim();
+      if(val && val === PASSWORD){
+        openGates();
+      } else {
+        failFeedback();
+      }
+    });
+
+    // allow pressing Enter
+    pwInput.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){ openBtn.click(); }
+    });
   </script>
+
 </body>
 </html>
