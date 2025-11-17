@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>About — Docotela X</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
-<body class="main-wrap">
+<body>
 
-  <nav class="top-nav" role="navigation">
+  <nav class="top-nav">
     <a href="home.html">Home</a>
-    <a href="collections.html">Collections</a>
+    <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <button class="hamburger" aria-label="Open menu">☰</button>
-  <aside id="mobileMenu" class="mobile-menu" aria-hidden="true">
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -24,40 +24,28 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </aside>
+  </nav>
 
-  <div class="watermark" aria-hidden="true" style="opacity:.03">
-    <img src="88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png" style="width:82vw;max-width:1000px;opacity:.04"/>
-  </div>
-
-  <main class="content cinematic-bg">
+  <main class="content container">
     <h1 class="page-title">About Docotela X</h1>
 
-    <p class="lead fade-in">Docotela X is the feeling of freedom translated into cloth, metal and light — a careful tension between discipline and escape. Each collection is treated like a small scene: private, limited, patient.</p>
+    <p class="lead">Docotela X is a feeling — a quiet rebellion translated into cloth, metal and paper. We make objects that demand patience. Each stitch, fold and mark is a conversation between discipline and escape.</p>
 
-    <section class="fade-in">
-      <h2 style="font-family:Cinzel,serif;color:var(--gold-strong)">Our Philosophy</h2>
-      <p style="color:var(--muted);max-width:900px">We pursue restraint as expression. Designs arrive through subtraction: each seam removed is a quiet decision. We keep runs intentionally small so each piece arrives with the breath of the artist who made it.</p>
+    <section style="margin-top:26px;">
+      <p>We began as a small studio with a stubborn belief: that clothing could be an archive of memory and freedom. We built, failed, redesigned and kept the few ideas that carried truth. The work is deliberate, limited, and not eager to please. It is made for those who recognise the value of solitude and the subtlety of detail.</p>
+
+      <p style="margin-top:14px;">Every collection is a chapter — some loud, some whispering — but all honest. We work with ten artists and handcraft each limited piece to hold a story. We are committed to craft as practice, not as spectacle.</p>
     </section>
 
-    <section class="fade-in" style="margin-top:28px">
-      <h2 style="font-family:Cinzel,serif;color:var(--gold-strong)">The Journey</h2>
-      <p style="color:var(--muted);max-width:900px">From a 1978 VW Beetle shell to hand-stitched garments and midnight workshops — the studio formed by refusal. Investors said no, then watched. We learned to keep working. The car, rebuilt over six years, proved the consistency of a vision: finish what you start and let the work speak.</p>
-    </section>
-
-    <section class="fade-in" style="margin-top:28px">
-      <h2 style="font-family:Cinzel,serif;color:var(--gold-strong)">Craft & Rarity</h2>
-      <p style="color:var(--muted);max-width:900px">Each drop is limited to a number of handcrafted pieces. We partner with ten young artists to handcraft each release — a promise that every object carries a visible mark of its maker.</p>
-    </section>
+    <div style="margin-top:28px;">
+      <a class="enter-btn" href="collections.html">View Collections</a>
+    </div>
   </main>
 
+  <!-- floating Xs -->
+  <div class="floating-x fx1">X</div>
+  <div class="floating-x fx2">X</div>
+
 <script src="menu.js"></script>
-<script>
-  // reveal animation for about page
-  document.addEventListener('DOMContentLoaded', ()=>{
-    const els = document.querySelectorAll('.fade-in');
-    requestAnimationFrame(()=>{ els.forEach((el,i)=> setTimeout(()=> el.classList.add('visible'), 160*i + 120)); });
-  });
-</script>
 </body>
 </html>
