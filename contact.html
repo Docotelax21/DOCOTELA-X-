@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact — Docotela X</title><link href="styles.css" rel="stylesheet"></head>
+<body>
+  <div class="top-nav">
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="hamburger" aria-label="Open menu">☰</div>
+  <nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
+    <a href="home.html">Home</a>
+    <a href="collections.html">Collections</a>
+    <a href="gallery.html">Art Gallery</a>
+    <a href="exclusive-drops.html">Exclusive Drops</a>
+    <a href="membersonly.html">Members Only</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="content">
+    <h1 class="page-title">Contact</h1>
+    <p class="lead">Email: <a href="mailto:docotelax@gmail.com" style="color:#f7e6c1;text-decoration:underline">docotelax@gmail.com</a></p>
+
+    <form action="https://formspree.io/f/xanajjbr" method="POST" class="contact-form" style="margin-top:18px;max-width:720px;">
+      <label style="display:block;margin-bottom:10px">Name
+        <input type="text" name="name" required style="width:100%;padding:10px;border-radius:6px;background:#0b0b0c;border:1px solid rgba(255,255,255,0.04);color:#fff;margin-top:8px">
+      </label>
+      <label style="display:block;margin-bottom:10px">Email
+        <input type="email" name="_replyto" required style="width:100%;padding:10px;border-radius:6px;background:#0b0b0c;border:1px solid rgba(255,255,255,0.04);color:#fff;margin-top:8px">
+      </label>
+      <label style="display:block;margin-bottom:10px">Message
+        <textarea name="message" rows="6" required style="width:100%;padding:10px;border-radius:6px;background:#0b0b0c;border:1px solid rgba(255,255,255,0.04);color:#fff;margin-top:8px"></textarea>
+      </label>
+      <button class="enter-btn" type="submit">Send Message</button>
+    </form>
+  </main>
+
+<script src="menu.js"></script>
+</body>
+</html>
