@@ -1,184 +1,244 @@
-/* styles.css — Docotela X master stylesheet (cinematic + luxury) */
-
-/* reset */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  background:linear-gradient(180deg,#060606 0%, #080808 100%);
-  color:#e8e6e1;
-  font-family:"Poppins", system-ui, -apple-system, "Cinzel", serif;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  overflow-x:hidden;
+/* ----------------------------------
+   GLOBAL RESET + SMOOTH FADE-IN
+---------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ---------- Top nav (center) ---------- */
-.top-nav{
-  position:fixed;
-  left:50%;
-  transform:translateX(-50%);
-  top:20px;
-  z-index:1200;
-  display:flex;
-  gap:34px;
-  align-items:center;
-}
-.top-nav a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
-  letter-spacing:0.6px;
-  font-family:"Cinzel", serif;
-  font-size:18px;
-  opacity:.98;
-  transition:color .25s ease, text-shadow .25s ease;
-}
-.top-nav a:hover{ color:#e0b24a; text-shadow:0 8px 30px rgba(224,178,74,0.06); }
-
-/* ---------- Hamburger (top-right) ---------- */
-.hamburger{
-  position:fixed;
-  right:20px;
-  top:14px;
-  z-index:1400;
-  background:rgba(255,255,255,0.02);
-  border:1px solid rgba(255,255,255,0.03);
-  padding:10px 12px;
-  border-radius:8px;
-  color:#fff;
-  font-size:20px;
-  cursor:pointer;
-  backdrop-filter: blur(6px);
+body {
+  background: #05010f;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  animation: fadeIn 1.2s ease forwards;
 }
 
-/* ---------- Mobile menu (glass panel) ---------- */
-.mobile-menu{
-  position:fixed;
-  right:-360px;
-  top:0;
-  width:340px;
-  height:100vh;
-  background:linear-gradient(180deg, rgba(15,15,15,0.96), rgba(8,8,8,0.98));
-  backdrop-filter: blur(12px);
-  box-shadow:-30px 0 60px rgba(0,0,0,0.6);
-  transition: right .38s cubic-bezier(.2,.9,.2,1);
-  z-index:1390;
-  padding-top:110px;
-  display:flex;
-  flex-direction:column;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
-.mobile-menu.open{ right:0; }
-.mobile-menu a{ color:#fff; text-decoration:none; padding:16px 32px; font-weight:700; font-family:"Cinzel", serif; font-size:18px; transition: color .2s ease; }
-.mobile-menu a:hover{ color:#e0b24a; }
 
-/* ---------- Hero / watermark / floating X ---------- */
-.watermark{
+/* ----------------------------------
+   TOP CENTER NAV LINKS
+---------------------------------- */
+.top-center-nav {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 40px;
+  z-index: 9999;
+}
+
+.top-center-nav a {
+  color: white;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.top-center-nav a:hover {
+  color: gold;
+}
+
+/* ----------------------------------
+   HAMBURGER MENU
+---------------------------------- */
+#hamburger {
+  position: fixed;
+  top: 22px;
+  right: 25px;
+  font-size: 32px;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+  transition: transform 0.3s ease;
+}
+
+#hamburger:hover {
+  transform: scale(1.15);
+}
+
+#mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 65%;
+  height: 100vh;
+  background: rgba(10, 0, 25, 0.96);
+  backdrop-filter: blur(10px);
+  padding-top: 120px;
+  transition: right 0.45s ease;
+  z-index: 9998;
+}
+
+#mobile-menu.open {
+  right: 0;
+}
+
+#mobile-menu a {
+  display: block;
+  padding: 18px;
+  margin-left: 20px;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#mobile-menu a:hover {
+  color: gold;
+}
+
+/* ----------------------------------
+   PAGE TITLES & HEADERS
+---------------------------------- */
+h1, h2 {
+  text-align: center;
+  font-family: Cinzel, serif;
+  letter-spacing: 3px;
+  margin-top: 120px;
+  margin-bottom: 30px;
+}
+
+/* ----------------------------------
+   MEMBERS GATE — STYLE A (Luxury Gold)
+---------------------------------- */
+
+.gate-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 120px auto;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.gate {
+  width: 45%;
+  height: 380px;
+  background: linear-gradient(to bottom, #0a0a33, #111144);
+  border: 3px solid gold;
+  box-shadow: 0 0 35px gold;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.gate:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 55px gold;
+}
+
+/* ----------------------------------
+   FOG EFFECT — STYLE B (Angelic Mist)
+---------------------------------- */
+.fog {
   position: absolute;
-  inset:0;
-  background-image: url('88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png');
-  background-position:center;
-  background-repeat:no-repeat;
-  background-size:78%;
-  opacity:0.04;
-  filter: blur(3px) saturate(.95);
-  pointer-events:none;
-  z-index:1;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 70%);
+  animation: fogMove 12s ease-in-out infinite;
+  opacity: 0.55;
+  filter: blur(22px);
 }
 
-/* floating Xs */
-.floating-x{pointer-events:none;position:fixed;font-family:"Cinzel",serif;color:rgba(224,178,74,0.03);z-index:2}
-.fx1{left:6%;top:12%;font-size:20vw;animation:fx1 36s linear infinite}
-.fx2{left:74%;top:40%;font-size:16vw;animation:fx2 40s linear infinite}
-.fx3{left:28%;top:74%;font-size:12vw;animation:fx3 44s linear infinite}
-@keyframes fx1{0%{transform:translate(0,0)}50%{transform:translate(36px,-28px)}100%{transform:translate(0,0)}}
-@keyframes fx2{0%{transform:translate(0,0)}50%{transform:translate(-56px,36px)}100%{transform:translate(0,0)}}
-@keyframes fx3{0%{transform:translate(0,0)}50%{transform:translate(20px,-30px)}100%{transform:translate(0,0)}}
-
-/* ---------- Cinematic fade overlay (used on homepage only) ---------- */
-.fade-wrap{
-  position:fixed;inset:0;z-index:1500;display:flex;align-items:center;justify-content:center;background:#000;transition:opacity .9s ease;
-}
-.fade-inner{ text-align:center;color:#fff; }
-.glow-title{ font-family:"Cinzel", serif; font-size:56px; letter-spacing:6px; color:#e8d8a8; text-shadow:0 24px 80px rgba(224,178,74,0.06); animation:glowPulse 3.8s ease-in-out infinite; }
-.glow-sub{ margin-top:12px; color:rgba(255,255,255,0.75); font-size:16px; opacity:.95; }
-.fade-wrap.fade-out{ opacity:0; pointer-events:none; }
-
-@keyframes glowPulse{0%{filter:drop-shadow(0 0 8px rgba(224,178,74,0.06))}50%{filter:drop-shadow(0 0 26px rgba(224,178,74,0.10))}100%{filter:drop-shadow(0 0 8px rgba(224,178,74,0.06))}}
-
-/* ---------- Members page specific ---------- */
-.membersonly { background: radial-gradient(1200px 600px at 50% 20%, rgba(20,17,12,0.05), transparent 20%), linear-gradient(180deg,#040405,#060606); }
-
-/* background for members page (watermark & fog container) */
-.members-bg { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
-.watermark-large { position:absolute; left:50%; top:40%; transform:translate(-50%,-50%); opacity:0.06; font-family:"Cinzel", serif; font-size:26vw; color:#caa93a; filter:blur(2px); letter-spacing:6px; }
-
-/* angelic fog style (Fog Style B) */
-.angelic-fog {
-  position:fixed; left:0; right:0; top:0; bottom:0; z-index:1; pointer-events:none; opacity:0;
-  background:
-    radial-gradient(40% 40% at 50% 35%, rgba(255,245,220,0.04), transparent 20%),
-    radial-gradient(30% 22% at 20% 80%, rgba(255,235,180,0.02), transparent 20%),
-    linear-gradient(180deg, rgba(255,250,240,0.02), rgba(0,0,0,0.12));
-  mix-blend-mode:screen;
-  transition:opacity .8s ease;
+@keyframes fogMove {
+  0%   { transform: translate(-20%, -20%); }
+  50%  { transform: translate(10%, 10%); }
+  100% { transform: translate(-20%, -20%); }
 }
 
-/* gate visuals */
-.gate-stage{position:relative; width:100%; min-height:100vh; display:flex; align-items:center; justify-content:center; z-index:10; padding:120px 20px;}
-.gate-visual{ position:relative; width:760px; max-width:92vw; height:420px; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+/* ----------------------------------
+   MEMBERS CONTENT INSIDE THE GATES
+---------------------------------- */
+.gate-content {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 1.5px;
+}
 
-/* panels */
-.gate-panel{ position:absolute; top:0; bottom:0; width:50%; background:linear-gradient(180deg, #0b0b0d 0%, #111 100%); border:1px solid rgba(255,220,120,0.04); box-shadow: inset 0 -50px 100px rgba(0,0,0,0.6); overflow:hidden; transition:transform 1.1s cubic-bezier(.22,.9,.2,1); border-radius:12px; }
-.gate-panel.left{ left:0; transform:translateX(0); }
-.gate-panel.right{ right:0; transform:translateX(0); }
+/* ----------------------------------
+   ABOUT PAGE — CINEMATIC IMPACT
+---------------------------------- */
+.about-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 140px auto;
+  padding: 30px;
+  background: rgba(15, 5, 40, 0.45);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 35px rgba(255, 215, 0, 0.15);
+  animation: aboutFade 1.4s ease forwards;
+  opacity: 0;
+}
 
-/* gilded trim and details */
-.gilded{ position:absolute; inset:6px; border-radius:8px; background:linear-gradient(180deg, rgba(255,235,170,0.06), rgba(255,200,60,0.02)); filter:blur(6px); opacity:.28; pointer-events:none;}
-.bolt-detail{ position:absolute; inset:28px; border-radius:6px; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04)); opacity:.12; }
+@keyframes aboutFade {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
-/* closed / open states */
-.gate-panel.closed.left{ transform:translateX(0); }
-.gate-panel.closed.right{ transform:translateX(0); }
-.gate-panel.open.left{ transform:translateX(-120%); }
-.gate-panel.open.right{ transform:translateX(120%); }
+.about-container p {
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
 
-/* divine light */
-.divine-light{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:44%; height:72%; background:radial-gradient(closest-side, rgba(255,245,200,0.28), rgba(255,235,180,0.07), transparent 60%); filter:blur(28px); opacity:0; transition:opacity .8s ease; border-radius:10px; z-index:6; }
-.divine-light.visible{ opacity:1; animation: divinePulse 2.8s ease-in-out infinite; }
-@keyframes divinePulse{ 0%{ transform:translate(-50%,-50%) scale(1) } 50%{ transform:translate(-50%,-50%) scale(1.02) } 100%{ transform:translate(-50%,-50%) scale(1) } }
+/* ----------------------------------
+   GALLERY & COLLECTION CARDS
+---------------------------------- */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
 
-/* gate-card (glass) */
-.gate-card{ position:relative; width:560px; max-width:94vw; padding:32px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.20)); border:1px solid rgba(255,215,80,0.04); box-shadow:0 30px 80px rgba(0,0,0,0.7); z-index:12; transition: transform .9s cubic-bezier(.2,.9,.2,1), opacity .6s ease; opacity:1; }
-.gate-card.entered{ transform:translateY(0); opacity:1; }
-.gate-card.leaving{ transform:translateY(-24px); opacity:0.96; }
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.35);
+}
 
-/* card type */
-.gate-card h2{ font-family:"Cinzel", serif; color:#f3d457; font-size:28px; margin:0 0 8px; letter-spacing:2px; text-shadow:0 8px 26px rgba(202,169,58,0.06); }
-.gate-card .muted{ color:rgba(255,255,255,0.78); margin:0 0 14px; }
+/* ----------------------------------
+   FOOTER
+---------------------------------- */
+footer {
+  text-align: center;
+  padding: 40px;
+  margin-top: 80px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 1.5px;
+}
 
-/* input row */
-.input-row{ display:flex; gap:12px; justify-content:center; align-items:center; margin-top:8px; }
-.input-row input[type="password"]{ background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); color:#fff; padding:10px 14px; border-radius:8px; width:260px; font-size:15px; outline:none; transition: box-shadow .18s ease; }
-.input-row input.shake{ animation:shake .42s ease; }
-@keyframes shake{ 10%{ transform:translateX(-6px)} 30%{transform:translateX(6px)} 50%{transform:translateX(-4px)} 70%{transform:translateX(2px)} 100%{transform:translateX(0)} }
-
-.gold-btn{ background:linear-gradient(180deg,#f3d457,#caa93a); border:none; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:700; color:#07100b; box-shadow:0 10px 30px rgba(204,166,43,0.12); transition: transform .14s ease; }
-.gold-btn:active{ transform:translateY(1px); }
-
-/* small helpers */
-.muted.small{ font-size:12px; opacity:0.9; margin-top:12px; }
-
-/* sparkles (generated via script) */
-.sparkle{ position:absolute; width:6px; height:6px; border-radius:50%; background:linear-gradient(90deg,#fff,rgba(255,240,180,0.9)); box-shadow:0 0 18px rgba(255,220,100,0.64); opacity:0; pointer-events:none; transform:translateY(0) }
-.sparkle.show{ opacity:1; animation: rise 1.6s ease forwards }
-@keyframes rise{ 0%{ transform:translateY(8px) scale(.8); opacity:0 } 60%{ opacity:1 } 100%{ transform:translateY(-18px) scale(1.05); opacity:0 } }
-
-/* responsive */
-@media (max-width:720px){
-  .gate-visual{ height:340px; }
-  .gate-card{ width:92vw; padding:20px; }
-  .input-row input{ width:160px; }
-  .top-nav{ gap:18px; font-size:15px; top:12px; }
-  .hamburger{ top:10px; right:12px; }
+/* ----------------------------------
+   MOBILE RESPONSIVE
+---------------------------------- */
+@media(max-width: 900px) {
+  .gate-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .gate {
+    width: 85%;
+    height: 300px;
+  }
+  .top-center-nav {
+    display: none;
+  }
 }
