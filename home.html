@@ -1,31 +1,28 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Docotela X — Home</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Docotela X — Home</title>
+  <link href="styles.css" rel="stylesheet">
 </head>
 <body class="home">
 
-<!-- FLOATING PARALLAX X -->
-<img src="88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png" class="floating-x">
+  <!-- watermark -->
+  <div class="watermark" aria-hidden="true"></div>
 
-<!-- TOP NAV -->
-<div class="top-nav">
+  <!-- top center nav (hidden on home via CSS) -->
+  <div class="top-nav">
     <a href="home.html">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-</div>
+  </div>
 
-<!-- HAMBURGER -->
-<div class="hamburger" id="hamburger" onclick="toggleMenu()">☰</div>
+  <!-- hamburger -->
+  <div class="hamburger" aria-label="Open menu">☰</div>
 
-<!-- GLASS SLIDE MENU -->
-<nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
+  <!-- slide menu -->
+  <nav id="mobileMenu" class="mobile-menu glass" aria-hidden="true">
     <a href="home.html">Home</a>
     <a href="collections.html">Collections</a>
     <a href="gallery.html">Art Gallery</a>
@@ -33,41 +30,35 @@
     <a href="membersonly.html">Members Only</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-</nav>
+  </nav>
 
-<!-- CINEMATIC INTRO FADE -->
-<div id="fadeWrap" class="fade-wrap">
-    <div class="fade-inner">
-        <div class="glow-title">DOCOTELA X</div>
-        <div class="glow-sub">Limited collections. Handcrafted art.</div>
+  <!-- cinematic fade overlay -->
+  <div id="fadeWrap" class="fade-wrap" style="position:fixed;inset:0;z-index:1400;background:#000;display:flex;align-items:center;justify-content:center;">
+    <div style="text-align:center;color:#e7d8aa;">
+      <div style="font-family:'Cinzel',serif;font-size:46px;letter-spacing:6px;">DOCOTELA X</div>
+      <div style="opacity:.85;margin-top:10px;">Limited collections. Handcrafted art.</div>
     </div>
-</div>
+  </div>
 
-<!-- HERO -->
-<main class="hero">
-    <div class="watermark"></div>
-
+  <main class="hero">
     <div class="hero-center">
-        <h1 class="hero-brand">DOCOTELA X</h1>
-        <p class="hero-lead">Limited pieces crafted by hand. A feeling you wear.</p>
-        <a class="enter-btn" href="gallery.html">Enter the Gallery</a>
+      <h1 class="hero-brand">DOCOTELA X</h1>
+      <p class="hero-lead">Limited pieces crafted by hand. A feeling you wear.</p>
+      <a class="enter-btn" href="gallery.html">Enter the Gallery</a>
     </div>
 
     <div class="floating-x fx1">X</div>
     <div class="floating-x fx2">X</div>
     <div class="floating-x fx3">X</div>
-</main>
+  </main>
 
 <script src="menu.js"></script>
-
 <script>
-// cinematic fade timing
-(function(){
-    const wrap = document.getElementById('fadeWrap');
-    setTimeout(()=> wrap.classList.add('fade-out'), 4200);
-    setTimeout(()=> wrap.style.display = 'none', 4800);
-})();
+  (function(){
+    const fade = document.getElementById('fadeWrap');
+    setTimeout(()=>{ fade.style.transition='opacity .8s ease'; fade.style.opacity='0'; }, 3200);
+    setTimeout(()=>{ fade.remove(); }, 4200);
+  })();
 </script>
-
 </body>
 </html>
