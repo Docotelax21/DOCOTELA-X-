@@ -1,173 +1,102 @@
-/* styles.css - Final Docotela X master stylesheet
-   Comprehensive, cinematic, responsive, and consistent
-*/
-
-/* ---------------------------------------------------------
-   GLOBAL VARIABLES
---------------------------------------------------------- */
 :root{
-  --gold: #caa93a;
-  --gold-strong: #f3d457;
-  --dark: #080808;
-  --soft-dark: #0d0d0f;
-  --text-light: #e9e6df;
-  --glass: rgba(255,255,255,0.04);
-  --glass-border: rgba(255,255,255,0.10);
-  --ease-std: cubic-bezier(.2,.9,.2,1);
+  --bg:#050505;
+  --muted:#bdb7b0;
+  --white:#ffffff;
+  --gold:#c8a15b;
+  --container:1200px;
+  --max-width:1100px;
+  --radius:12px;
+  --ease: cubic-bezier(.2,.9,.25,1);
 }
-
-/* ---------------------------------------------------------
-   RESET / BASE
---------------------------------------------------------- */
 *{box-sizing:border-box}
-html,body{height:100%;width:100%;margin:0;padding:0;font-family:"Poppins",system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;color:var(--text-light);background:linear-gradient(180deg,#030303,#0d0d0f 70%);-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
-a{color:inherit}
-img{max-width:100%;display:block}
-
-/* body fade on load */
-body{opacity:0;animation:bodyFade 0.9s var(--ease-std) forwards}
-@keyframes bodyFade{from{opacity:0}to{opacity:1}}
-
-/* ---------------------------------------------------------
-   NAV + HAMBURGER + MOBILE MENU
---------------------------------------------------------- */
-.top-nav{
-  position:fixed;left:50%;transform:translateX(-50%);top:18px;display:flex;gap:36px;z-index:220;font-family:"Cinzel",serif
-}
-.top-nav a{color:var(--text-light);text-decoration:none;font-weight:600;letter-spacing:0.6px;font-size:17px}
-.top-nav a:hover{color:var(--gold-strong);text-shadow:0 6px 22px rgba(243,212,87,0.08)}
-
-.hamburger{
-  position:fixed;right:18px;top:14px;font-size:30px;cursor:pointer;color:var(--text-light);z-index:230;line-height:1;user-select:none
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,'Helvetica Neue',Arial;
+  background:var(--bg);
+  color:var(--white);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-y:scroll;
 }
 
-/* slide-out menu */
+/* container */
+.container{max-width:var(--container);margin:0 auto;padding:48px 22px}
+
+/* topbar */
+.topbar{
+  position:fixed;left:0;right:0;top:16px;display:flex;align-items:center;justify-content:center;z-index:60;pointer-events:none
+}
+.top-center{pointer-events:auto;font-family:'Playfair Display',serif;font-size:18px;color:var(--white);letter-spacing:0.06em}
+.top-link{color:var(--white);text-decoration:none;margin:0 12px;opacity:0.95}
+.top-link:hover{color:var(--gold)}
+.sep{opacity:0.25;margin:0 10px}
+.hamburger{position:fixed;right:18px;top:12px;background:transparent;border:0;color:var(--white);font-size:22px;padding:12px;border-radius:8px;pointer-events:auto;z-index:90}
+.hamburger:focus{outline:2px solid rgba(200,160,80,0.12)}
+
+/* mobile menu */
 .mobile-menu{
-  position:fixed;top:0;right:-380px;height:100vh;width:360px;padding-top:92px;
-  background:linear-gradient(180deg, rgba(12,12,14,0.96), rgba(8,8,9,0.88));
-  backdrop-filter: blur(10px);
-  transition:right .45s var(--ease-std);
-  z-index:1000;overflow-y:auto;box-shadow:-40px 0 90px rgba(0,0,0,0.6)
+  position:fixed;right:18px;top:56px;background:linear-gradient(180deg,rgba(0,0,0,0.98),rgba(0,0,0,0.9));padding:18px;border-radius:12px;display:flex;flex-direction:column;gap:12px;z-index:80;min-width:220px;box-shadow:0 8px 30px rgba(0,0,0,0.6)
 }
-.mobile-menu.open{right:0}
-.mobile-menu a{display:block;color:var(--text-light);padding:16px 32px;text-decoration:none;font-size:18px}
-.mobile-menu a:hover{color:var(--gold-strong)}
+.mobile-menu a{color:var(--white);text-decoration:none;padding:8px 10px;border-radius:8px}
+.mobile-menu a:hover{background:rgba(255,255,255,0.02);color:var(--gold)}
 
-/* ensure menu clickable on mobile */
-.mobile-menu { -webkit-overflow-scrolling: touch; }
-
-/* small screens adjust menu width */
-@media (max-width:420px){
-  .mobile-menu{width:100%;right:-100%}
-}
-
-/* ---------------------------------------------------------
-   HERO / HOME
---------------------------------------------------------- */
-.hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:0 20px}
-.watermark{
-  position:absolute;inset:0;background:url('88A57F40-470A-4B65-A4E2-DE3DAFEA66CE.png') center/70% no-repeat;opacity:0.06;filter:blur(4px);z-index:1;pointer-events:none
-}
-.hero-center{position:relative;z-index:10;max-width:900px;padding:20px}
-.hero-brand{font-family:"Cinzel",serif;font-size:64px;color:var(--gold);margin:0 0 12px;text-shadow:0 0 18px rgba(202,169,58,0.35)}
-.hero-lead{font-size:16px;color:rgba(255,255,255,0.9);margin-bottom:26px}
-
-/* enter button */
-.enter-btn{display:inline-block;padding:12px 28px;border:2px solid var(--gold);border-radius:8px;color:var(--gold);text-decoration:none;font-weight:700;transition:all .28s}
-.enter-btn:hover{background:var(--gold);color:#070707;box-shadow:0 16px 60px rgba(202,169,58,0.08)}
-
-/* floating Xs (parallax layers) */
-.floating-x{position:absolute;font-family:"Cinzel",serif;color:var(--text-light);opacity:.08;pointer-events:none;z-index:2}
-.fx1{left:4%;top:10%;font-size:22vw;filter:blur(1px);animation:fx1 32s linear infinite}
-.fx2{left:70%;top:38%;font-size:18vw;animation:fx2 36s linear infinite}
-.fx3{left:28%;top:72%;font-size:14vw;animation:fx3 40s linear infinite}
-@keyframes fx1{0%{transform:translate(0,0)}25%{transform:translate(30px,-40px)}50%{transform:translate(-20px,40px)}75%{transform:translate(40px,20px)}100%{transform:translate(0,0)}}
-@keyframes fx2{0%{transform:translate(0,0)}50%{transform:translate(-60px,40px)}100%{transform:translate(0,0)}}
-@keyframes fx3{0%{transform:translate(0,0)}50%{transform:translate(20px,-30px)}100%{transform:translate(0,0)}}
-
-/* fade overlay for cinematic intro */
-.fade-wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#000;z-index:2400;transition:opacity .9s}
-.fade-wrap.hidden{opacity:0;pointer-events:none;}
-
-/* inner title */
-.fade-inner .glow-title{font-family:"Cinzel",serif;font-size:3.6rem;color:var(--gold);text-shadow:0 0 26px rgba(202,169,58,0.55)}
-.fade-inner .glow-sub{margin-top:10px;color:rgba(255,255,255,0.88);font-size:1.05rem}
-
-/* ---------------------------------------------------------
-   CONTENT SECTIONS
---------------------------------------------------------- */
-.content{padding:120px 28px 80px;max-width:1200px;margin:0 auto}
-.page-title{font-size:28px;margin-bottom:14px}
-.lead{color:rgba(255,255,255,0.85);margin-bottom:18px}
-
-/* grid / collections */
-.collections-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:30px}
-.collection-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);padding:20px;border-radius:8px;transition:transform .28s}
-.collection-card:hover{transform:translateY(-8px)}
-
-/* gallery */
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:40px}
-.art-card{background:rgba(255,255,255,0.03);padding:18px;border-radius:8px;text-align:center}
-
-/* responsive */
-@media (max-width:820px){
-  .hero-brand{font-size:42px}
-  .fx1{font-size:40vw}
-  .fx2{font-size:30vw}
-  .fx3{font-size:28vw}
-  .top-nav{gap:18px}
+/* hero */
+.hero{min-height:88vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-inner{z-index:20;padding:120px 20px 80px 60px}
+.logo{height:74px;margin-bottom:22px;display:block}
+.tagline{font-family:'Playfair Display',serif;font-size:48px;margin:0 0 8px;letter-spacing:0.02em;opacity:0;transform:translateY(8px);animation:fadeUp .9s .15s both var(--ease)}
+.sub{color:var(--muted);margin:0 0 20px;opacity:0;transform:translateY(8px);animation:fadeUp .9s .25s both var(--ease)}
+.hero-cta{display:flex;gap:12px}
+.btn{display:inline-block;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700;letter-spacing:0.02em;transition:all .25s var(--ease)}
+.btn.primary{background:var(--white);color:#070707;box-shadow:0 8px 30px rgba(0,0,0,0.45)}
+.btn.primary:hover{transform:translateY(-4px)}
+.btn.ghost{border:1px solid rgba(255,255,255,0.06);color:var(--white);background:transparent}
+.hero-media{
+  position:absolute;right:0;top:0;width:55%;height:100%;background-size:cover;background-position:center;filter:contrast(.95) brightness(.56);opacity:0;animation:fadeIn .9s .6s both var(--ease)
 }
 
-/* ---------------------------------------------------------
-   MEMBERS PAGE (GATE A + FOG B)
---------------------------------------------------------- */
-/* fog-layer (animated subtle angelic fog) */
-.fog-layer{position:fixed;inset:0;pointer-events:none;z-index:100;opacity:0;transition:opacity .9s}
-.fog-layer.active{opacity:1}
-.fog-layer:before{
-  content:"";position:absolute;inset:0;background:
-  radial-gradient(40% 40% at 50% 35%, rgba(255,255,255,0.03), transparent 20%),
-  radial-gradient(25% 18% at 30% 75%, rgba(242,225,180,0.02), transparent 20%),
-  linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.12));
-  mix-blend-mode:screen;filter:blur(6px)
+/* featured collections */
+.section-title{font-family:'Playfair Display',serif;font-size:28px;margin:0 0 24px}
+.collections-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.card{display:block;color:var(--white);border-radius:14px;overflow:hidden;text-decoration:none;background:linear-gradient(180deg,rgba(0,0,0,0.025),rgba(0,0,0,0.06))}
+.card-media{height:320px;background-size:cover;background-position:center;transition:transform .8s var(--ease);will-change:transform}
+.card:hover .card-media{transform:scale(1.04) translateY(-6px)}
+.card-content{padding:16px 12px;background:linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.6));margin-top:-6px}
+.card-content h3{margin:0;font-family:'Playfair Display',serif}
+
+/* page titles & text */
+.page-title{font-family:'Playfair Display',serif;font-size:36px;margin:0 0 12px}
+.lead{color:var(--muted);max-width:900px;margin-bottom:18px}
+
+/* gallery / collection template */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:22px}
+.gallery .card-media{height:420px;border-radius:12px}
+
+/* artist grid */
+.artist-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.artist-card{background:rgba(255,255,255,0.02);padding:18px;border-radius:12px}
+.artist-photo{height:220px;background-size:cover;background-position:center;border-radius:8px;margin-bottom:12px}
+
+/* members */
+.members-hero{min-height:60vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:120px 20px}
+.password-form{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:18px}
+.password-form input{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--white);min-width:260px}
+.feedback{color:var(--gold);margin-top:12px;min-height:20px}
+
+/* footer */
+.site-footer{border-top:1px solid rgba(255,255,255,0.03);padding:28px 0;margin-top:48px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+
+/* small screens */
+@media (max-width:880px){
+  .top-center{font-size:14px}
+  .hero-inner{padding:40px 20px}
+  .tagline{font-size:34px}
+  .hero-media{width:100%;height:40vh;bottom:0;top:auto}
+  .mobile-menu{right:12px;left:12px;top:64px}
 }
 
-/* gate container */
-.gate-wrap{position:relative;min-height:72vh;display:flex;align-items:center;justify-content:center;padding:120px 20px;z-index:200}
-.gate-stage{position:relative;width:100%;max-width:980px;height:460px}
-
-/* gate panels */
-.gate-panel{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(180deg,rgba(20,20,22,0.7),rgba(8,8,8,0.7));border:1px solid rgba(255,215,80,0.04);box-shadow:inset 0 -60px 120px rgba(0,0,0,0.65)}
-.gate-panel.left{left:0;border-radius:12px 0 0 12px}
-.gate-panel.right{right:0;border-radius:0 12px 12px 0}
-/* open states */
-.gate-panel.open.left{transform:translateX(-120%);transition:transform 1.2s var(--ease-std)}
-.gate-panel.open.right{transform:translateX(120%);transition:transform 1.2s var(--ease-std)}
-/* divine glow and pulse */
-.divine-light{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:40%;height:70%;background:radial-gradient(closest-side, rgba(255,240,200,0.28), rgba(255,235,180,0.08), transparent 60%);filter:blur(26px);opacity:0;transition:opacity .9s;z-index:40;border-radius:12px}
-.divine-light.visible{opacity:1;animation:divinePulse 3s ease-in-out infinite}
-@keyframes divinePulse{0%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.02)}100%{transform:translate(-50%,-50%) scale(1)}}
-
-/* gate center card */
-.gate-card{position:relative;z-index:60;width:520px;max-width:92%;margin:0 auto;padding:30px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.18));border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(8px);border-radius:12px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,0.6)}
-.gate-card h2{font-family:"Cinzel",serif;color:var(--gold-strong);margin:0 0 8px}
-.gate-card p{color:rgba(255,255,255,0.88)}
-.gate-card .input-row{display:flex;gap:12px;justify-content:center;margin-top:16px}
-.gate-card input{width:240px;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);color:var(--text-light)}
-.gate-card button{padding:10px 16px;border-radius:8px;border:none;background:linear-gradient(180deg,var(--gold),#d4b544);color:#070700;font-weight:700;cursor:pointer}
-
-/* small animations */
-.fade-in{opacity:0;transform:translateY(8px);transition:opacity .8s,transform .8s}
-.fade-in.show{opacity:1;transform:none}
-
-/* tiny helper & responsive */
-@media (max-width:720px){
-  .gate-card{padding:20px}
-  .gate-stage{height:360px}
-  .hero-brand{font-size:42px}
-  .enter-btn{padding:10px 20px}
-  .top-nav{display:none} /* compact for small screens; rely on hamburger */
-}
-
-/* misc: contact email link style */
-.contact-link{color:var(--gold);text-decoration:underline}
+/* animations */
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
