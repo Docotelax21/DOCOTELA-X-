@@ -1,48 +1,43 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <title>Art Gallery — Docotela X</title>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gallery — Docotela X</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="top-nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+<body class="page-gallery">
+  <header class="topbar">
+    <div class="top-center"><a href="index.html">Home</a> <span class="sep">-</span> <a href="collections.html">Collections</a></div>
+    <button class="hamburger" aria-label="Open menu">☰</button>
+  </header>
+
+  <nav class="mobile-menu" aria-hidden="true">
     <a href="index.html">Home</a>
     <a href="collections.html">Collections</a>
-    <a href="gallery.html">Art Gallery</a>
-    <a href="exclusive-drops.html">Exclusive Drops</a>
     <a href="membersonly.html">Members Only</a>
+    <a href="artists.html">Artists</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <main class="content">
-    <h1 class="page-title">Art Gallery</h1>
-    <p class="lead">Curated works. Viewing & inquiry only.</p>
+  <main class="container" style="padding-top:100px">
+    <h1 class="page-title">Gallery</h1>
+    <p class="lead">A visual archive of work, collaborations and art direction.</p>
 
-    <div class="gallery-grid">
-      <div class="art-card">
-        <div class="art-thumb">Artwork placeholder</div>
-        <h3>Title</h3>
-        <p class="meta">Medium • Year</p>
-        <a class="enter-btn" href="contact.html">Inquire</a>
-      </div>
-      <div class="art-card">
-        <div class="art-thumb">Artwork placeholder</div>
-        <h3>Title</h3>
-        <p class="meta">Medium • Year</p>
-        <a class="enter-btn" href="contact.html">Inquire</a>
-      </div>
+    <div class="gallery" style="margin-top:24px">
+      <div class="card"><div class="card-media" style="background-image:url('assets/c1-1.jpg')"></div></div>
+      <div class="card"><div class="card-media" style="background-image:url('assets/c2-1.jpg')"></div></div>
+      <div class="card"><div class="card-media" style="background-image:url('assets/c3-1.jpg')"></div></div>
+      <div class="card"><div class="card-media" style="background-image:url('assets/c4-1.jpg')"></div></div>
+      <div class="card"><div class="card-media" style="background-image:url('assets/c5-1.jpg')"></div></div>
     </div>
-
   </main>
 
-  <script src="menu.js"></script>
+  <footer class="site-footer">
+    <div class="container footer-inner"><div>© Docotela X — 2025</div><div>Follow — <a href="https://instagram.com/docotelax" target="_blank" rel="noopener">@docotelax</a></div></div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
