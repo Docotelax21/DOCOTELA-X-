@@ -1,34 +1,44 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact — Docotela X</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="top-nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+<body class="page-contact">
+  <header class="topbar">
+    <div class="top-center"><a href="index.html">Home</a> <span class="sep">-</span> <a href="about.html">About</a> <span class="sep">-</span> <a href="contact.html">Contact</a></div>
+    <button class="hamburger" aria-label="Open menu">☰</button>
+  </header>
+
+  <nav class="mobile-menu" aria-hidden="true">
     <a href="index.html">Home</a>
     <a href="collections.html">Collections</a>
-    <a href="gallery.html">Art Gallery</a>
-    <a href="exclusive-drops.html">Exclusive Drops</a>
     <a href="membersonly.html">Members Only</a>
+    <a href="artists.html">Artists</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <main class="content fade-in">
+  <main class="container contact-main" style="padding-top:100px">
     <h1 class="page-title">Contact</h1>
-    <p class="lead">Questions, membership inquiries, press — reach us below.</p>
-    <p>Email: <a class="contact-link" href="mailto:docotelax@gmail.com">docotelax@gmail.com</a></p>
-    <p>Apply for membership via the members page.</p>
+    <p class="lead">For inquiries, collaborations, or press: reach out on Instagram or use the minimal contact form below.</p>
+
+    <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST" style="display:flex;flex-direction:column;gap:12px;max-width:720px">
+      <label><input name="name" placeholder="Your name" required style="padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--white)"></label>
+      <label><input name="email" type="email" placeholder="Your email" required style="padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--white)"></label>
+      <label><textarea name="message" placeholder="Message" rows="5" required style="padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--white)"></textarea></label>
+      <button class="btn primary" type="submit" style="align-self:flex-start">Send</button>
+    </form>
+
+    <p class="small" style="margin-top:18px;color:var(--muted)">Or DM on Instagram — <a href="https://instagram.com/docotelax" target="_blank" rel="noopener">@docotelax</a></p>
   </main>
 
-  <script src="menu.js"></script>
+  <footer class="site-footer">
+    <div class="container footer-inner"><div>© Docotela X — 2025</div><div>Follow — <a href="https://instagram.com/docotelax" target="_blank" rel="noopener">@docotelax</a></div></div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
