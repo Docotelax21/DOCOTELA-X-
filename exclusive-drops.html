@@ -1,11 +1,43 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Exclusive Drops — Docotela X</title><link rel="stylesheet" href="styles.css"></head><body>
-<div class="top-nav"><a href="index.html">Home</a><a href="collections.html">Collections</a><a href="contact.html">Contact</a></div>
-<div class="hamburger" onclick="toggleMenu()">☰</div><nav id="mobileMenu" class="mobile-menu" aria-hidden="true"><a href="index.html">Home</a><a href="collections.html">Collections</a><a href="gallery.html">Art Gallery</a><a href="membersonly.html">Members Only</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
-<main class="content fade-in">
-  <h1 class="page-title">Exclusive Drops</h1>
-  <p class="lead">Reserved pieces and limited releases. Contact to inquire.</p>
-  <div class="gallery-grid">
-    <div class="art-card"><div class="art-thumb">Reserved piece</div><h3>Sovereign Verde</h3><p class="meta">Watch • One of one</p><a class="enter-btn" href="product-watch.html">View</a></div>
-  </div>
-</main>
-<script src="menu.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Exclusive Drops — Docotela X</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-exclusive">
+  <header class="topbar">
+    <div class="top-center"><a href="index.html">Home</a> <span class="sep">-</span> <a href="collections.html">Collections</a></div>
+    <button class="hamburger" aria-label="Open menu">☰</button>
+  </header>
+
+  <nav class="mobile-menu" aria-hidden="true">
+    <a href="index.html">Home</a>
+    <a href="collections.html">Collections</a>
+    <a href="membersonly.html">Members Only</a>
+    <a href="artists.html">Artists</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="container" style="padding-top:100px">
+    <h1 class="page-title">Exclusive Drops</h1>
+    <p class="lead">Limited edition releases and private previews. Join members for early purchase windows.</p>
+
+    <div class="grid collections-grid" style="margin-top:28px">
+      <!-- Example drop -->
+      <article class="card">
+        <div class="card-media" style="background-image:url('assets/c3.jpg')"></div>
+        <div class="card-content"><h3>The 8deity — Drop 1</h3><p style="color:var(--muted);margin-top:8px">8 pieces only. Contact members for private purchase.</p></div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner"><div>© Docotela X — 2025</div><div>Follow — <a href="https://instagram.com/docotelax" target="_blank" rel="noopener">@docotelax</a></div></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
