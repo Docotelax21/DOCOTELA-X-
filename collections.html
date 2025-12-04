@@ -1,45 +1,72 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Collections — Docotela X</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="top-nav">
+<body class="page-collections">
+  <header class="topbar">
+    <div class="top-center">
+      <a href="index.html" class="top-link">Home</a>
+      <span class="sep">-</span>
+      <a href="about.html" class="top-link">About</a>
+      <span class="sep">-</span>
+      <a href="contact.html" class="top-link">Contact</a>
+    </div>
+    <button class="hamburger" aria-label="Open menu">☰</button>
+  </header>
+
+  <nav class="mobile-menu" aria-hidden="true">
     <a href="index.html">Home</a>
     <a href="collections.html">Collections</a>
-    <a href="about.html">About</a>
-  </div>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
-    <a href="index.html">Home</a>
-    <a href="collections.html">Collections</a>
-    <a href="gallery.html">Art Gallery</a>
-    <a href="exclusive-drops.html">Exclusive Drops</a>
     <a href="membersonly.html">Members Only</a>
+    <a href="artists.html">Artists</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <main class="content">
+  <main class="container collections-hero" style="padding-top:96px">
     <h1 class="page-title">Collections</h1>
-    <p class="lead">Select a collection to view details.</p>
+    <p class="lead">Each drop is a story. Handcrafted. Limited. Wear the emotion.</p>
 
-    <div class="collections-grid">
-      <a class="collection-card" href="collection-freedom.html">The Feeling of Freedom</a>
-      <a class="collection-card" href="collection-8deity.html">8Deity</a>
-      <a class="collection-card" href="collection-originals.html">Docotela X Originals</a>
-      <a class="collection-card" href="collection-accessories.html">Docotela X Accessories</a>
-      <a class="collection-card" href="collection-kids.html">Docotela X Kids</a>
-      <a class="collection-card" href="collection-limited.html">Docotela X Limited</a>
-      <a class="collection-card" href="collection-emptiness.html">Found in Emptiness</a>
-      <a class="collection-card" href="collection-quietspace.html">Quiet Space</a>
-      <a class="collection-card" href="collection-chaos.html">Art of Chaos</a>
-      <a class="collection-card" href="collection-simplicity.html">Simplicity in Motion</a>
+    <div class="grid collections-grid" style="margin-top:28px">
+      <a class="card" href="collection.html?name=the-feeling-of-freedom">
+        <div class="card-media" style="background-image:url('assets/c1.jpg')"></div>
+        <div class="card-content"><h3>The Feeling of Freedom</h3></div>
+      </a>
+      <a class="card" href="collection.html?name=4-perspectives-1-story">
+        <div class="card-media" style="background-image:url('assets/c2.jpg')"></div>
+        <div class="card-content"><h3>4 Perspectives 1 Story</h3></div>
+      </a>
+      <a class="card" href="collection.html?name=8deity">
+        <div class="card-media" style="background-image:url('assets/c3.jpg')"></div>
+        <div class="card-content"><h3>The 8deity</h3></div>
+      </a>
+      <a class="card" href="collection.html?name=quiet-space">
+        <div class="card-media" style="background-image:url('assets/c4.jpg')"></div>
+        <div class="card-content"><h3>Quiet Space</h3></div>
+      </a>
+      <a class="card" href="collection.html?name=lost-in-the-art-of-chasing-freedom">
+        <div class="card-media" style="background-image:url('assets/c5.jpg')"></div>
+        <div class="card-content"><h3>Lost in the Art of Chasing Freedom</h3></div>
+      </a>
+      <a class="card" href="collection.html?name=found-in-emptiness">
+        <div class="card-media" style="background-image:url('assets/c6.jpg')"></div>
+        <div class="card-content"><h3>Found in Emptiness</h3></div>
+      </a>
     </div>
-
   </main>
-  <script src="menu.js"></script>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© Docotela X — 2025</div>
+      <div>Follow — <a href="https://instagram.com/docotelax" target="_blank" rel="noopener"> @docotelax</a></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
