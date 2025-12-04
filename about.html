@@ -1,44 +1,43 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About — Docotela X</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="top-nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+<body class="page-about">
+  <header class="topbar">
+    <div class="top-center"><a href="index.html">Home</a> <span class="sep">-</span> <a href="about.html">About</a> <span class="sep">-</span> <a href="contact.html">Contact</a></div>
+    <button class="hamburger" aria-label="Open menu">☰</button>
+  </header>
+
+  <nav class="mobile-menu" aria-hidden="true">
     <a href="index.html">Home</a>
     <a href="collections.html">Collections</a>
-    <a href="gallery.html">Art Gallery</a>
-    <a href="exclusive-drops.html">Exclusive Drops</a>
     <a href="membersonly.html">Members Only</a>
+    <a href="artists.html">Artists</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <main class="content">
+  <main class="container about-main" style="padding-top:100px">
     <h1 class="page-title">About Docotela X</h1>
+    <p class="lead">Docotela X is a luxury, art-driven fashion house creating limited, handcrafted collections inspired by the feeling of freedom. Each piece is an emotional story translated into fabric and art.</p>
 
-    <section class="about-section fade-in">
-      <h2 class="about-title">A Maker's Quiet Rebellion</h2>
+    <section class="story" style="margin-top:18px">
+      <h2 style="font-family:'Playfair Display',serif">Our Philosophy</h2>
+      <p style="color:var(--muted)">Emotion first. Craft second. Exclusivity always. Our collections are intentionally small to preserve the art-like value of each piece and to honor the artists who handcraft them.</p>
 
-      <p>Docotela X began as a resistance to speed and conformity. Every fold, seam and finish is an argument for time — slow, deliberate, human. We craft collections as fragments of a life, each collection a chamber of memory and motion.</p>
-
-      <p>We failed many times. We rebuilt a 1978 Beetle by hand across six years to prove a point — consistency matters. That project became proof that vision and patience can make the impossible look inevitable. That ethos is sewn into every piece.</p>
-
-      <p class="highlight">Limited runs. Handcrafted details. Quiet confidence.</p>
-
-      <p>We believe true luxury is freedom — the freedom to choose who we are and how we move. Docotela X is an invitation to that feeling.</p>
+      <h2 style="font-family:'Playfair Display',serif;margin-top:18px">How We Work</h2>
+      <p style="color:var(--muted)">We collaborate with young artists for each collection, giving them creative freedom and spotlight while maintaining the cinematic, luxurious Docotela X identity.</p>
     </section>
   </main>
 
-  <script src="menu.js"></script>
-  <script src="animations.js"></script>
+  <footer class="site-footer">
+    <div class="container footer-inner"><div>© Docotela X — 2025</div><div>Follow — <a href="https://instagram.com/docotelax" target="_blank" rel="noopener">@docotelax</a></div></div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
