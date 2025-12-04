@@ -1,42 +1,45 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Members Only — Docotela X</title><link rel="stylesheet" href="styles.css"></head>
-<body>
-  <div class="top-nav"><a href="index.html">Home</a><a href="collections.html">Collections</a><a href="contact.html">Contact</a></div>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Members Only — Docotela X</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-members">
+  <header class="topbar">
+    <div class="top-center"><a href="index.html">Home</a> <span class="sep">-</span> <a href="about.html">About</a></div>
+    <button class="hamburger" aria-label="Open menu">☰</button>
+  </header>
+
+  <nav class="mobile-menu" aria-hidden="true">
     <a href="index.html">Home</a>
     <a href="collections.html">Collections</a>
-    <a href="gallery.html">Art Gallery</a>
-    <a href="exclusive-drops.html">Exclusive Drops</a>
     <a href="membersonly.html">Members Only</a>
+    <a href="artists.html">Artists</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <div class="fog-layer" id="fogLayer"></div>
+  <main class="members-hero container" style="background-image:linear-gradient(180deg,rgba(0,0,0,0.35),rgba(0,0,0,0.65)), url('assets/members-banner.jpg');background-size:cover;background-position:center;">
+    <h1 class="page-title">Private Access — For Collectors Only</h1>
+    <p class="lead">Enter the password to view exclusive drops and early previews.</p>
+    <form id="passwordForm" class="password-form" onsubmit="return false;">
+      <input id="pwInput" type="password" placeholder="Enter password" aria-label="Password" />
+      <button id="pwBtn" class="btn primary">Enter</button>
+      <p id="pwFeedback" class="feedback" aria-live="polite"></p>
+    </form>
 
-  <main class="gate-wrap">
-    <div class="gate-stage">
-      <div class="gate-panel left closed" id="leftGate"></div>
-      <div class="gate-panel right closed" id="rightGate"></div>
-      <div class="divine-light" id="divine"></div>
-
-      <div class="gate-card" id="gateCard">
-        <h2>Members Only</h2>
-        <p>Enter your access key to reveal the private archive.</p>
-        <div class="input-row">
-          <input id="memberPassword" type="password" placeholder="Access key" aria-label="Access key">
-          <button id="memberOpen">Open</button>
-        </div>
-        <p style="margin-top:10px;color:rgba(255,255,255,0.75);font-size:.95rem">Wrong password shows subtle feedback. Contact to apply for membership.</p>
-      </div>
+    <div id="privateContent" class="private-content" hidden>
+      <h2>Welcome, collector.</h2>
+      <p>Private previews and contact for purchases.</p>
     </div>
   </main>
 
-  <script src="menu.js"></script>
-  <script src="animations.js"></script>
-  <script src="members.js"></script>
+  <footer class="site-footer">
+    <div class="container footer-inner"><div>© Docotela X — 2025</div><div>Follow — <a href="https://instagram.com/docotelax" target="_blank" rel="noopener">@docotelax</a></div></div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
