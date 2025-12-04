@@ -1,58 +1,72 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <title>Docotela X — Home</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Docotela X — Wear the Feeling of Freedom</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="page-index">
+  <header class="topbar">
+    <div class="top-center">
+      <a href="index.html" class="top-link">Home</a>
+      <span class="sep">-</span>
+      <a href="about.html" class="top-link">About</a>
+      <span class="sep">-</span>
+      <a href="contact.html" class="top-link">Contact</a>
+    </div>
+    <button class="hamburger" aria-label="Open menu">☰</button>
+  </header>
 
-  <!-- top nav -->
-  <div class="top-nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </div>
-
-  <!-- hamburger -->
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-
-  <!-- mobile menu -->
-  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+  <nav class="mobile-menu" aria-hidden="true">
     <a href="index.html">Home</a>
     <a href="collections.html">Collections</a>
-    <a href="gallery.html">Art Gallery</a>
-    <a href="exclusive-drops.html">Exclusive Drops</a>
     <a href="membersonly.html">Members Only</a>
+    <a href="artists.html">Artists</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- cinematic fade intro -->
-  <div id="fadeWrap" class="fade-wrap">
-    <div class="fade-inner">
-      <div class="glow-title">DOCOTELA X</div>
-      <div class="glow-sub">Limited collections. Handcrafted art.</div>
-    </div>
-  </div>
-
   <main class="hero">
-    <div class="watermark" aria-hidden="true"></div>
-
-    <div class="hero-center fade-in">
-      <h1 class="hero-brand">DOCOTELA X</h1>
-      <p class="hero-lead">Limited pieces crafted by hand — the feeling of freedom in cloth.</p>
-      <a class="enter-btn" href="gallery.html">Enter the Gallery</a>
+    <div class="hero-inner container">
+      <img src="assets/logo.svg" alt="Docotela X logo" class="logo">
+      <h1 class="tagline">Wear the Feeling of Freedom</h1>
+      <p class="sub">Limited collections. Handcrafted art.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="collections.html">Enter the Gallery</a>
+        <a class="btn ghost" href="membersonly.html">Members Only</a>
+      </div>
     </div>
-
-    <div class="floating-x fx1">X</div>
-    <div class="floating-x fx2">X</div>
-    <div class="floating-x fx3">X</div>
+    <div class="hero-media" aria-hidden="true"></div>
   </main>
 
-  <script src="menu.js"></script>
-  <script src="animations.js"></script>
-  <script>hideIntro('fadeWrap',4200);</script>
+  <section class="featured container">
+    <h2 class="section-title">2025 Collections</h2>
+    <div class="grid collections-grid">
+      <a class="card" href="collection.html?name=the-feeling-of-freedom">
+        <div class="card-media" style="background-image:url('assets/c1.jpg')"></div>
+        <div class="card-content"><h3>The Feeling of Freedom</h3></div>
+      </a>
+      <a class="card" href="collection.html?name=4-perspectives-1-story">
+        <div class="card-media" style="background-image:url('assets/c2.jpg')"></div>
+        <div class="card-content"><h3>4 Perspectives 1 Story</h3></div>
+      </a>
+      <a class="card" href="collection.html?name=8deity">
+        <div class="card-media" style="background-image:url('assets/c3.jpg')"></div>
+        <div class="card-content"><h3>The 8deity</h3></div>
+      </a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© Docotela X — 2025</div>
+      <div>Follow — <a href="https://instagram.com/docotelax" target="_blank" rel="noopener"> @docotelax</a></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
